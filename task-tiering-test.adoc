@@ -1,0 +1,44 @@
+---
+sidebar: sidebar 
+permalink: task-tiering-test.html 
+keywords: throughput, latency, tiering performance, cloud performance test, tiering test, object storage performance 
+summary: 執行雲端效能測試來測量在設定資料分層之前和之後從ONTAP叢集到物件儲存的網路延遲和吞吐量效能。 
+---
+= 測量NetApp Cloud Tiering 中的網路延遲和吞吐量效能
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+執行雲端效能測試來測量在NetApp Cloud Tiering 中設定資料分層之前和之後從ONTAP叢集到物件儲存的網路延遲和吞吐量效能。該測試還可以識別發生的任何故障。
+
+以下是範例效能結果：
+
+image:screenshot_cloud_performance_test.png["雲端效能測試的叢集效能結果的螢幕截圖。"]
+
+.開始之前
+最好在叢集 CPU 使用率低於 50% 時執行此檢查。
+
+.尚未設定分層的集群的步驟
+. 從左側導覽選單中，選擇*移動性>雲分層*。
+. 從*集群*頁面中，選擇集群的選單圖示並選擇*雲端效能測試*。
+. 查看詳細資訊並選擇*繼續*。
+. 查看詳細資訊並選擇*繼續*。
+. 依照提示提供所需資訊。
++
+您需要提供的資訊與您在叢集上設定分層時提供的資訊相同。
+
+. （可選）繼續執行 Tier Volumes 精靈以完成設定。
+
+
+.已設定分層的集群的步驟
+. 從左側導覽選單中，選擇*移動性>雲分層*。
+. 從*集群*頁面中，選擇集群的選單圖示並選擇*雲端效能測試*。
+. 從*集群*頁面中，選擇集群的選單圖示並選擇*雲端效能測試*。
+. 從下拉清單中選擇一個節點。
+. 查看結果或重新檢查效能。
+

@@ -1,0 +1,81 @@
+---
+sidebar: sidebar 
+permalink: reference-aws-support.html 
+keywords: aws, amazon, s3, support, regions, storage classes, cloud tiering, tiering, bluexp, netapp 
+summary: NetApp Cloud Tiering 支援多種 S3 儲存類別和大多數區域。 
+---
+= NetApp Cloud Tiering 支援的 S3 儲存類別和區域
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+NetApp Cloud Tiering 支援多種 S3 儲存類別和大多數區域。
+
+
+
+== 支援的 S3 儲存類別
+
+當您從本機ONTAP系統設定到 AWS 的資料分層時，Cloud Tiering 會自動使用 _Standard_ 儲存類別來儲存您的非活動資料。 Cloud Tiering 可以應用生命週期規則，以便資料在一定天數後從_標準_儲存類別轉換到另一個儲存類別。您可以從以下儲存類別中進行選擇：
+
+* 標準-不頻繁訪問（S3 標準-IA）
+* 單區-不頻繁訪問（S3 單區-IA）
+* 智能分層（S3 智能分層）
+* 冰川即時檢索
+
+
+如果您不選擇其他儲存類別，則資料將保留在_標準_儲存類別中，並且不套用任何規則。
+
+配置 Cloud Tiering 生命週期規則時，在 AWS 帳戶中設定儲存桶時不得配置任何生命週期規則。
+
+https://aws.amazon.com/s3/storage-classes/["了解 S3 儲存類別"^] 。
+
+
+
+== 支援的 AWS 區域
+
+Cloud Tiering 支援以下 AWS 區域。
+
+
+
+=== 亞太地區
+
+* 孟買
+* 首爾
+* 新加坡
+* 雪梨
+* 東京
+
+
+
+
+=== 歐洲
+
+* 法蘭克福
+* 愛爾蘭
+* 倫敦
+* 巴黎
+* 斯德哥爾摩
+
+
+
+
+=== 北美洲
+
+* 加拿大中部
+* 美國東部（維吉尼亞北部）
+* 美國東部（俄亥俄州）
+* 美國西部（加州北部）
+* 美國西部（俄勒岡州）
+
+
+
+
+=== 南美洲
+
+* 聖保羅
+

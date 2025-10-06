@@ -1,0 +1,222 @@
+---
+sidebar: sidebar 
+permalink: task-tiering-onprem-s3-compat.html 
+keywords: data tiering, fabricpool, cloud tiering, tiering cold data, tiering inactive data, tiering aff, tiering fas, tiering ontap, tiering volumes, tier data, tier cold data, tier fas, tier aff, tier ontap, s3, tier to s3, minio 
+summary: '透過將非活動資料分層到使用簡單儲存服務 (S3) 協定的任何物件儲存服務，釋放本機ONTAP叢集上的空間。' 
+---
+= 將本地ONTAP叢集中的資料分層到NetApp Cloud Tiering 中的 S3 物件存儲
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+透過將NetApp Cloud Tiering 中的非活動資料分層到使用簡單儲存服務 (S3) 協定的任何物件儲存服務，釋放本地ONTAP叢集上的空間。
+
+至此，MinIO物件儲存已經合格。
+
+[CAUTION]
+====
+想要使用未正式支援為雲層的物件儲存的客戶可以按照這些說明進行操作。客戶必須測試並確認對象儲存符合他們的要求。
+
+NetApp不支援也不對任何第三方物件儲存服務所引起的任何問題負責，特別是在未與產品來源的第三方達成一致支援安排的情況下。雙方承認並同意， NetApp不對任何相關損害負責，也不需為該第三方產品提供支援。
+
+====
+
+
+== 快速啟動
+
+按照以下步驟快速開始，或向下捲動到其餘部分以獲取完整詳細資訊。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["一"]準備將資料分層到與 S3 相容的物件存儲
+[role="quick-margin-para"]
+您需要以下內容：
+
+[role="quick-margin-list"]
+* 已新增至NetApp控制台的運行ONTAP 9.8 或更高版本的來源本機ONTAP集群，以及透過使用者指定連接埠到目標 S3 相容物件儲存的連線。 https://docs.netapp.com/us-en/bluexp-ontap-onprem/task-discovering-ontap.html["了解如何發現集群"^] 。
+* 物件儲存伺服器的 FQDN、存取金鑰和金鑰，以便ONTAP叢集可以存取儲存桶。
+* 在您的場所安裝控制台代理。
+* 代理程式的網路可實現與來源ONTAP叢集、S3 相容物件儲存以及 Cloud Tiering 服務的出站 HTTPS 連線。
+
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["二"]設定分層
+[role="quick-margin-para"]
+在控制台中，選擇一個本機系統，為分層服務選擇*啟用*，然後依照指示將資料分層到與 S3 相容的物件儲存。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["三"]設定許可
+[role="quick-margin-para"]
+透過雲端供應商的即用即付訂閱、雲端分層自帶授權或兩者結合的方式支付雲端分層費用：
+
+[role="quick-margin-list"]
+* 訂閱 PAYGO 優惠 https://aws.amazon.com/marketplace/pp/prodview-oorxakq6lq7m4?sr=0-8&ref_=beagle&applicationId=AWSMPContessa["AWS Marketplace"^]， https://azuremarketplace.microsoft.com/en-us/marketplace/apps/netapp.cloud-manager?tab=Overview["Azure 市場"^] ， 或者 https://console.cloud.google.com/marketplace/details/netapp-cloudmanager/cloud-manager?supportedpurview=project&rif_reserved["GCP 市場"^]，選擇*訂閱*並依照指示操作。
+* 若要使用 Cloud Tiering BYOL 授權付款，請發送電子郵件至：ng-cloud-tiering@netapp.com?subject=Licensing[如果您需要購買，請聯絡我們]，然後link:https://docs.netapp.com/us-en/bluexp-digital-wallet/task-manage-data-services-licenses.html["將其新增至NetApp控制台"^]。。
+
+
+
+
+== 要求
+
+驗證對ONTAP叢集的支援、設定網路並準備物件儲存。
+
+下圖顯示了每個組件以及您需要在它們之間準備的連接：
+
+image:diagram_cloud_tiering_s3_compat.png["架構圖像顯示了 Cloud Tiering 服務與您本機代理程式的連線、代理程式與您的ONTAP叢集的連線以及ONTAP叢集與物件儲存之間的連線。活動資料駐留在ONTAP叢集上，而非活動資料駐留在物件儲存中。"]
+
+
+NOTE: 代理程式和 S3 相容物件儲存伺服器之間的通訊僅用於物件儲存設定。
+
+
+
+=== 準備ONTAP集群
+
+將資料分層到與 S3 相容的物件儲存時，來源ONTAP叢集必須滿足以下要求。
+
+支援的ONTAP平台:: 您可以從AFF系統或具有全 SSD 聚合或全 HDD 聚合的FAS系統分層資料。
+支援的ONTAP版本:: ONTAP 9.8 或更高版本
+叢集網路需求::
++
+--
+* ONTAP叢集透過使用者指定的連接埠啟動與 S3 相容物件儲存的 HTTPS 連線（此連接埠可在分層設定期間設定）。
++
+來源ONTAP系統從物件儲存讀取和寫入資料。物件儲存從不啟動，它只是響應。
+
+* 需要來自代理的入站連接，該代理必須位於您的場所。
++
+不需要叢集和 Cloud Tiering 服務之間的連接。
+
+* 每個託管要分層的磁碟區的ONTAP節點上都需要一個叢集間 LIF。  LIF 必須與ONTAP用於連接物件儲存的 _IPspace_ 相關聯。
++
+當您設定資料分層時，Cloud Tiering 會提示您使用 IP 空間。您應該選擇與每個 LIF 關聯的 IP 空間。這可能是「預設」 IP 空間或您建立的自訂 IP 空間。詳細了解 https://docs.netapp.com/us-en/ontap/networking/create_a_lif.html["LIF"^]和 https://docs.netapp.com/us-en/ontap/networking/standard_properties_of_ipspaces.html["IP空間"^]。
+
+
+
+--
+支援的捲和聚合:: Cloud Tiering 可以分層的磁碟區總數可能少於ONTAP系統上的磁碟區數。這是因為磁碟區不能從某些聚合中分層。請參閱ONTAP文檔 https://docs.netapp.com/us-en/ontap/fabricpool/requirements-concept.html#functionality-or-features-not-supported-by-fabricpool["FabricPool不支援的功能或特性"^]。
+
+
+
+TIP: Cloud Tiering 支援FlexVol和FlexGroup卷。
+
+
+
+=== 發現ONTAP集群
+
+您需要先將本機ONTAP系統新增至控制台，然後才能開始分層冷資料。
+
+https://docs.netapp.com/us-en/bluexp-ontap-onprem/task-discovering-ontap.html["了解如何發現集群"^] 。
+
+
+
+=== 準備與 S3 相容的物件存儲
+
+與 S3 相容的物件儲存必須滿足以下要求。
+
+S3 憑證:: 當您設定分層到與 S3 相容的物件儲存空間時，系統會提示您建立 S3 儲存桶或選擇現有的 S3 儲存桶。您需要向 Cloud Tiering 提供 S3 存取金鑰和金鑰。  Cloud Tiering 使用金鑰來存取您的儲存桶。
++
+--
+這些存取金鑰必須與具有以下權限的使用者相關聯：
+
+[source, json]
+----
+"s3:ListAllMyBuckets",
+"s3:ListBucket",
+"s3:GetObject",
+"s3:PutObject",
+"s3:DeleteObject",
+"s3:CreateBucket"
+----
+--
+
+
+
+
+=== 建立或切換代理
+
+需要控制台代理將資料分層到雲端。將資料分層到與 S3 相容的物件儲存時，您的場所必須有代理程式可用。您需要安裝新的代理或確保目前選擇的代理位於本地。
+
+* https://docs.netapp.com/us-en/bluexp-setup-admin/concept-connectors.html["了解代理"^]
+* https://docs.netapp.com/us-en/bluexp-setup-admin/task-install-connector-on-prem.html["在本地安裝和設定代理"^]
+* https://docs.netapp.com/us-en/bluexp-setup-admin/task-manage-multiple-connectors.html#switch-between-connectors["在代理之間切換"^]
+
+
+
+
+=== 為控制台代理準備網絡
+
+確保代理程式具有所需的網路連線。
+
+.步驟
+. 確保安裝代理程式的網路啟用以下連線：
++
+** 透過連接埠 443 建立到 Cloud Tiering 服務的 HTTPS 連接(https://docs.netapp.com/us-en/bluexp-setup-admin/task-set-up-networking-on-prem.html#endpoints-contacted-for-day-to-day-operations["查看端點列表"^]）
+** 透過連接埠 443 建立與 S3 相容的物件儲存的 HTTPS 連接
+** 透過連接埠 443 建立到ONTAP叢集管理 LIF 的 HTTPS 連接
+
+
+
+
+
+
+== 將第一個叢集中的非活動資料分層到與 S3 相容的物件存儲
+
+準備好環境後，開始從第一個叢集中分層非活動資料。
+
+.你需要什麼
+* https://docs.netapp.com/us-en/bluexp-ontap-onprem/task-discovering-ontap.html["已將本機系統新增至NetApp控制台"^] 。
+* S3 相容物件儲存伺服器的 FQDN 和將用於 HTTPS 通訊的連接埠。
+* 具有所需 S3 權限的存取金鑰和金鑰。
+
+
+.步驟
+. 選擇本地ONTAP系統。
+. 點擊右側面板中的“啟用”以啟用雲端分層服務。
++
+image:screenshot_setup_tiering_onprem.png["螢幕截圖顯示了選擇本機ONTAP系統後螢幕右側出現的分層選項。"]
+
+. *定義物件儲存名稱*：輸入此物件儲存的名稱。它必須與您可能在此叢集上與聚合一起使用的任何其他物件儲存不同。
+. *選擇提供者*：選擇*S3 相容*並選擇*繼續*。
+. *選擇提供者*：選擇*S3 相容*並選擇*繼續*。
+. 完成*建立物件儲存*頁面上的步驟：
++
+.. *伺服器*：輸入與 S3 相容的物件儲存伺服器的 FQDN、 ONTAP應使用 HTTPS 與伺服器進行通訊的端口，以及具有所需 S3 權限的帳戶的存取金鑰和金鑰。
+.. *儲存桶*：新增一個新的儲存桶或選擇一個現有的儲存桶，然後選擇*繼續*。
+.. *儲存桶*：新增一個新的儲存桶或選擇一個現有的儲存桶，然後選擇*繼續*。
+.. *叢集網路*：選擇ONTAP套用於連接物件儲存的 IP 空間，然後選擇*繼續*。
+.. *叢集網路*：選擇ONTAP套用於連接物件儲存的 IP 空間，然後選擇*繼續*。
++
+選擇正確的 IP 空間可確保 Cloud Tiering 可以建立從ONTAP到 S3 相容物件儲存的連線。
+
++
+您也可以透過定義「最大傳輸速率」來設定可用於將非活動資料上傳到物件儲存的網路頻寬。選擇*Limited*單選按鈕並輸入可使用的最大頻寬，或選擇*Unlimited*表示沒有限制。
+
+
+
+. 在「成功」頁面上選擇「繼續」立即設定您的磁碟區。
+. 在「Tier Volumes」頁面上，選擇要配置分層的捲，然後選擇「繼續」：
++
+** 若要選取所有捲，請選取標題行中的複選框（image:button_backup_all_volumes.png[""] ) 並選擇 *配置磁碟區*。
+** 若要選擇多個卷，請選取每個卷對應的複選框（image:button_backup_1_volume.png[""] ) 並選擇 *配置磁碟區*。
+** 若要選擇單一卷，請選擇行（或image:screenshot_edit_icon.gif["編輯鉛筆圖標"]圖示）來表示音量。
++
+image:screenshot_tiering_initial_volumes.png["螢幕截圖顯示如何選擇單一磁碟區、多個磁碟區或所有磁碟區以及修改選定磁碟區按鈕。"]
+
+
+
+. 在「分層策略」對話方塊中，選擇分層策略，選擇性地調整所選卷的冷卻天數，然後選擇「應用」。
++
+link:concept-cloud-tiering.html#volume-tiering-policies["了解有關容量分層策略和冷卻天數的更多信息"] 。
+
++
+image:screenshot_tiering_initial_policy_settings.png["顯示可設定分層策略設定的螢幕截圖。"]
+
+
+
+.下一步是什麼？
+link:task-licensing-cloud-tiering.html["請務必訂閱 Cloud Tiering 服務"] 。
+
+您可以查看有關集群上活動和非活動資料的資訊。link:task-managing-tiering.html["了解有關管理分層設定的更多信息"] 。
+
+如果您希望將資料從叢集上的某些聚合分層到不同的物件存儲，您還可以建立額外的物件儲存。或者，如果您打算使用FabricPool Mirroring，將分層資料複製到其他物件儲存。link:task-managing-object-storage.html["了解有關管理對象存儲的更多信息"] 。

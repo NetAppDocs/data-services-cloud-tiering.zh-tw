@@ -1,0 +1,288 @@
+---
+sidebar: sidebar 
+permalink: task-managing-tiering.html 
+keywords: discover, volumes, report, hot, cold, inactive, active, capacity, used capacity, savings, health, failed, console 
+summary: 現在您已經從本機ONTAP叢集設定了資料分層，您可以從其他磁碟區分層資料、變更磁碟區的分層策略、發現其他叢集等等。 
+---
+= 在NetApp Cloud Tiering 中管理叢集的資料分層
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+現在您已經從本機ONTAP叢集設定了資料分層，您可以使用NetApp Cloud Tiering 對其他磁碟區中的資料進行分層、變更磁碟區的分層策略、發現其他叢集等。
+
+
+
+== 查看集群的分層信息
+
+檢查雲層、磁碟上的資料或叢集磁碟上的熱資料和冷資料量。或者，您可能想查看叢集磁碟上的熱資料和冷資料的數量。  Cloud Tiering 為每個叢集提供此資訊。
+
+.步驟
+. 從左側導覽選單中，選擇*移動性>雲分層*。
+. 在「集群」頁面中，選擇選單圖標image:icon-action.png["操作圖示"]對於集群並選擇*集群資訊*。
++
+image:screenshot_tiering_cluster_info_button.png["從「集群」頁面選擇「集群資訊」按鈕的螢幕截圖。"]
+
+. 查看有關集群的詳細資訊。
++
+以下是一個例子：
+
++
+image:screenshot_tiering_cluster_info.png["顯示叢集總使用資料容量、叢集已使用容量和叢集資訊的螢幕截圖。"]
+
+
+
+請注意， Cloud Volumes ONTAP系統的顯示有所不同。雖然Cloud Volumes ONTAP磁碟區可以將資料分層到雲端，但它們不使用 Cloud Tiering 服務。 https://docs.netapp.com/us-en/bluexp-cloud-volumes-ontap/task-tiering.html["了解如何將Cloud Volumes ONTAP系統中的非活動資料分層到低成本物件存儲"^] 。
+
+您還可以 https://docs.netapp.com/us-en/active-iq/task-informed-decisions-based-on-cloud-recommendations.html#tiering["從Active IQ Digital Advisor （也稱為Digital Advisor）查看叢集的分層資訊"^]如果您熟悉此NetApp產品。從左側導覽窗格中選擇“*雲建議*”。
+
+image:screenshot_tiering_aiq_fabricpool_info.png["該螢幕截圖顯示了使用Digital Advisor的FabricPool Advisor 的叢集的FabricPool資訊。"]
+
+
+
+== 來自附加卷的層數據
+
+隨時為附加磁碟區設定資料分層 - 例如，在建立新磁碟區之後。
+
+
+TIP: 您不需要配置物件存儲，因為在您最初為叢集設定分層時它已經配置好了。  ONTAP將任何附加磁碟區的非活動資料分層到同一物件儲存。
+
+.步驟
+. 從左側導覽選單中，選擇*移動性>雲分層*。
+. 從「*集群*」頁面中，為集群選擇「層卷*」。
++
+image:screenshot_tiering_tier_volumes_button.png["顯示如何為叢集選擇 Tier Volumes 按鈕的螢幕截圖。"]
+
+. 在「Tier Volumes」頁面上，選擇要設定分層的磁碟區並啟動「Tiering Policy」頁面：
++
+** 若要選取所有捲，請選取標題行中的複選框（image:button_backup_all_volumes.png[""] ) 並選擇 *配置磁碟區*。
+** 若要選擇多個卷，請選取每個卷對應的複選框（image:button_backup_1_volume.png[""] ) 並選擇 *配置磁碟區*。
+** 若要選擇單一卷，請選擇行（或image:screenshot_edit_icon.gif["編輯鉛筆圖標"]圖示）來表示音量。
++
+image:screenshot_tiering_tier_volumes.png["螢幕截圖顯示如何選擇單一磁碟區、多個磁碟區或所有磁碟區以及修改選定磁碟區按鈕。"]
+
+
+
+. 在「分層策略」對話方塊中，選擇分層策略，選擇性地調整所選卷的冷卻天數，然後選擇「應用」。
+. 在「分層策略」對話方塊中，選擇分層策略，選擇性地調整所選卷的冷卻天數，然後選擇「應用」。
++
+link:concept-cloud-tiering.html#volume-tiering-policies["了解有關容量分層策略和冷卻天數的更多信息"] 。
+
++
+image:screenshot_tiering_policy_settings.png["顯示可設定分層策略設定的螢幕截圖。"]
+
+
+
+.結果
+ONTAP開始將選定磁碟區的資料分層到雲端。
+
+
+
+== 更改磁碟區的分層策略
+
+更改磁碟區的分層策略會改變ONTAP將冷資料分層到物件儲存的方式。改變從你改變政策的那一刻就開始了。它僅改變磁碟區的後續分層行為 - 它不會追溯將資料移至雲層。
+
+.步驟
+. 從左側導覽選單中，選擇*Mobility > CloudTiering*。
+. 從「*集群*」頁面中，為集群選擇「層卷*」。
+. 從「*集群*」頁面中，為集群選擇「層卷*」。
+. 按一下磁碟區的行，選擇分層策略，選擇性地調整冷卻天數，然後選擇*應用*。
+. 按一下磁碟區的行，選擇分層策略，選擇性地調整冷卻天數，然後選擇*應用*。
++
+link:concept-cloud-tiering.html#volume-tiering-policies["了解有關容量分層策略和冷卻天數的更多信息"] 。
+
++
+image:screenshot_tiering_policy_settings.png["顯示可設定分層策略設定的螢幕截圖。"]
+
+
+
+
+NOTE: 如果您看到「檢索分層資料」選項，請參閱<<將資料從雲層遷移回效能層,將資料從雲層遷移回效能層>>了解詳情。
+
+.結果
+ONTAP變更分層策略並開始根據新策略對資料進行分層。
+
+
+
+== 變更可用於將非活動資料上傳至物件儲存的網路頻寬
+
+當您為叢集啟動雲端分層時，預設情況下， ONTAP可以使用無限量的頻寬將非活動資料從系統中的磁碟區傳輸到物件儲存。如果分層流量影響使用者工作負載，則限制傳輸期間使用的網路頻寬。您可以選擇 1 到 10,000 Mbps 之間的值作為最大傳輸速率。
+
+. 從左側導覽選單中，選擇*移動性>分層*。
+. 在「集群」頁面中，選擇選單圖標image:icon-action.png["操作圖示"]對於集群並選擇*最大傳輸速率*。
+. 在「集群」頁面中，選擇選單圖標image:icon-action.png["操作圖示"]對於集群並選擇*最大傳輸速率*。
++
+image:screenshot_tiering_transfer_rate_button.png["從「集群」頁面選擇「最大傳輸速率」按鈕的螢幕截圖。"]
+
+. 在「最大傳輸速率」頁面中，選擇「限制」單選按鈕並輸入可使用的最大頻寬，或選擇「無限制」以表示沒有限制。然後選擇*應用*。
+. 在「最大傳輸速率」頁面中，選擇「限制」單選按鈕並輸入可使用的最大頻寬，或選擇「無限制」以表示沒有限制。然後選擇*應用*。
++
+image:screenshot_tiering_transfer_rate.png["叢集的最大傳輸速率對話框的螢幕截圖。"]
+
+
+
+此設定不會影響分配給分層資料的任何其他群集的頻寬。
+
+
+
+== 下載卷的分層報告
+
+下載「層卷」頁面的報告，以便您可以查看所管理叢集上所有磁碟區的分層狀態。只需選擇image:button_download.png["下載"]按鈕。  Cloud Tiering 會產生一個 .CSV 文件，您可以根據需要查看並傳送給其他群組。  .CSV 檔案包含最多 10,000 行資料。
+
+image:screenshot_tiering_report_download.png["此螢幕截圖顯示如何產生列出所有磁碟區的分層狀態的 CSV 檔案。"]
+
+
+
+== 將資料從雲層遷移回效能層
+
+從雲端存取的分層資料可能會被「重新加熱」並移回效能層。但是，如果您想主動將資料從雲層提升到效能層，您可以在「分層策略」對話方塊中執行此操作。使用ONTAP 9.8 及更高版本時可使用此功能。
+
+如果您想停止在磁碟區上使用分層，或決定將所有使用者資料保留在效能層，但將 Snapshot 副本保留在雲層，則可以執行此操作。
+
+有兩個選項：
+
+[cols="22,45,35"]
+|===
+| 選項 | 描述 | 對分層策略的影響 
+
+
+| 恢復所有數據 | 檢索雲端中分層的所有磁碟區資料和 Snapshot 副本，並將它們提升到效能層。 | 分層策略更改為“無策略”。 
+
+
+| 恢復活動檔案系統 | 僅檢索雲端中分層的活動檔案系統資料並將其提升至效能層（Snapshot 副本保留在雲端）。 | 分層策略變更為“冷快照”。 
+|===
+
+NOTE: 您的雲端供應商可能會根據從雲端傳輸的資料量向您收取費用。
+
+.步驟
+確保效能層有足夠的空間來儲存從雲端移回的資料。
+
+. 從左側導覽選單中，選擇*移動性>雲分層*。
+. 從「*集群*」頁面中，為集群選擇「層卷*」。
+. 從「*集群*」頁面中，為集群選擇「層卷*」。
+. 點選image:screenshot_edit_icon.gif["分層卷表中每行末尾顯示的編輯圖標"]卷的圖標，選擇要使用的檢索選項，然後選擇*套用*。
+. 點選image:screenshot_edit_icon.gif["分層卷表中每行末尾顯示的編輯圖標"]卷的圖標，選擇要使用的檢索選項，然後選擇*套用*。
++
+image:screenshot_tiering_policy_settings_with_retrieve.png["顯示可設定分層策略設定的螢幕截圖。"]
+
+
+
+.結果
+分層策略改變，分層資料開始移回效能層。根據雲端中的資料量，傳輸過程可能需要一些時間。
+
+
+
+== 管理聚合上的分層設置
+
+本地ONTAP系統中的每個聚合都有兩個可以調整的設定：分層完整性閾值以及是否啟用非活動資料報告。本地ONTAP系統中的每個聚合都有兩個可以調整的設定：分層完整性閾值以及是否啟用非活動資料報告。
+
+分層滿度閾值:: 將閾值設為較低的數字會減少分層之前需要儲存在效能層上的資料量。這對於包含少量活動資料的大型聚合體可能很有用。
++
+--
+將閾值設為更高的數字會增加分層之前需要儲存在效能層上的資料量。這對於僅在聚合接近最大容量時分層的解決方案可能有用。
+
+--
+非活動數據報告:: 非活動資料報告 (IDR) 使用 31 天的冷卻期來確定哪些資料被視為非活動資料。分層的冷資料量取決於磁碟區上設定的分層策略。此數量可能與 IDR 使用 31 天冷卻期偵測到的冷資料量不同。
++
+--
+
+TIP: 最好保持 IDR 啟用，因為它有助於識別您的非活動資料和節省機會。如果在聚合上啟用了資料分層，則 IDR 必須保持啟用狀態。
+
+--
+
+
+.步驟
+. 從「*集群*」頁面中，為所選集群選擇「*進階設定*」。
+. 從「*集群*」頁面中，為所選集群選擇「*進階設定*」。
++
+image:screenshot_tiering_advanced_setup_button.png["顯示集群的高級設定按鈕的螢幕截圖。"]
+
+. 從進階設定頁面中，選擇聚合的選單圖示並選擇*修改聚合*。
+. 從進階設定頁面中，選擇聚合的選單圖示並選擇*修改聚合*。
++
+image:screenshot_tiering_modify_aggr.png["顯示聚合的「修改聚合」選項的螢幕截圖。"]
+
+. 在顯示的對話方塊中，修改滿度閾值並選擇是否啟用或停用非活動資料報告。
++
+image:screenshot_tiering_modify_aggregate.png["螢幕截圖顯示了用於修改分層完整度閾值的滑桿以及用於啟用或停用非活動資料報告的按鈕。"]
+
+. 按一下“*應用*”。
+
+
+
+
+== 修復運行健康問題
+
+如果發生故障，Cloud Tiering 會在叢集儀表板上顯示「失敗」的運作健康狀況。健康狀況反映了ONTAP系統和NetApp控制台的狀態。
+
+.步驟
+. 識別所有運行狀況為「失敗」的叢集。
+. 將滑鼠懸停在資訊“i”圖示上查看失敗原因。
+. 糾正問題：
++
+.. 驗證ONTAP叢集是否正常運作以及是否具有與物件儲存提供者的入站和出站連線。
+.. 驗證控制台是否具有與 Cloud Tiering 服務、物件儲存以及它發現的ONTAP叢集的出站連線。
+
+
+
+
+
+
+== 從 Cloud Tiering 發現更多集群
+
+您可以從分層_叢集_頁面將未發現的本機ONTAP叢集新增至控制台，以便為叢集啟用分層。
+
+請注意，Tiering _On-Prem dashboard_ 頁面上也會出現按鈕，供您發現其他群集。
+
+.步驟
+. 從 Cloud Tiering 中，選擇 *Clusters* 選項卡。
+. 若要查看任何未發現的集群，請選擇「顯示未發現的集群」。
+. 若要查看任何未發現的集群，請選擇「顯示未發現的集群」。
++
+image:screenshot_tiering_show_undiscovered_cluster.png["螢幕截圖顯示了分層儀表板上的「顯示未發現的群集」按鈕。"]
+
++
+如果您的 NSS 憑證已儲存在控制台中，則您帳戶中的叢集將顯示在清單中。
+
++
+如果您的 NSS 憑證未儲存，系統會先提示您新增憑證，然後您才能看到未發現的叢集。
+
++
+image:screenshot_tiering_discover_cluster.png["此螢幕截圖顯示如何發現現有叢集以新增至控制台和分層儀表板。"]
+
+. 按一下您想要透過控制台管理並實作資料分層的叢集的「發現叢集」。
+. 在「叢集詳細資料」頁面中，輸入管理員使用者帳戶的密碼並選擇「發現」。
+. 在「叢集詳細資料」頁面中，輸入管理員使用者帳戶的密碼並選擇「發現」。
++
+請注意，叢集管理 IP 位址是根據您的 NSS 帳戶中的資訊填入的。
+
+. 在「詳細資料和憑證」頁面中，叢集名稱被新增為系統名稱，因此選擇「開始」。
+
+
+.結果
+控制台發現叢集並將其新增至系統頁面，使用叢集名稱作為系統名稱。
+
+您可以在右側面板中為該叢集啟用分層服務或其他服務。
+
+
+
+== 在所有控制台代理程式中搜尋集群
+
+如果您使用多個代理程式來管理環境中的所有存儲，那麼您想要實施分層的某些叢集可能位於另一個代理程式中。如果您不確定哪個代理程式正在管理某個集群，您可以使用 Cloud Tiering 在所有代理程式中進行搜尋。
+
+.步驟
+. 在 Cloud Tiering 功能表列中，選擇操作選單並選擇*在所有代理程式中搜尋叢集*。
++
+image:screenshot_tiering_search for_cluster.png["螢幕截圖顯示如何搜尋可能存在於任何代理程式中的叢集。"]
+
+. 在顯示的搜尋對話方塊中，輸入群集名稱並選擇*搜尋*。
++
+如果 Cloud Tiering 能夠找到集群，則會顯示代理程式的名稱。
+
+. https://docs.netapp.com/us-en/bluexp-setup-admin/task-manage-multiple-connectors.html#switch-between-connectors["切換到代理程式並為叢集配置分層"^] 。
+

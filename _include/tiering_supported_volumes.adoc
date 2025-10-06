@@ -1,0 +1,6 @@
+= 
+:allow-uri-read: 
+
+
+支援的捲和聚合:: Cloud Tiering 可以分層的磁碟區總數可能少於ONTAP系統上的磁碟區數。這是因為磁碟區不能從某些聚合中分層。請參閱ONTAP文檔 https://docs.netapp.com/us-en/ontap/fabricpool/requirements-concept.html#functionality-or-features-not-supported-by-fabricpool["FabricPool不支援的功能或特性"^]。
+

@@ -1,0 +1,243 @@
+---
+sidebar: sidebar 
+permalink: task-tiering-onprem-gcp.html 
+keywords: data tiering, fabricpool, cloud tiering, tiering cold data, tiering inactive data, tiering aff, tiering fas, tiering ontap, tiering volumes, tier data, tier cold data, tier fas, tier aff, tier ontap, google, gcp, google cloud storage 
+summary: 透過將非活動資料分層到NetApp Cloud Tiering 中的 Google Cloud Storage，釋放本地ONTAP叢集上的空間 
+---
+= 將本地ONTAP叢集中的資料分層到NetApp Cloud Tiering 中的 Google Cloud Storage
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+透過將非活動資料分層到NetApp Cloud Tiering 中的 Google Cloud Storage，釋放本地ONTAP叢集上的空間。
+
+
+
+== 快速啟動
+
+按照以下步驟快速開始，或向下捲動到其餘部分以獲取完整詳細資訊。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["一"]準備將資料分層到 Google Cloud Storage
+[role="quick-margin-para"]
+您需要以下內容：
+
+[role="quick-margin-list"]
+* 您已新增至NetApp控制台的執行ONTAP 9.6 或更高版本的來源本機ONTAP集群，以及透過使用者指定連接埠至 Google Cloud Storage 的連線。 https://docs.netapp.com/us-en/bluexp-ontap-onprem/task-discovering-ontap.html["了解如何發現集群"^] 。
+* 具有預先定義儲存管理員角色和儲存存取金鑰的服務帳戶。
+* 安裝在 Google Cloud Platform VPC 中的控制台代理程式。
+* 代理程式的網路可實現與資料中心中的ONTAP叢集、Google Cloud Storage 和 Cloud Tiering 服務的出站 HTTPS 連線。
+
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["二"]設定分層
+[role="quick-margin-para"]
+在NetApp控制台中，選擇一個本機系統，選擇分層服務的 *啟用*，然後依照指示將資料分層到 Google Cloud Storage。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["三"]設定許可
+[role="quick-margin-para"]
+免費試用結束後，您可以透過即用即付訂閱、 ONTAP Cloud Tiering BYOL 授權或兩者結合的方式支付 Cloud Tiering 費用：
+
+[role="quick-margin-list"]
+* 若要從 Google Cloud 市集訂閱， https://console.cloud.google.com/marketplace/details/netapp-cloudmanager/cloud-manager?supportedpurview=project&rif_reserved["前往市場"^] ，選擇*訂閱*，然後按照提示操作。
+* 若要使用 Cloud Tiering BYOL 授權付款，請發送電子郵件至：ng-cloud-tiering@netapp.com?subject=Licensing[如果您需要購買，請聯絡我們]，然後link:https://docs.netapp.com/us-en/bluexp-digital-wallet/task-manage-data-services-licenses.html["將其新增至NetApp控制台"^]。
+
+
+
+
+== 要求
+
+驗證對ONTAP叢集的支援、設定網路並準備物件儲存。
+
+下圖顯示了每個組件以及您需要在它們之間準備的連接：
+
+image:diagram_cloud_tiering_google.png["架構圖像顯示了 Cloud Tiering 服務與雲端提供者中的代理程式的連接、代理與ONTAP叢集的連接以及ONTAP叢集與雲端提供者中的物件儲存之間的連接。活動資料駐留在ONTAP叢集上，而非活動資料駐留在物件儲存中。"]
+
+
+NOTE: 代理程式和 Google Cloud Storage 之間的通訊僅用於物件儲存設定。
+
+
+
+=== 準備ONTAP集群
+
+將資料分層到 Google Cloud Storage 時，您的ONTAP叢集必須滿足以下要求。
+
+支援的ONTAP平台::
++
+--
+* 使用ONTAP 9.8 及更高版本時：您可以從AFF系統或具有全 SSD 聚合或全 HDD 聚合的FAS系統分層資料。
+* 使用ONTAP 9.7 及更早版本時：您可以從AFF系統或具有全 SSD 聚合的FAS系統分層資料。
+
+
+--
+支援的ONTAP版本:: ONTAP 9.6 或更高版本
+叢集網路需求::
++
+--
+* ONTAP叢集透過連接埠 443 啟動與 Google Cloud Storage 的 HTTPS 連線。
++
+ONTAP從物件儲存讀取和寫入資料。物件儲存從不啟動，它只是響應。
+
++
+儘管 Google Cloud Interconnect 提供了更好的效能和更低的資料傳輸費用，但ONTAP叢集和 Google Cloud Storage 之間並不是必需的。但這樣做是推薦的最佳做法。
+
+* 需要來自代理的入站連接，該代理位於 Google Cloud Platform VPC 中。
++
+不需要叢集和 Cloud Tiering 服務之間的連接。
+
+* 每個託管要分層的磁碟區的ONTAP節點上都需要一個叢集間 LIF。  LIF 必須與ONTAP用於連接物件儲存的 _IPspace_ 相關聯。
++
+當您設定資料分層時，Cloud Tiering 會提示您使用 IP 空間。您應該選擇與每個 LIF 關聯的 IP 空間。這可能是「預設」 IP 空間或您建立的自訂 IP 空間。詳細了解 https://docs.netapp.com/us-en/ontap/networking/create_a_lif.html["LIF"^]和 https://docs.netapp.com/us-en/ontap/networking/standard_properties_of_ipspaces.html["IP空間"^]。
+
+
+
+--
+支援的捲和聚合:: Cloud Tiering 可以分層的磁碟區總數可能少於ONTAP系統上的磁碟區數。這是因為磁碟區不能從某些聚合中分層。請參閱ONTAP文檔 https://docs.netapp.com/us-en/ontap/fabricpool/requirements-concept.html#functionality-or-features-not-supported-by-fabricpool["FabricPool不支援的功能或特性"^]。
+
+
+
+NOTE: Cloud Tiering 支援FlexGroup卷。設定方式與任何其他磁碟區相同。
+
+
+
+=== 發現ONTAP集群
+
+您需要先將本機ONTAP系統新增至NetApp控制台，然後才能開始分層冷資料。
+
+https://docs.netapp.com/us-en/bluexp-ontap-onprem/task-discovering-ontap.html["了解如何發現集群"^] 。
+
+
+
+=== 建立或切換控制台代理
+
+需要控制台代理將資料分層到雲端。將資料分層到 Google Cloud Storage 時，Google Cloud Platform VPC 中必須有代理可用。您需要建立一個新的代理或確保目前選定的代理程式位於 Google Cloud 中。
+
+* https://docs.netapp.com/us-en/bluexp-setup-admin/concept-connectors.html["了解代理"^]
+* https://docs.netapp.com/us-en/bluexp-setup-admin/task-quick-start-connector-google.html["在 Google Cloud 中部署代理"^]
+
+
+
+
+=== 為控制台代理準備網絡
+
+確保控制台代理程式具有所需的網路連線。
+
+.步驟
+. 確保安裝代理程式的 VPC 啟用以下連線：
++
+** 透過連接埠 443 建立到 Cloud Tiering 服務和您的 Google Cloud Storage 的 HTTPS 連接(https://docs.netapp.com/us-en/bluexp-setup-admin/task-set-up-networking-google.html#endpoints-contacted-for-day-to-day-operations["查看端點列表"^]）
+** 透過連接埠 443 建立到ONTAP叢集管理 LIF 的 HTTPS 連接
+
+
+. 可選：在您計劃部署代理程式的子網路上啟用私有 Google 存取權限。
++
+https://cloud.google.com/vpc/docs/configure-private-google-access["私人 Google 存取權限"^]如果您有從ONTAP叢集到 VPC 的直接連接，並且希望代理程式和 Google Cloud Storage 之間的通訊保持在虛擬專用網路中，則建議這樣做。請注意，私有 Google Access 適用於僅具有內部（私有）IP 位址（沒有外部 IP 位址）的 VM 執行個體。
+
+
+
+
+
+=== 準備 Google 雲端存儲
+
+設定分層時，您需要為具有儲存管理員權限的服務帳戶提供儲存存取金鑰。服務帳號使 Cloud Tiering 能夠對用於資料分層的 Cloud Storage 儲存桶進行身份驗證和存取。需要金鑰，以便 Google Cloud Storage 知道誰在發出請求。
+
+Cloud Storage 儲存桶必須位於link:reference-google-support.html#supported-google-cloud-regions["支持 Cloud Tiering 的區域"]。
+
+
+NOTE: 如果您打算將 Cloud Tiering 配置為使用成本較低的儲存類，您的分層資料將在一定天數後轉換到該儲存類，則在 GCP 帳戶中設定儲存桶時不得選擇任何生命週期規則。  Cloud Tiering 管理生命週期轉換。
+
+.步驟
+. https://cloud.google.com/iam/docs/creating-managing-service-accounts#creating_a_service_account["建立具有預先定義儲存管理員角色的服務帳戶"^] 。
+. 前往 https://console.cloud.google.com/storage/settings["GCP 儲存設定"^]並為服務帳戶建立存取金鑰：
++
+.. 選擇一個項目，然後選擇*互通性*。如果您還沒有這樣做，請選擇*啟用互通性存取*。
+.. 選擇一個項目，然後選擇*互通性*。如果您還沒有這樣做，請選擇*啟用互通性存取*。
+.. 在*服務帳戶的存取金鑰*下，選擇*為服務帳戶建立金鑰*，選擇剛剛建立的服務帳戶，然後選擇*建立金鑰*。
+.. 在*服務帳戶的存取金鑰*下，選擇*為服務帳戶建立金鑰*，選擇剛剛建立的服務帳戶，然後選擇*建立金鑰*。
++
+稍後設定 Cloud Tiering 時，您需要輸入金鑰。
+
+
+
+
+
+
+
+== 將第一個叢集中的非活動資料分層到 Google Cloud Storage
+
+準備好 Google Cloud 環境後，開始從第一個叢集分層非活動資料。
+
+.你需要什麼
+* https://docs.netapp.com/us-en/bluexp-ontap-onprem/task-discovering-ontap.html["新增到NetApp控制台的本機系統"^] 。
+* 具有儲存管理員角色的服務帳戶的儲存存取金鑰。
+
+
+.步驟
+. 選擇本地ONTAP系統。
+. 點擊右側面板中的分層服務的“啟用”按鈕。
++
+如果「*系統*」頁面上有 Google Cloud Storage 分層目標，則可以將叢集拖曳到 Google Cloud Storage 系統上以啟動設定精靈。
+
++
+image:screenshot_setup_tiering_onprem.png["螢幕截圖顯示了選擇本機ONTAP系統後螢幕右側出現的啟用選項。"]
+
+. *定義物件儲存名稱*：輸入此物件儲存的名稱。它必須與您可能在此叢集上與聚合一起使用的任何其他物件儲存不同。
+. *選擇提供者*：選擇*Google Cloud*並選擇*繼續*。
+. 完成*建立物件儲存*頁面上的步驟：
++
+.. *儲存桶*：新增新的 Google 雲端儲存桶或選擇現有儲存桶。
+.. *儲存類別生命週期*：雲端分層管理分層資料的生命週期轉換。資料從_Standard_類別開始，但您可以建立規則以在一定天數後套用不同的儲存類別。
++
+選擇要將分層資料轉換到的 Google Cloud 儲存類別以及將資料分配到該類別之前的天數，然後選擇*繼續*。例如，下面的螢幕截圖顯示，分層資料在物件儲存中儲存 30 天後從 _Standard_ 類別分配給 _Nearline_ 類，然後在物件儲存中儲存 60 天後分配給 _Coldline_ 類別。
+
++
+如果您選擇*將資料保留在此儲存類別中*，則資料將保留在該儲存類別中。link:reference-google-support.html["查看支援的儲存類別"^] 。
+
++
+image:screenshot_tiering_lifecycle_selection_gcp.png["此螢幕截圖顯示如何選擇在一定天數後指派給您的資料的附加儲存類別。"]
+
++
+請注意，生命週期規則適用於所選儲存桶中的所有物件。
+
+.. *憑證*：輸入具有儲存管理員角色的服務帳戶的儲存存取金鑰和金鑰。
+.. *叢集網路*：選擇ONTAP應用於連接物件儲存的 IP 空間。
++
+選擇正確的 IP 空間可確保 Cloud Tiering 可以建立從ONTAP到雲端提供者的物件儲存的連線。
+
++
+您也可以透過定義「最大傳輸速率」來設定可用於將非活動資料上傳到物件儲存的網路頻寬。選擇*Limited*單選按鈕並輸入可使用的最大頻寬，或選擇*Unlimited*表示沒有限制。
+
+
+
+. 按一下“繼續”以選擇要分層的磁碟區。
+. 在「Tier Volumes」頁面上，選擇要設定分層的磁碟區並啟動「Tiering Policy」頁面：
++
+** 若要選取所有捲，請選取標題行中的複選框（image:button_backup_all_volumes.png[""] ) 並選擇 *配置磁碟區*。
+** 若要選擇多個卷，請選取每個卷對應的複選框（image:button_backup_1_volume.png[""] ) 並選擇 *配置磁碟區*。
+** 若要選擇單一卷，請選擇行（或image:screenshot_edit_icon.gif["編輯鉛筆圖標"]圖示）來表示音量。
++
+image:screenshot_tiering_initial_volumes.png["螢幕截圖顯示如何選擇單一磁碟區、多個磁碟區或所有磁碟區以及修改選定磁碟區按鈕。"]
+
+
+
+. 在「分層策略」對話方塊中，選擇分層策略，選擇性地調整所選卷的冷卻天數，然後選擇「應用」。
++
+link:concept-cloud-tiering.html#volume-tiering-policies["了解有關容量分層策略和冷卻天數的更多信息"] 。
+
++
+image:screenshot_tiering_initial_policy_settings.png["顯示可設定分層策略設定的螢幕截圖。"]
+
+
+
+.結果
+您已成功設定從叢集上的磁碟區到 Google Cloud 物件儲存的資料分層。
+
+.下一步是什麼？
+link:task-licensing-cloud-tiering.html["請務必訂閱 Cloud Tiering 服務"] 。
+
+您可以查看有關集群上活動和非活動資料的資訊。link:task-managing-tiering.html["了解有關管理分層設定的更多信息"] 。
+
+如果您希望將資料從叢集上的某些聚合分層到不同的物件存儲，您還可以建立額外的物件儲存。或者，如果您打算使用FabricPool Mirroring，將分層資料複製到其他物件儲存。link:task-managing-object-storage.html["了解有關管理對象存儲的更多信息"] 。

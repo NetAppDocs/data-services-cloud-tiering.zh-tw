@@ -1,0 +1,59 @@
+---
+indexpage:
+  title: NetApp Cloud Tiering 文檔
+  summary: NetApp Cloud Tiering 透過自動將非活動資料從本機ONTAP叢集分層到物件存儲，將您的資料中心擴展到雲端。
+  keywords: bluexp, ontap, cloud tiering, documentation, netapp console, console
+  lead: NetApp Cloud Tiering 透過自動將非活動資料從本機ONTAP叢集分層到物件存儲，將您的資料中心擴展到雲端。
+  tiles:
+  - title: 開始
+    links:
+    - title: 了解NetApp雲端分層
+      url: concept-cloud-tiering.html
+    - title: 什麼是新的
+      url: whats-new.html
+    - title: 設定許可
+      url: task-licensing-cloud-tiering.html
+  - title: 將本地ONTAP資料分層到雲
+    links:
+    - title: 層級至 Amazon S3
+      url: task-tiering-onprem-aws.html
+    - title: 層級至 Azure Blob
+      url: task-tiering-onprem-azure.html
+    - title: 升級至 Google Cloud
+      url: task-tiering-onprem-gcp.html
+    - title: 層級至StorageGRID
+      url: task-tiering-onprem-storagegrid.html
+    - title: 通用 S3 層級
+      url: task-tiering-onprem-s3-compat.html
+  - title: 管理分層設定
+    links:
+    - title: 更改磁碟區的分層策略
+      url: task-managing-tiering.html#changing-a-volumes-tiering-policy
+    - title: 查看集群的分層信息
+      url: task-managing-tiering.html#reviewing-tiering-info-for-a-cluster
+    - title: 來自附加卷的層數據
+      url: task-managing-tiering.html#tiering-data-from-additional-volumes
+    - title: 更改將非活動資料上傳到物件儲存的頻寬
+      url: task-managing-tiering.html#changing-the-network-bandwidth-available-to-upload-inactive-data-to-object-storage
+    - title: 將資料從雲端移回效能層
+      url: task-managing-tiering.html#migrating-data-from-the-cloud-tier-back-to-the-performance-tier
+    - title: 管理聚合上的分層設置
+      url: task-managing-tiering.html#managing-tiering-settings-on-aggregates
+  - title: 管理對象存儲
+    links:
+    - title: 為叢集新增新的物件存儲
+      url: task-managing-object-storage.html#adding-a-new-object-store
+    - title: 將第二個物件儲存新增至聚合以進行鏡像
+      url: task-managing-object-storage.html#attaching-a-second-object-store-to-an-aggregate-for-mirroring
+    - title: 交換主物件存儲和鏡像物件存儲
+      url: task-managing-object-storage.html#swapping-the-primary-and-mirror-object-store
+    - title: 刪除鏡像物件存儲
+      url: task-managing-object-storage.html#removing-a-mirror-object-store-from-an-aggregate
+  - title: 部落格和社區
+    links:
+    - title: NetApp控制台
+      url: https://www.netapp.com/console
+    - title: NetApp資料服務
+      url: https://www.netapp.com/data-services/
+    - title: NetApp社群
+      url: https://community.netapp.com/

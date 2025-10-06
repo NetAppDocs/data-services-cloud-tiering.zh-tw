@@ -1,0 +1,17 @@
+= 調整頻寬以傳輸非活動數據
+:allow-uri-read: 
+
+
+
+
+=== 調整頻寬以傳輸非活動數據
+
+當您啟動 Cloud Tiering 時， ONTAP可以使用無限量的網路頻寬將叢集中磁碟區中的非活動資料傳輸到物件儲存。如果您注意到分層流量影響了正常的使用者工作負載，您可以限制傳輸期間可使用的頻寬量。 https://docs.netapp.com/us-en/bluexp-tiering/task-managing-tiering.html#changing-the-network-bandwidth-available-to-upload-inactive-data-to-object-storage["了解更多"] 。
+
+
+
+=== 通知中心顯示的分層事件
+
+當叢集分層的冷資料少於 20%（包括未分層任何資料的叢集）時，分層事件「將叢集 <name> 中的其他資料分層到物件儲存以提高儲存效率」現在會作為通知出現。
+
+此通知是一項“建議”，旨在幫助您提高系統效率並節省儲存成本。它提供了一個鏈接 https://bluexp.netapp.com/cloud-tiering-service-tco["Cloud Tiering 總擁有成本和節省計算器"^]幫助您計算成本節省。

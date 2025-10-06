@@ -1,0 +1,234 @@
+---
+sidebar: sidebar 
+permalink: task-licensing-cloud-tiering.html 
+keywords: subscribe, digital wallet, trial, marketplace, subscription, paygo, pay as you go, byol, bring your own license, annual, tiering, cloud tiering, license, cloud tiering, bluexp 
+summary: 當您從第一個叢集設定分層時， NetApp Cloud Tiering 的 30 天免費試用期就開始了。免費試用結束後，您需要透過雲端供應商市場的即用即付或年度訂閱、 NetApp的 BYOL 授權或兩者結合的方式支付 Cloud Tiering 費用。 
+---
+= 設定NetApp Cloud Tiering 許可
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+當您從第一個叢集設定分層時， NetApp Cloud Tiering 的 30 天免費試用期就開始了。免費試用結束後，您需要透過雲端供應商市場的即用即付或年度訂閱、 NetApp的 BYOL 授權或兩者結合的方式支付 Cloud Tiering 費用。
+
+在您繼續閱讀之前，請注意以下幾點：
+
+* 如果您已經在雲端供應商的市場中訂閱了 Cloud Tiering (PAYGO)，那麼您也會自動訂閱本地ONTAP系統的 Cloud Tiering。您將在 Cloud Tiering *On-Premises 儀表板* 選項卡中看到有效訂閱。您無需再次訂閱。您將在NetApp控制台中看到有效訂閱。
+* BYOL 雲端分層許可證（以前稱為「雲端分層」許可證）是一種浮動許可證，您可以在NetApp控制台組織中的多個本機ONTAP叢集中使用它。這與過去為每個叢集購買一個_FabricPool_許可證不同（並且容易得多）。
+* 將資料分層到StorageGRID時無需支付任何費用，因此不需要 BYOL 授權或 PAYGO 註冊。此分層資料不計入您在許可證中購買的容量。
+
+
+link:concept-cloud-tiering.html#pricing-and-licenses["詳細了解 Cloud Tiering 的授權工作原理"] 。
+
+
+
+== 30天免費試用
+
+如果您沒有 Cloud Tiering 許可證，則當您為第一個叢集設定分層時，將開始 30 天的 Cloud Tiering 免費試用。  30 天免費試用期結束後，您需要透過即用即付訂閱、年度訂閱、BYOL 授權或組合方式支付 Cloud Tiering 費用。
+
+如果您的免費試用期結束且您尚未訂閱或新增許可證，則ONTAP不再將冷資料分層到物件儲存。所有先前分層的資料仍然可以存取；這意味著您可以檢索和使用這些資料。檢索後，這些資料將從雲端移回效能層。
+
+
+
+== 使用 Cloud Tiering PAYGO 訂閱
+
+透過雲端供應商市場的即用即付訂閱，您可以獲得Cloud Volumes ONTAP系統和許多雲端資料服務（例如 Cloud Tiering）的使用許可。
+
+訂閱 Cloud Tiering 後，您可以在控制台中管理您的訂閱。link:https://docs.netapp.com/us-en/bluexp-digital-wallet/task-manage-subscriptions.html#view-your-subscriptions["查看和管理您的訂閱。"^]
+
+
+
+=== 從 AWS Marketplace 訂閱
+
+從 AWS Marketplace 訂閱 Cloud Tiering，以設定從ONTAP叢集到 AWS S3 的資料分層的即用即付訂閱。
+
+[[subscribe-aws]]
+.步驟
+. 在NetApp控制台中，選擇 *Mobility > Cloud Tiering > On-Premises Dashboard*。
+. 在“市場訂閱”部分中，選擇“Amazon Web Services”下的“訂閱”，然後選擇“繼續”。
+. 在“市場訂閱”部分中，選擇“Amazon Web Services”下的“訂閱”，然後選擇“繼續”。
+. 訂閱來自 https://aws.amazon.com/marketplace/pp/prodview-oorxakq6lq7m4["AWS Marketplace"^]，然後重新登入NetApp控制台完成註冊。
++
+以下影片展示了這個過程：
+
++
+.從 AWS Marketplace 訂閱
+video::096e1740-d115-44cf-8c27-b051011611eb[panopto]
+
+
+
+
+=== 從 Azure 市場訂閱
+
+從 Azure 市場訂閱雲端分層，以設定從ONTAP叢集到 Azure Blob 儲存的資料分層的即用即付訂閱。
+
+[[subscribe-azure]]
+.步驟
+. 在NetApp控制台中，選擇 *Mobility > Cloud Tiering > On-Premises Dashboard*。
+. 在“市場訂閱”部分中，選擇“Microsoft Azure”下的“訂閱”，然後選擇“繼續”。
+. 在“市場訂閱”部分中，選擇“Microsoft Azure”下的“訂閱”，然後選擇“繼續”。
+. 訂閱來自 https://azuremarketplace.microsoft.com/en-us/marketplace/apps/netapp.cloud-manager?tab=Overview["Azure 市場"^]，然後重新登入NetApp控制台完成註冊。
++
+以下影片展示了這個過程：
+
++
+.從 Azure 市場訂閱
+video::b7e97509-2ecf-4fa0-b39b-b0510109a318[panopto]
+
+
+
+
+=== 從 Google Cloud Marketplace 訂閱
+
+從 Google Cloud Marketplace 訂閱 Cloud Tiering，以設定從ONTAP叢集到 Google Cloud 儲存的資料分層的即用即付訂閱。
+
+[[subscribe-gcp]]
+.步驟
+. 在NetApp控制台中，選擇 *Mobility > Cloud Tiering > On-Premises Dashboard*。
+. 在“市場訂閱”部分中，選擇 Google Cloud 下的“訂閱”，然後選擇“繼續”。
+. 在“市場訂閱”部分中，選擇 Google Cloud 下的“訂閱”，然後選擇“繼續”。
+. 訂閱來自 https://console.cloud.google.com/marketplace/details/netapp-cloudmanager/cloud-manager?supportedpurview=project["Google雲端市場"^]，然後重新登入NetApp控制台完成註冊。
++
+以下影片展示了這個過程：
+
++
+.從 Google Cloud Marketplace 訂閱
+video::373b96de-3691-4d84-b3f3-b05101161638[panopto]
+
+
+
+
+== 使用年度合約
+
+透過購買年度合約來每年支付雲端分層費用。年度合約期限有 1 年、2 年或 3 年。
+
+將非活動資料分層到 AWS 時，您可以訂閱 https://aws.amazon.com/marketplace/pp/prodview-q7dg6zwszplri["AWS Marketplace 頁面"^]。如果您想使用此選項，請從 Marketplace 頁面設定您的訂閱，然後 https://docs.netapp.com/us-en/bluexp-setup-admin/task-adding-aws-accounts.html#associate-an-aws-subscription["將訂閱與您的 AWS 憑證關聯"^]。
+
+將非活動資料分層到 Azure 時，您可以從 https://azuremarketplace.microsoft.com/en-us/marketplace/apps/netapp.netapp-bluexp["Azure 市集頁面"^]。如果您想使用此選項，請從 Marketplace 頁面設定您的訂閱，然後 https://docs.netapp.com/us-en/bluexp-setup-admin/task-adding-azure-accounts.html#subscribe["將訂閱與您的 Azure 憑證關聯"^]。
+
+目前，分級到 Google Cloud 時不支援年度合約。
+
+
+
+== 使用 Cloud Tiering BYOL 許可證
+
+NetApp提供的自備授權的有效期限為 1 年、2 年或 3 年。 BYOL *Cloud Tiering* 許可證（以前稱為「Cloud Tiering」許可證）是一種浮動許可證，您可以在NetApp控制台組織中的多個本地ONTAP叢集中使用它。您的 Cloud Tiering 授權中定義的總分層容量在*所有*本地叢集之間共享，從而簡化了初始授權和續約。分層 BYOL 授權的最小容量為 10 TiB。
+
+如果您沒有 Cloud Tiering 許可證，請聯絡我們購買：
+
+* 聯絡您的NetApp銷售代表
+* 聯繫NetApp支援。
+
+
+或者，如果您擁有未指派的基於節點的Cloud Volumes ONTAP許可證但不會使用，則可以將其轉換為具有相同美元等值和相同到期日的 Cloud Tiering 授權。 https://docs.netapp.com/us-en/bluexp-cloud-volumes-ontap/task-manage-node-licenses.html#exchange-unassigned-node-based-licenses["點此了解詳情"^] 。
+
+您可以在控制台中管理 Cloud Tiering BYOL 授權。您可以新增新的許可證並更新現有的許可證。link:https://docs.netapp.com/us-en/bluexp-digital-wallet/task-manage-data-services-licenses.html["了解如何管理許可證。"^]
+
+
+
+=== Cloud Tiering BYOL 授權將於 2021 年開始
+
+新的 *Cloud Tiering* 授權於 2021 年 8 月推出，用於使用 Cloud Tiering 服務在NetApp控制台中支援的分層配置。  NetApp控制台目前支援分層至下列雲端儲存：Amazon S3、Azure Blob 儲存、Google Cloud Storage、 NetApp StorageGRID和與 S3 相容的物件儲存。
+
+您過去可能使用過的將本機ONTAP資料分層到雲端的 * FabricPool * 授權僅保留用於沒有網際網路存取的網站（也稱為「暗站」）中的ONTAP部署，以及用於將設定分層到 IBM Cloud Object Storage。如果您使用這種類型的配置，您將使用系統管理員或ONTAP CLI 在每個叢集上安裝FabricPool授權。
+
+
+TIP: 請注意，分層到StorageGRID不需要FabricPool或 Cloud Tiering 授權。
+
+如果您目前正在使用FabricPool許可，則在您的FabricPool許可證達到其到期日或最大容量之前，您不會受到影響。當您需要更新許可證時，或更早聯絡NetApp ，以確保將資料分層到雲端的能力不會中斷。
+
+* 如果您使用控制台中支援的配置，則您的FabricPool許可證將轉換為 Cloud Tiering 許可證，並且它們將出現在控制台中。當這些初始授權到期時，您將需要更新 Cloud Tiering 授權。
+* 如果您使用的配置不受控制台支持，那麼您將繼續使用FabricPool許可證。 https://docs.netapp.com/us-en/ontap/cloud-install-fabricpool-task.html["了解如何使用系統管理員進行授權分層"^] 。
+
+
+以下是您需要了解的有關這兩個許可證的一些事項：
+
+[cols="50,50"]
+|===
+| Cloud Tiering 許可證 | FabricPool許可證 
+
+
+| 它是一個浮動許可證，您可以在多個本地ONTAP叢集中使用。 | 這是您購買並授權給每個集群的每個集群的許可證。 
+
+
+| 它在NetApp控制台中註冊。 | 它使用系統管理員或ONTAP CLI 應用於單一叢集。 
+
+
+| 分層設定和管理透過NetApp控制台中的 Cloud Tiering 服務完成。 | 分層配置和管理透過系統管理員或ONTAP CLI 完成。 
+
+
+| 配置分層後，您可以使用免費試用版在 30 天內無需許可證使用分層服務。 | 配置完成後，您可以免費分層前 10 TB 的資料。 
+|===
+
+
+=== 管理 Cloud Tiering 許可證
+
+如果您的許可期限即將到期，或者您的許可容量已達到限制，您將在 Cloud Tiering 和控制台中收到通知。
+
+您可以透過控制台更新現有許可證、查看許可證狀態以及新增許可證。 https://docs.netapp.com/us-en/bluexp-digital-wallet/task-manage-data-services-licenses.html["了解如何管理許可證"^] 。
+
+
+
+== 將 Cloud Tiering 授權應用於特殊配置的集群
+
+以下配置中的ONTAP叢集可以使用 Cloud Tiering 許可證，但許可證的應用方式必須不同於單節點叢集、HA 配置的叢集、分層鏡像配置中的叢集以及使用FabricPool Mirror 的MetroCluster配置：
+
+* 分層到 IBM Cloud Object Storage 的集群
+* 安裝在「暗站」的集群
+
+
+
+
+=== 具有FabricPool許可證的現有叢集的流程
+
+當你link:task-managing-tiering.html#discovering-additional-clusters-from-bluexp-tiering["在 Cloud Tiering 中發現任何這些特殊集群類型"]，Cloud Tiering 識別FabricPool許可證並將許可證新增至控制台。這些集群將繼續照常分層資料。當FabricPool授權到期時，您需要購買 Cloud Tiering 授權。
+
+
+
+=== 新建立集群的流程
+
+當您在 Cloud Tiering 中發現典型叢集時，您將使用 Cloud Tiering 介面配置分層。在這些情況下，會發生以下操作：
+
+. 「父級」雲端分層許可證追蹤所有叢集用於分層的容量，以確保許可證中有足夠的容量。總許可容量和到期日期顯示在控制台中。
+. 每個叢集上都會自動安裝「子」分層許可證，以便與「父」許可證進行通訊。
+
+
+
+NOTE: 系統管理員或ONTAP CLI 中顯示的「子」許可證的許可容量和到期日期不是真實訊息，因此如果資訊不一樣，請不要擔心。這些值由 Cloud Tiering 軟體內部管理。真實資訊在控制台中進行追蹤。
+
+對於上面列出的兩種配置，您需要使用 System Manager 或ONTAP CLI（而不是使用 Cloud Tiering 介面）來配置分層。因此在這些情況下，您需要從 Cloud Tiering 介面手動將「子」許可證推送到這些叢集。
+
+請注意，由於分層鏡像配置的資料分層到兩個不同的物件儲存位置，因此您需要購買具有足夠容量的許可證，以便將資料分層到兩個位置。
+
+.步驟
+. 使用系統管理器或ONTAP CLI 安裝和設定ONTAP叢集。
++
+此時不要配置分層。
+
+. link:task-licensing-cloud-tiering.html#use-a-bluexp-tiering-byol-license["購買 Cloud Tiering 許可證"]滿足新集群或多個集群所需的容量。
+. 在控制台中<<licenses,將許可證添加到數位錢包>>[新增許可證]。
+. 在雲端分層中，link:task-managing-tiering.html#discovering-additional-clusters-from-bluexp-tiering["發現新的集群"] 。
+. 在「集群」頁面中，選擇image:screenshot_horizontal_more_button.gif["更多圖標"]對於叢集並選擇*部署許可證*。
++
+image:screenshot_tiering_deploy_license.png["顯示如何將分層許可證部署到ONTAP叢集的螢幕截圖。"]
+
+. 在「部署許可證」對話方塊中，選擇「部署」。
++
+子許可證已部署到ONTAP叢集。
+
+. 返回系統管理員或ONTAP CLI 並設定分層配置。
++
+https://docs.netapp.com/us-en/ontap/fabricpool/manage-mirrors-task.html["FabricPool鏡像配置資訊"]
+
++
+https://docs.netapp.com/us-en/ontap/fabricpool/setup-object-stores-mcc-task.html["FabricPool MetroCluster設定訊息"]
+
++
+https://docs.netapp.com/us-en/ontap/fabricpool/setup-ibm-object-storage-cloud-tier-task.html["分層到 IBM Cloud Object Storage 訊息"]
+
+

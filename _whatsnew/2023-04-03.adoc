@@ -1,0 +1,15 @@
+= 授權標籤已被刪除
+:allow-uri-read: 
+
+
+
+
+=== 授權標籤已被刪除
+
+許可證選項卡已從 Cloud Tiering 介面中刪除。現在可以從 Cloud Tiering On-Premises Dashboard 存取所有即用即付 (PAYGO) 訂閱的授權。該頁面還提供指向BlueXP digital wallet的鏈接，以便您可以查看和管理任何 Cloud Tiering 自帶許可證 (BYOL)。
+
+
+
+=== 分層選項卡已重新命名並更新
+
+“叢集儀表板”標籤已重新命名為“叢集”，“本地概覽”標籤已重新命名為“本地儀表板”。這些頁面添加了一些信息，可以幫助您評估是否可以透過額外的分層配置來優化儲存空間。

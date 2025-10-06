@@ -1,0 +1,535 @@
+---
+sidebar: sidebar 
+permalink: faq-cloud-tiering.html 
+keywords: faq, questions, requirements, service connector, agent, object store, object storage, aws, azure, bucket, cluster, aggregate, s3, storage class, standard, inactive data reporting, auto, volume tiering policy, policy, tiering policy, snapshot, cold, inactive, infrequent, agent, netapp console, console,cloud tier 
+summary: 如果您只是想快速找到問題的答案，此常見問題解答可以為您提供協助。 
+---
+= NetApp Cloud Tiering 技術常見問題解答
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+如果您只是想快速找到有關NetApp Cloud Tiering 的問題的答案，那麼這個常見問題解答可以為您提供協助。
+
+
+
+== 雲端分層服務
+
+以下常見問題與雲端分層的工作原理有關。
+
+
+
+=== 使用 Cloud Tiering 服務有哪些好處？
+
+雲端分層解決了資料快速成長帶來的挑戰，為您帶來以下好處：
+
+* 輕鬆將資料中心擴展到雲端，提供高達 50 倍的空間
+* 儲存優化，平均節省 70% 的存儲
+* 平均降低 30% 的總擁有成本
+* 無需重構應用程式
+
+
+
+
+=== 什麼樣的資料對於分層到雲端是有用的？
+
+本質上，任何在主儲存系統和輔助儲存系統上被視為非活動的資料都是遷移到雲端的良好目標。在主系統上，此類資料可以包括快照、歷史記錄和已完成的項目。在輔助系統上，這包括為 DR 和備份目的而製作的主資料副本的所有磁碟區。
+
+
+
+=== 我可以對 NAS 捲和 SAN 磁碟區中的資料進行分層嗎？
+
+是的，您可以將資料從 NAS 磁碟區分層到公有雲或私有雲，例如StorageGRID。當您對透過 SAN 協定存取的資料進行分層時， NetApp建議使用私有雲，因為 SAN 協定對連線問題比 NAS 更敏感。
+
+
+
+=== 非活動數據或不常使用的數據的定義是什麼？如何控制？
+
+冷資料的定義也可以是：「一段時間內未被存取的捲塊（元資料除外）。  「時間量」由名為冷卻日的分層策略屬性決定。
+
+
+
+=== 雲端分層是否會保留雲層中的儲存效率節省？
+
+是的，將資料移至雲層時， ONTAP磁碟區級儲存效率（例如壓縮、重複資料刪除和壓縮）得以保留。
+
+
+
+=== FabricPool和 Cloud Tiering 有什麼不同？
+
+FabricPool是ONTAP分層技術，可以透過ONTAP CLI 和系統管理器進行自我管理，也可以透過雲端分層以服務形式進行管理。  Cloud Tiering 將FabricPool轉變為一種託管服務，在ONTAP和雲端中均具有先進的自動化流程，從而提供對混合和多雲部署中分層的更高可見性和控制力。
+
+
+
+=== 分層到雲端的資料可以用於災難復原或備份/存檔嗎？
+
+不可以。由於磁碟區的元資料從未從效能層分層，因此無法直接存取儲存在物件儲存中的資料。
+
+但是，透過在輔助系統和SnapMirror目標磁碟區（DP 磁碟區）上啟用 Cloud Tiering，可以實現經濟高效的備份和 DR，從而對所有資料（元資料除外）進行分層，從而減少資料中心佔用空間和 TCO。
+
+
+
+=== 雲端分層是在磁碟區層級還是聚合層級應用？
+
+透過將分層策略與每個磁碟區關聯起來，可以在磁碟區層級啟用雲端分層。冷數據識別是在區塊層級完成的。
+
+
+
+=== Cloud Tiering 如何決定要將哪些區塊分層到雲端？
+
+與磁碟區相關的分層策略是控制何時對哪些區塊進行分層的機制。此策略定義了資料區塊的類型（快照、使用者資料或兩者）和冷卻期。看link:concept-cloud-tiering.html#volume-tiering-policies["卷分層策略"]了解詳情。
+
+
+
+=== Cloud Tiering 如何影響卷容量？
+
+雲分層對磁碟區的容量沒有影響，但對聚合的效能層使用有影響。
+
+
+
+=== Cloud Tiering 是否支援非活動數據報告？
+
+是的，Cloud Tiering 在每個聚合上啟用非活動資料報告 (IDR)。此設定使我們能夠識別可以分層到低成本物件儲存的非活動資料量。
+
+
+
+=== 從我開始運行 IDR 開始，需要多長時間才能顯示資訊？
+
+配置的冷卻期過後，IDR 開始顯示資訊。使用ONTAP 9.7 及更早版本時，IDR 的不可調整冷卻期為 31 天。從ONTAP 9.8 開始，IDR 冷卻期最多可配置為 183 天。
+
+
+
+== 許可證和費用
+
+以下常見問題與使用 Cloud Tiering 的授權和成本有關。
+
+
+
+=== 使用 Cloud Tiering 的費用是多少？
+
+將冷資料分層到公有雲時：
+
+* 對於按使用量付費 (PAYGO) 的訂閱：每月每 GB 0.05 美元。
+* 對於年度（BYOL）、基於期限的訂閱：起價為每 GB/月 0.033 美元。
+
+
+https://bluexp.netapp.com/pricing["查看定價詳情"] 。
+
+將冷資料分層到NetApp StorageGRID系統（私有雲）時無需任何成本。
+
+
+
+=== 我可以同時為同一個ONTAP叢集擁有 BYOL 和 PAYGO 授權嗎？
+
+是的。Cloud Tiering 允許您使用 BYOL 授權、PAYGO 訂閱或兩者的組合。
+
+
+
+=== 如果我達到了 BYOL 容量限制，或者我的 BYOL 授權過期了，會發生什麼事？
+
+如果您達到 BYOL 容量限製或 BYOL 授權過期，新冷資料的分層將停止，新冷資料的分層將停止。所有先前分層的資料仍然可以存取；這意味著您可以檢索和使用這些資料。檢索後，這些資料將從雲端移回效能層。
+
+但是，如果您在 PAYGO 市場訂閱了_BlueXP - 部署和管理雲端資料服務_，新的冷資料將繼續分層到物件存儲，並且您將按每次使用支付這些費用。
+
+
+
+=== Cloud Tiering 授權是否包含來自雲端提供者的出口費用？
+
+不，不是這樣的。
+
+
+
+=== 本地系統的補水是否需要支付雲端供應商收取的出口費用？
+
+是的。所有來自公有雲的讀取均需繳納出口費。
+
+
+
+=== 我該如何估算我的雲端費用？雲分層是否有「假設」模式？
+
+估算雲端提供者託管資料收費的最佳方法是使用他們的計算器： https://calculator.aws/#/["AWS"] ， https://azure.microsoft.com/en-us/pricing/calculator/["Azure"]和 https://cloud.google.com/products/calculator["Google雲"]。
+
+
+
+=== 雲端提供者對於從物件儲存讀取/檢索資料到本地儲存是否收取額外費用？
+
+
+
+=== 雲端提供者對於從物件儲存讀取/檢索資料到本地儲存是否收取額外費用？
+
+是的。查看 https://aws.amazon.com/s3/pricing/["Amazon S3 定價"]， https://azure.microsoft.com/en-us/pricing/details/storage/blobs/["Block Blob 定價"] ， 和 https://cloud.google.com/storage/pricing["雲端儲存定價"]了解資料讀取/檢索產生的額外定價。
+
+
+
+=== 在啟用雲端分層之前，如何估算磁碟區的節省並取得冷資料報告？
+
+要獲得估算，請將您的ONTAP叢集新增至NetApp控制台並透過 Cloud Tiering Clusters 頁面進行檢查。選擇叢集的「計算潛在的分層節省」以啟動 https://bluexp.netapp.com/cloud-tiering-service-tco["雲端分層 TCO 計算器"^]看看您能省多少錢。
+
+
+
+=== 當我使用ONTAP MetroCluster時，如何收取分層費用？
+
+在MetroCluster環境中使用時，總分層許可證適用於兩個叢集的使用。例如，如果您擁有 100TiB 分層許可證，則每個叢集使用的分層容量將計入 100TiB 的總容量。
+
+
+
+== ONTAP
+
+以下問題與ONTAP相關。
+
+
+
+=== Cloud Tiering 支援哪些ONTAP版本？
+
+Cloud Tiering 支援ONTAP 9.2 及更高版本。
+
+
+
+=== 支援哪些類型的ONTAP系統？
+
+單節點和高可用性AFF、 FAS和ONTAP Select叢集支援 Cloud Tiering。  FabricPool Mirror 配置和MetroCluster配置中的叢集也支援。
+
+
+
+=== 我可以僅使用 HDD 對FAS系統中的資料進行分層嗎？
+
+是的，從ONTAP 9.8 開始，您可以對 HDD 聚合上託管的磁碟區中的資料進行分層。
+
+
+
+=== 我可以將AFF中的資料分層到具有 HDD 的FAS節點的叢集嗎？
+
+是的。可以將 Cloud Tiering 設定為對任何聚合上託管的磁碟區進行分層。資料分層配置與所使用的控制器類型以及叢集是否異質無關。
+
+
+
+=== 那麼Cloud Volumes ONTAP怎麼樣呢？
+
+如果您有Cloud Volumes ONTAP系統，您會在 Cloud Tiering Clusters 頁面中找到它們，這樣您就可以全面了解混合雲端基礎架構中的資料分層。但是， Cloud Volumes ONTAP系統從 Cloud Tiering 來看是唯讀的。您無法從 Cloud Tiering 在Cloud Volumes ONTAP上設定資料分層。 https://docs.netapp.com/us-en/bluexp-cloud-volumes-ontap/task-tiering.html["您可以從NetApp控制台中的ONTAP系統設定Cloud Volumes ONTAP系統的分層"^] 。
+
+
+
+=== 我的ONTAP叢集還需要哪些其他要求？
+
+這取決於冷資料的分層位置。請參閱以下連結以了解更多詳細資訊：
+
+* link:task-tiering-onprem-aws.html#prepare-your-ontap-cluster["將資料分層到 Amazon S3"]
+* link:task-tiering-onprem-azure.html#preparing-your-ontap-clusters["將資料分層到 Azure Blob 存儲"]
+* link:task-tiering-onprem-gcp.html#preparing-your-ontap-clusters["將資料分層儲存到 Google Cloud Storage"]
+* link:task-tiering-onprem-storagegrid.html#preparing-your-ontap-clusters["將資料分層到StorageGRID"]
+* link:task-tiering-onprem-s3-compat.html#preparing-your-ontap-clusters["將資料分層到 S3 物件存儲"]
+
+
+
+
+== 物件儲存
+
+以下問題與物件儲存有關。
+
+
+
+=== 支援哪些對象儲存提供者？
+
+Cloud Tiering 支援以下物件儲存提供者：
+
+* 亞馬遜 S3
+* 微軟 Azure Blob
+* Google 雲端儲存
+* NetAppStorageGRID
+* 與 S3 相容的物件儲存（例如 MinIO）
+* IBM Cloud Object Storage（必須使用 System Manager 或ONTAP CLI 完成FabricPool設定）
+
+
+
+
+=== 我可以使用自己的桶子/容器嗎？
+
+是的，你可以。設定資料分層時，您可以選擇新增新的儲存桶/容器或選擇現有的儲存桶/容器。
+
+
+
+=== 支援哪些地區？
+
+* link:reference-aws-support.html["支援的 AWS 區域"]
+* link:reference-azure-support.html["支援的 Azure 區域"]
+* link:reference-google-support.html["支援的 Google Cloud 區域"]
+
+
+
+
+=== 支援哪些 S3 儲存類別？
+
+Cloud Tiering 支援將資料分層為_標準_、_標準-不頻繁存取_、_單區-不頻繁存取_、_智慧分層_和_Glacier 即時檢索_儲存類別。看link:reference-aws-support.html["支援的 S3 儲存類別"]了解更多詳情。
+
+
+
+=== 為什麼 Cloud Tiering 不支援 Amazon S3 Glacier Flexible 和 S3 Glacier Deep Archive？
+
+不支援 Amazon S3 Glacier Flexible 和 S3 Glacier Deep Archive 的主要原因是 Cloud Tiering 被設計為高效能分層解決方案，因此資料必須持續可用且可快速擷取。使用 S3 Glacier Flexible 和 S3 Glacier Deep Archive，資料擷取可以持續幾分鐘到 48 小時。
+
+
+
+=== 我可以將其他與 S3 相容的物件儲存服務（例如 MinIO）與 Cloud Tiering 一起使用嗎？
+
+是的，使用ONTAP 9.8 及更高版本的叢集支援透過分層 UI 配置與 S3 相容的物件儲存。link:task-tiering-onprem-s3-compat.html["詳情請見此處"] 。
+
+
+
+=== 支援哪些 Azure Blob 存取層？
+
+Cloud Tiering 支援將非活動資料分層到_Hot_或_Cool_存取層。看link:reference-azure-support.html["支援的 Azure Blob 存取層"]了解更多詳情。
+
+
+
+=== Google Cloud Storage 支援哪些儲存類別？
+
+Cloud Tiering 支援將資料分層為 _Standard_、_Nearline_、_Coldline_ 和 _Archive_ 儲存類別。看link:reference-google-support.html["支援的 Google Cloud 儲存類別"]了解更多詳情。
+
+
+
+=== Cloud Tiering 是否支援使用生命週期管理策略？
+
+是的。您可以啟用生命週期管理，以便 Cloud Tiering 在一定天數後將資料從預設儲存類別/存取層轉換到更具成本效益的層。生命週期規則適用於 Amazon S3 和 Google Cloud 儲存空間所選儲存桶中的所有對象，以及 Azure Blob 所選儲存帳戶中的所有容器。
+
+
+
+=== Cloud Tiering 是否對整個叢集使用一個物件存儲，還是每個聚合使用一個物件存儲？
+
+在典型配置中，整個叢集有一個物件儲存。從 2022 年 8 月開始，您可以使用 *高級設定* 頁面為叢集添加其他物件存儲，然後將不同的物件存儲附加到不同的聚合，或者將 2 個物件存儲附加到聚合以進行鏡像。
+
+
+
+=== 可以將多個儲存桶附加到同一個聚合嗎？
+
+為了鏡像的目的，每個聚合最多可以附加兩個儲存桶，其中冷資料同步分層到兩個儲存桶中。這些存儲桶可以來自不同的提供者和不同的位置。從 2022 年 8 月開始，您可以使用 *進階設定* 頁面將兩個物件儲存附加到單一聚合。
+
+
+
+=== 不同的儲存桶可以附加到同一叢集中的不同聚合嗎？
+
+是的。一般最佳做法是將單一儲存桶附加到多個聚合體。但是，使用公有雲時，物件儲存服務的最大 IOPS 限制，因此必須考慮多個儲存桶。
+
+
+
+=== 當您將磁碟區從一個叢集遷移到另一個叢集時，分層資料會發生什麼情況？
+
+將磁碟區從一個叢集遷移到另一個叢集時，所有冷資料都從雲層讀取。目標叢集上的寫入位置取決於是否啟用分層以及來源磁碟區和目標磁碟區上使用的分層策略類型。
+
+
+
+=== 當您將磁碟區從同一叢集中的一個節點移動到另一個節點時，分層資料會發生什麼情況？
+
+如果目標聚合沒有附加的雲層，則從來源聚合的雲層讀取資料並將其完全寫入目標聚合的本地層。如果目標聚合具有附加的雲層，則從來源聚合的雲層讀取資料並首先寫入目標聚合的本地層，以便於快速切換。之後，根據所使用的分層策略，將其寫入雲層。
+
+從ONTAP 9.6 開始，如果目標聚合使用與來源聚合相同的雲層，則冷資料不會移回本地層。
+
+
+
+=== 如何將分層資料帶回本地性能層？
+
+寫回通常在讀取時執行，並且取決於分層策略類型。在ONTAP 9.8 之前，可以使用「volume move」操作寫回整個磁碟區。從ONTAP 9.8 開始，分層 UI 具有「恢復所有資料」或「恢復活動檔案系統」選項。link:task-managing-tiering.html#migrating-data-from-the-cloud-tier-back-to-the-performance-tier["了解如何將資料移回效能層"] 。
+
+
+
+=== 當以新的AFF/ FAS控制器取代現有的 AFF / FAS 控制器時，分層資料是否會移回本機？
+
+不。在「換頭」過程中，唯一改變的是集合體的所有權。在這種情況下，它將被更改為新的控制器，而無需任何資料移動。
+
+
+
+=== 我可以使用雲端提供者的控制台或物件儲存瀏覽器來查看儲存桶分層的資料嗎？如果不透過ONTAP，我可以直接使用物件儲存中儲存的資料嗎？
+
+不可以。建置並分層到雲端的物件不包含單一文件，而是包含來自多個文件的最多 1,024 個 4KB 區塊。卷的元資料始終保留在本地層。
+
+
+
+== 控制台代理
+
+以下問題與控制台代理有關。
+
+
+
+=== 什麼是控制台代理？
+
+控制台代理程式是在您的雲端帳戶或本機的運算實例上執行的軟體，它使NetApp控制台能夠安全地管理雲端資源。若要使用 Cloud Tiering 服務，您必須部署代理程式。
+
+
+
+=== 控制台代理需要安裝在哪裡？
+
+* 當您將資料分層到 S3 時，代理可以駐留在 AWS VPC 或您的場所。
+* 當您將資料分層到 Blob 儲存體時，代理程式可以駐留在 Azure VNet 中或您的本機。
+* 當您將資料分層到 Google Cloud Storage 時，代理程式必須駐留在 Google Cloud Platform VPC 中。
+* 當您將資料分層至StorageGRID或其他 S3 相容儲存提供者時，代理程式必須駐留在您的場所。
+
+
+
+
+=== 我可以在本機部署控制台代理程式嗎？
+
+是的。您可以下載代理軟體並將其手動安裝在您網路中的 Linux 主機上。 https://docs.netapp.com/us-en/bluexp-setup-admin/task-install-connector-on-prem.html["了解如何在您的場所安裝代理"] 。
+
+
+
+=== 使用 Cloud Tiering 之前是否需要擁有雲端服務提供者的帳戶？
+
+是的。您必須先擁有一個帳戶，然後才能定義要使用的物件儲存。在 VPC 或 VNet 上的雲端設定代理程式時，也需要具有雲端儲存供應商的帳戶。
+
+
+
+=== 如果控制台代理失敗，會有什麼後果？
+
+如果代理程式發生故障，則僅分層環境的可見性會受到影響。所有資料均可訪問，新識別的冷資料會自動分層到物件儲存。
+
+
+
+== 分層策略
+
+
+
+=== 有哪些可用的分層策略？
+
+有四種分層策略：
+
+* 無：將所有資料歸類為始終熱；防止將磁碟區中的任何資料移至物件儲存。
+* 冷快照（僅快照）：僅將冷快照區塊移至物件儲存。
+* 冷用戶資料和快照（自動）：冷快照區塊和冷用戶資料區塊都會移動到物件儲存。
+* 所有使用者資料（全部）：將所有資料歸類為冷資料；立即將整個磁碟區移至物件儲存。
+
+
+link:concept-cloud-tiering.html#volume-tiering-policies["了解有關分層策略的更多信息"] 。
+
+
+
+=== 在什麼情況下我的數據被視為冷數據？
+
+由於資料分層是在區塊層級完成的，因此在一定時間內未存取資料區塊後，該資料區塊將被視為冷資料區塊，該時間由分層策略的最低冷卻天數屬性定義。適用範圍為ONTAP 9.7 及更早版本中的 2-63 天，或從ONTAP 9.8 開始中的 2-183 天。
+
+
+
+=== 資料分層到雲層之前的預設冷卻期是多長？
+
+冷快照策略的預設冷卻期為 2 天，而冷用戶資料和快照的預設冷卻期為 31 天。冷卻天數參數不適用於所有分層策略。
+
+
+
+=== 當我進行完整備份時，是否會從物件儲存中檢索所有分層資料？
+
+在完整備份期間，將讀取所有冷資料。資料的檢索取決於所使用的分層策略。使用全部和冷用戶資料和快照策略時，冷資料不會寫回到效能層。使用冷快照策略時，只有在使用舊快照進行備份的情況下才會檢索其冷塊。
+
+
+
+=== 您可以選擇每個磁碟區的分層大小嗎？
+
+不可以。但是，您可以選擇哪些磁碟區符合分層條件、要分層的資料類型及其冷卻期。這是透過將分層策略與該磁碟區關聯起來來實現的。
+
+
+
+=== 所有使用者資料策略是資料保護卷的唯一選擇嗎？
+
+否。資料保護 (DP) 磁碟區可以與三種可用策略中的任何一種相關聯。來源磁碟區和目標 (DP) 磁碟區上使用的策略類型決定了資料的寫入位置。
+
+
+
+=== 將磁碟區的分層策略重置為「無」是否會重新補充冷資料或只是防止將來的冷塊被移動到雲中？
+
+重置分層策略時不會發生補水，但它會阻止新的冷塊移動到雲層。
+
+
+
+=== 將資料分層到雲端後，我可以更改分層策略嗎？
+
+是的。更改後的行為取決於新的關聯策略。
+
+
+
+=== 如果我想確保某些資料不會被移動到雲端，我該怎麼做？
+
+不要將分層策略與包含該資料的磁碟區關聯。
+
+
+
+=== 檔案的元資料儲存在哪裡？
+
+卷的元資料始終儲存在本地的效能層上—它永遠不會分層到雲端。
+
+
+
+== 網路和安全
+
+以下問題與網路和安全有關。
+
+
+
+=== 網路要求是什麼？
+
+* ONTAP叢集透過連接埠 443 啟動與您的物件儲存提供者的 HTTPS 連線。
++
+ONTAP從物件儲存讀取和寫入資料。物件儲存從不啟動，它只是響應。
+
+* 對於StorageGRID， ONTAP叢集透過使用者指定的連接埠啟動與StorageGRID 的HTTPS 連線（此連接埠可在分層設定期間設定）。
+* 代理程式需要透過連接埠 443 建立到ONTAP叢集、物件儲存和 Cloud Tiering 服務的出站 HTTPS 連線。
+
+
+有關詳細信息，請參閱：
+
+* link:task-tiering-onprem-aws.html["將資料分層到 Amazon S3"]
+* link:task-tiering-onprem-azure.html["將資料分層到 Azure Blob 存儲"]
+* link:task-tiering-onprem-gcp.html["將資料分層儲存到 Google Cloud Storage"]
+* link:task-tiering-onprem-storagegrid.html["將資料分層到StorageGRID"]
+* link:task-tiering-onprem-s3-compat.html["將資料分層到 S3 物件存儲"]
+
+
+
+
+=== 我可以使用哪些工具進行監控和報告以管理儲存在雲端中的冷數據？
+
+除了雲分層之外， https://docs.netapp.com/us-en/active-iq-unified-manager/["Active IQ Unified Manager"^]和 https://docs.netapp.com/us-en/active-iq/index.html["數位顧問"^]可用於監測和報告。
+
+
+
+=== 如果與雲端供應商的網路連結故障，會有什麼影響？
+
+如果發生網路故障，本地性能層仍保持在線並且熱數據仍然可存取。但是，已經移動到雲層的區塊將無法訪問，並且應用程式在嘗試訪問該資料時將收到錯誤訊息。一旦恢復連接，所有資料將無縫存取。
+
+
+
+=== 有網路頻寬建議嗎？
+
+底層FabricPool分層技術讀取延遲取決於與雲層的連接。儘管分層適用於任何頻寬，但建議將集群間 LIF 放置在 10 Gbps 連接埠上以提供足夠的效能。對於代理沒有任何建議或頻寬限制。
+
+此外，您可以限制將非活動資料從磁碟區傳輸到物件儲存期間所使用的網路頻寬量。在配置叢集進行分層時，可以使用「最大傳輸速率」設置，之後可以從「*叢集*」頁面使用。
+
+
+
+=== 當使用者嘗試存取分層資料時是否有延遲？
+
+是的。雲層無法提供與本地層相同的延遲，因為延遲取決於連接性。為了估計物件儲存的延遲和吞吐量，Cloud Tiering 提供了雲端效能測試（基於ONTAP物件儲存分析器），可以在連接物件儲存之後和設定分層之前使用。
+
+
+
+=== 我的資料如何受到保護？
+
+效能層和雲層均維護 AES-256-GCM 加密。  TLS 1.2 加密用於在資料在層之間移動時對透過網路傳輸的資料進行加密，以及將代理程式與ONTAP叢集和物件儲存之間的通訊進行加密。
+
+
+
+=== 我是否需要在AFF上安裝和設定乙太網路連接埠？
+
+是的。必須在 HA 對內的每個節點的乙太網路連接埠上配置叢集間 LIF，該節點託管您計劃分層到雲端的資料磁碟區。有關更多信息，請參閱您計劃分層資料的雲端提供者的要求部分。
+
+
+
+=== 需要什麼權限？
+
+* link:task-tiering-onprem-aws.html#set-up-s3-permissions["對於亞馬遜，需要權限來管理 S3 bucket"] 。
+* 對於 Azure，除了需要向NetApp控制台提供的權限之外，不需要其他額外權限。
+* link:task-tiering-onprem-gcp.html#preparing-google-cloud-storage["對於 Google Cloud，需要具有儲存存取金鑰的服務帳號的儲存管理員權限"] 。
+* link:task-tiering-onprem-storagegrid.html#preparing-storagegrid["對於StorageGRID，需要 S3 權限"] 。
+* link:task-tiering-onprem-s3-compat.html#preparing-s3-compatible-object-storage["對於與 S3 相容的物件存儲，需要 S3 權限"] 。
+

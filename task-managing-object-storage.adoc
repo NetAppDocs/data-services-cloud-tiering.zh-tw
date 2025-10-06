@@ -1,0 +1,168 @@
+---
+sidebar: sidebar 
+permalink: task-managing-object-storage.html 
+keywords: object storage, mirror object storage, create object storage, remove object storage, swap object storage, display object storage, license 
+summary: 將本機ONTAP叢集配置為將資料分層到特定物件儲存後，您可以在NetApp Cloud Tiering 中執行其他物件儲存任務。您可以新增新的物件儲存、將分層資料鏡像到輔助物件儲存、交換主物件儲存和鏡像物件儲存、從聚合中刪除鏡像物件儲存等等。 
+---
+= 管理NetApp Cloud Tiering 中用於資料分層的物件存儲
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+在設定本機ONTAP叢集以將資料分層到特定物件儲存後，您可以使用NetApp Cloud Tiering 執行其他物件儲存任務。您可以新增新的物件儲存、將分層資料鏡像到輔助物件儲存、交換主物件儲存和鏡像物件儲存、從聚合中刪除鏡像物件儲存等等。
+
+
+
+== 查看為叢集配置的物件存儲
+
+您可以查看為每個叢集配置的所有物件儲存以及它們所附加到的聚合。
+
+.步驟
+. 從*Clusters*頁面中，選擇叢集的選單圖示並選擇*Object Store Info*。
+. 從*Clusters*頁面中，選擇叢集的選單圖示並選擇*Object Store Info*。
+. 查看有關物件儲存的詳細資訊。
++
+此範例顯示了附加到叢集上不同聚合的 Amazon S3 和 Azure Blob 物件儲存。
+
++
+image:screenshot_tiering_object_store_view.png["顯示物件儲存資訊的螢幕截圖，其中詳細說明了總使用容量、附加到物件儲存的聚合、物件儲存的名稱以及更多資訊。"]
+
+
+
+
+
+== 新增新的物件存儲
+
+您可以為叢集中的聚合新增新的物件儲存。創建後，您可以將其附加到聚合。
+
+.步驟
+. 從*Clusters*頁面中，選擇叢集的選單圖示並選擇*Object Store Info*。
+. 從*Clusters*頁面中，選擇叢集的選單圖示並選擇*Object Store Info*。
+. 從物件儲存資訊頁面中，選擇*建立新物件儲存*。
+. 從物件儲存資訊頁面中，選擇*建立新物件儲存*。
++
+image:screenshot_tiering_object_store_create_button.png["顯示用於建立新物件儲存的「建立新物件儲存」按鈕的螢幕截圖。"]
+
++
+物件儲存精靈啟動。下面的範例展示如何在 Amazon S3 中建立物件儲存。
+
+. *定義物件儲存名稱*：輸入此物件儲存的名稱。它必須與您可能在此叢集上與聚合一起使用的任何其他物件儲存不同。
+. *選擇提供者*：選擇提供者，例如*Amazon Web Services*，然後選擇*繼續*。
+. 完成*建立物件儲存*頁面上的步驟：
++
+.. *S3 儲存桶*：新增一個新的 S3 儲存桶或選擇一個以前綴 _fabric-pool_ 開頭的現有 S3 儲存桶。然後輸入提供對儲存桶存取權限的 AWS 帳戶 ID，選擇儲存桶區域，然後選擇*繼續*。
++
+_fabric-pool_ 前綴是必要的，因為控制台代理的 IAM 策略允許實例對以該精確前綴命名的儲存桶執行 S3 操作。例如，您可以將 S3 儲存桶命名為 _fabric-pool-AFF1_，其中 AFF1 是叢集的名稱。
+
+.. *儲存類別生命週期*：雲端分層管理分層資料的生命週期轉換。資料從_Standard_類別開始，但您可以建立規則，在一定天數後將不同的儲存類別套用至資料。
++
+選擇要將分層資料轉換到的 S3 儲存類別以及將資料分配到該類別之前的天數，然後選擇*繼續*。例如，下面的螢幕截圖顯示，分層資料在物件儲存中儲存 45 天後從 _Standard_ 類別分配給 _Standard-IA_ 類別。
+
++
+如果您選擇“將資料保留在此儲存類別中”，則資料將保留在“標準”儲存類別中，並且不套用任何規則。link:reference-aws-support.html["查看支援的儲存類別"^] 。
+
++
+image:screenshot_tiering_lifecycle_selection_aws.png["此螢幕截圖顯示如何選擇在一定天數後分配給您的資料的另一個儲存類別。"]
+
++
+請注意，生命週期規則適用於所選儲存桶中的所有物件。
+
+.. *憑證*：輸入具有所需 S3 權限的 IAM 使用者的存取金鑰 ID 和金鑰，然後選擇*繼續*。
++
+IAM 使用者必須與您在 *S3 Bucket* 頁面上選擇或建立的儲存桶位於相同 AWS 帳戶中。請參閱有關啟動分層的部分中所需的權限。
+
+.. *叢集網路*：選擇ONTAP套用於連接物件儲存的 IP 空間，然後選擇*繼續*。
++
+選擇正確的 IP 空間可確保 Cloud Tiering 可以建立從ONTAP到雲端提供者的物件儲存的連線。
+
+
+
+
+
+物件儲存已建立。
+
+現在您可以將物件儲存附加到叢集中的聚合。
+
+
+
+== 將第二個物件儲存附加到聚合以進行鏡像
+
+您可以將第二個物件儲存附加到聚合以建立FabricPool映像，從而將資料同步分層到兩個物件儲存。您必須有一個物件儲存已附加到聚合。 https://docs.netapp.com/us-en/ontap/fabricpool/create-mirror-task.html["了解有關FabricPool鏡子的更多信息"^] 。
+
+使用MetroCluster配置時，最佳做法是使用位於不同可用區域的公有雲中的物件儲存。 https://docs.netapp.com/us-en/ontap/fabricpool/setup-object-stores-mcc-task.html["請參閱ONTAP文檔，以了解有關MetroCluster要求的更多信息"^] 。在MetroCluster中，不建議使用未鏡像的聚合，否則會顯示錯誤訊息。
+
+當您在MetroCluster配置中使用StorageGRID作為物件儲存時，兩個ONTAP系統都可以對單一StorageGRID系統執行FabricPool分層。每個ONTAP系統必須將資料分層到不同的儲存桶中。
+
+.步驟
+. 從「*集群*」頁面中，為所選集群選擇「*進階設定*」。
++
+image:screenshot_tiering_advanced_setup_button.png["顯示集群的高級設定按鈕的螢幕截圖。"]
+
+. 從進階設定頁面中，將要使用的物件儲存拖曳到鏡像物件儲存的位置。
++
+image:screenshot_tiering_mirror_config.png["此螢幕截圖顯示如何將第二個物件儲存拖曳到聚合以建立分層鏡像。"]
+
+. 在附加物件儲存對話方塊中，選擇*附加*，第二個物件儲存將附加到聚合。
++
+image:screenshot_tiering_mirror_config_complete.png["螢幕截圖顯示了附加到聚合的第二個物件儲存。"]
+
+
+
+當兩個物件儲存同步時，鏡像狀態將顯示為「同步進行中」。同步完成後，狀態將變為「已同步」。
+
+
+
+== 交換主物件存儲和鏡像物件存儲
+
+您可以將主物件儲存和鏡像物件儲存交換為聚合。物件存儲鏡像將成為主存儲，而原始主存儲將成為鏡像。
+
+.步驟
+. 從「*集群*」頁面中，為所選集群選擇「*進階設定*」。
++
+image:screenshot_tiering_advanced_setup_button.png["顯示集群的高級設定按鈕的螢幕截圖。"]
+
+. 在進階設定頁面中，選擇聚合的選單圖示並選擇*交換目的地*。
++
+image:screenshot_tiering_mirror_swap.png["顯示聚合的交換目標選項的螢幕截圖。"]
+
+. 在對話方塊中批准該操作，主物件儲存和鏡像物件儲存將被交換。
+
+
+
+
+== 從聚合中刪除鏡像物件存儲
+
+如果您不再需要複製到其他物件存儲，則可以刪除FabricPool映像。
+
+.步驟
+. 從「*集群*」頁面中，為所選集群選擇「*進階設定*」。
++
+image:screenshot_tiering_advanced_setup_button.png["顯示集群的高級設定按鈕的螢幕截圖。"]
+
+. 從進階設定頁面中，選擇聚合的選單圖示並選擇*取消鏡像物件儲存*。
++
+image:screenshot_tiering_mirror_delete.png["顯示聚合的 Unmirror 物件儲存選項的螢幕截圖。"]
+
+
+
+鏡像物件儲存從聚合中刪除，並且分層資料不再複製。
+
+
+NOTE: 從MetroCluster配置中刪除鏡像物件儲存時，系統會提示您是否也要刪除主物件儲存。您可以選擇將主物件儲存保留到聚合，或將其刪除。
+
+
+
+== 將分層資料遷移到其他雲端供應商
+
+雲端分層使您能夠輕鬆地將分層資料遷移到不同的雲端供應商。例如，如果您想從 Amazon S3 移轉到 Azure Blob，則可以依照下列順序執行上面列出的步驟：
+
+. 新增 Azure Blob 物件儲存體。
+. 將這個新的物件儲存作為鏡像附加到現有的聚合。
+. 交換主物件儲存和鏡像物件儲存。
+. 取消鏡像 Amazon S3 物件儲存。
+

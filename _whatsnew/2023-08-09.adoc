@@ -1,0 +1,15 @@
+= 使用自訂前綴作為儲存桶名稱
+:allow-uri-read: 
+
+
+
+
+=== 使用自訂前綴作為儲存桶名稱
+
+過去，定義儲存桶名稱時需要使用預設的「fabric-pool」前綴，例如 _fabric-pool-bucket1_。現在您可以在命名儲存桶時使用自訂前綴。僅當將資料分層到 Amazon S3 時此功能才可用。 https://docs.netapp.com/us-en/bluexp-tiering/task-tiering-onprem-aws.html#prepare-your-aws-environment["了解更多"] 。
+
+
+
+=== 在所有BlueXP連接器中搜尋集群
+
+如果您使用多個連接器來管理環境中的所有儲存系統，則您想要實施分層的某些叢集可能位於不同的連接器中。如果您不確定哪個連接器正在管理某個集群，您可以使用 Cloud Tiering 在所有連接器中進行搜尋。 https://docs.netapp.com/us-en/bluexp-tiering/task-managing-tiering.html#search-for-a-cluster-across-all-bluexp-connectors["了解更多"] 。

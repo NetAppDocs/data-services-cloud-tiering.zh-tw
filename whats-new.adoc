@@ -1,0 +1,167 @@
+---
+sidebar: sidebar 
+permalink: whats-new.html 
+keywords: 'what"s new, features, new, release notes, bugs, limitations, known issues, enhancements, fixes, tiering' 
+summary: 了解NetApp Cloud Tiering 的新功能。 
+---
+= NetApp Cloud Tiering 的新功能
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+了解NetApp Cloud Tiering 的新功能。
+
+
+
+== 2025年10月6日
+
+
+
+=== BlueXP tiering現已更名為NetApp Cloud Tiering
+
+BlueXP tiering已重新命名為NetApp Cloud Tiering。
+
+
+
+=== BlueXP現在是NetApp控制台
+
+NetApp控制台建立在增強和重組的BlueXP基礎之上，可在企業級內部和雲端環境中集中管理NetApp儲存和NetApp資料服務，提供即時洞察、更快的工作流程和簡化的管理，並且高度安全且合規。
+
+有關更改的詳細信息，請參閱link:https://docs.netapp.com/us-en/bluexp-relnotes/index.html["NetApp控制台發行說明"]。
+
+
+
+== 2023年8月9日
+
+
+
+=== 使用自訂前綴作為儲存桶名稱
+
+過去，定義儲存桶名稱時需要使用預設的「fabric-pool」前綴，例如 _fabric-pool-bucket1_。現在您可以在命名儲存桶時使用自訂前綴。僅當將資料分層到 Amazon S3 時此功能才可用。 https://docs.netapp.com/us-en/bluexp-tiering/task-tiering-onprem-aws.html#prepare-your-aws-environment["了解更多"] 。
+
+
+
+=== 在所有BlueXP連接器中搜尋集群
+
+如果您使用多個連接器來管理環境中的所有儲存系統，則您想要實施分層的某些叢集可能位於不同的連接器中。如果您不確定哪個連接器正在管理某個集群，您可以使用 Cloud Tiering 在所有連接器中進行搜尋。 https://docs.netapp.com/us-en/bluexp-tiering/task-managing-tiering.html#search-for-a-cluster-across-all-bluexp-connectors["了解更多"] 。
+
+
+
+== 2023年7月4日
+
+
+
+=== 調整頻寬以傳輸非活動數據
+
+當您啟動 Cloud Tiering 時， ONTAP可以使用無限量的網路頻寬將叢集中磁碟區中的非活動資料傳輸到物件儲存。如果您注意到分層流量影響了正常的使用者工作負載，您可以限制傳輸期間可使用的頻寬量。 https://docs.netapp.com/us-en/bluexp-tiering/task-managing-tiering.html#changing-the-network-bandwidth-available-to-upload-inactive-data-to-object-storage["了解更多"] 。
+
+
+
+=== 通知中心顯示的分層事件
+
+當叢集分層的冷資料少於 20%（包括未分層任何資料的叢集）時，分層事件「將叢集 <name> 中的其他資料分層到物件儲存以提高儲存效率」現在會作為通知出現。
+
+此通知是一項“建議”，旨在幫助您提高系統效率並節省儲存成本。它提供了一個鏈接 https://bluexp.netapp.com/cloud-tiering-service-tco["Cloud Tiering 總擁有成本和節省計算器"^]幫助您計算成本節省。
+
+
+
+== 2023年4月3日
+
+
+
+=== 授權標籤已被刪除
+
+許可證選項卡已從 Cloud Tiering 介面中刪除。現在可以從 Cloud Tiering On-Premises Dashboard 存取所有即用即付 (PAYGO) 訂閱的授權。該頁面還提供指向BlueXP digital wallet的鏈接，以便您可以查看和管理任何 Cloud Tiering 自帶許可證 (BYOL)。
+
+
+
+=== 分層選項卡已重新命名並更新
+
+“叢集儀表板”標籤已重新命名為“叢集”，“本地概覽”標籤已重新命名為“本地儀表板”。這些頁面添加了一些信息，可以幫助您評估是否可以透過額外的分層配置來優化儲存空間。
+
+
+
+== 2023年3月5日
+
+
+
+=== 產生卷宗分層報告
+
+您可以從「層卷」頁面下載報告，以便查看您正在管理的叢集上所有磁碟區的分層狀態。  BlueXP Tiering 產生一個 .CSV 文件，您可以根據需要查看並發送給公司中的其他人。 https://docs.netapp.com/us-en/bluexp-tiering/task-managing-tiering.html#download-a-tiering-report-for-your-volumes["了解如何下載分層報告"] 。
+
+
+
+== 2022年12月6日
+
+
+
+=== 連接器出站 Internet 存取終端點變更
+
+由於 Cloud Tiering 發生了變化，您需要更改以下連接器端點才能成功執行 Cloud Tiering 操作：
+
+[cols="50,50"]
+|===
+| 舊端點 | 新端點 
+
+
+| \ https://cloudmanager.cloud.netapp.com | \ https://api.bluexp.netapp.com 
+
+
+| \https://*.cloudmanager.cloud.netapp.com | \https://*.api.bluexp.netapp.com 
+|===
+查看您的 https://docs.netapp.com/us-en/bluexp-setup-admin/task-set-up-networking-aws.html#outbound-internet-access["AWS"^]， https://docs.netapp.com/us-en/bluexp-setup-admin/task-set-up-networking-google.html#outbound-internet-access["Google雲"^] ， 或者 https://docs.netapp.com/us-en/bluexp-setup-admin/task-set-up-networking-azure.html#outbound-internet-access["Azure"^]雲環境。
+
+
+
+== 2022年11月6日
+
+
+
+=== 透過拖放作業即可分層到其他目的地
+
+如果 Azure Blob、Google Cloud Storage 或StorageGRID分層目標作為畫布上的工作環境存在，您可以將本機ONTAP工作環境拖曳到目標上以啟動分層設定精靈。
+
+
+
+== 2022年9月19日
+
+
+
+=== 在分層到 Amazon S3 時配置 AWS PrivateLink
+
+在先前的版本中，提供這種透過 VPC 端點將叢集連接到 S3 儲存桶的安全方式非常耗時。現在您可以按照先決條件步驟 https://docs.netapp.com/us-en/bluexp-tiering/task-tiering-onprem-aws.html#configure-your-system-for-a-private-connection-using-a-vpc-endpoint-interface["使用 VPC 終端節點介面配置系統以進行私有連接"]，然後您可以在網頁頁面的分層設定精靈期間選擇 PrivateLink。
+
+https://docs.netapp.com/us-en/bluexp-tiering/task-tiering-onprem-aws.html["查看將非活動資料分層到 Amazon S3 的要求和步驟"] 。
+
+
+
+=== 拖放即可啟用 Amazon S3 分層
+
+如果 Amazon S3 分層目標作為 Canvas 上的工作環境存在，您可以將本機ONTAP工作環境拖曳到目標上以啟動分層設定精靈。
+
+
+
+=== 刪除鏡像物件儲存時選擇分層行為
+
+從MetroCluster配置中刪除鏡像物件儲存時，系統會提示您是否也要刪除主物件儲存。您可以選擇將主物件儲存保留到聚合，或將其刪除。
+
+
+
+== 2022年8月3日
+
+
+
+=== 為其他聚合配置額外的物件存儲
+
+Cloud Tiering UI 新增了一組用於物件儲存配置的新頁面。您可以新增新的物件儲存、將多個物件儲存連接到FabricPool Mirroring 的聚合、交換主物件儲存和鏡像物件儲存、刪除物件儲存與聚合的連線等等。 https://docs.netapp.com/us-en/bluexp-tiering/task-managing-object-storage.html["了解有關新物件儲存功能的更多資訊。"]
+
+
+
+=== MetroCluster配置的授權支持
+
+Cloud Tiering 授權現在可以與MetroCluster配置中的叢集共用。對於這些場景，您不再需要使用已棄用的FabricPool許可證。這使得在更多叢集上使用「浮動」雲端分層授權變得更加容易。 https://docs.netapp.com/us-en/bluexp-tiering/task-licensing-cloud-tiering.html#apply-bluexp-tiering-licenses-to-clusters-in-special-configurations["了解如何授權和配置這些類型的叢集。"]

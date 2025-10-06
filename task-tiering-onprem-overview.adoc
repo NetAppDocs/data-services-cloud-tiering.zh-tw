@@ -1,0 +1,46 @@
+---
+sidebar: sidebar 
+permalink: task-tiering-onprem-overview.html 
+keywords: overview, tiering overview, tiered clusters, clusters enabled for tiering, data tiering overview, cold data, hot data, tiered data, savings, savings opportunities, saving opportunity, policies, cold snapshots, all dp user data, cold user data & snapshots, cold user data and snapshots, all user data, no policy, marketplace subscriptions, clusters associated 
+summary: Cloud Tiering 提供來自每個本地叢集的資料分層的聚合視圖。此概述清楚地描述了您的環境並使您能夠採取適當的措施。 
+---
+= 了解NetApp Cloud Tiering 中叢集的資料分層概述
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+NetApp Cloud Tiering 提供每個內部部署叢集的資料分層的聚合視圖。此概述清楚地描述了您的環境並使您能夠採取適當的措施。
+
+選擇“Cloud Tiering”>“On-Premises Dashboard”以查看有關您的環境的以下詳細資訊。
+
+image:screenshot_tiering_onprem_dashboard.png["本地儀表板頁面的螢幕截圖。"]
+
+發現的集群:: Cloud Tiering 發現的本地叢集的數量。此圖表概述了這些集群的分層狀態。
++
+--
+* 高分層 - 集群中超過 20% 的冷數據被分層
+* 低分層 - 群集中冷資料的分層比例低於 20%
+* 無分層 - 叢集不會對任何資料進行分層
+* 不符合條件 - 不支援資料分層的集群
+
+
+--
+數據概覽:: 所有已發現集群正在使用的資料量。此圖表顯示了這些集群分層的資料量。
++
+--
+* 分層資料 - 分層到雲端的冷資料總量
+* 冷數據 - 未分層的冷數據總量
+* 熱數據 - 正在使用中的活躍熱數據總量
+* 不符合條件 - 由於群集或卷不支援資料分層，因此未分層的總數據
+
+
+--
+分層概述:: 目前正在分層的資料量，以及可能分層的冷資料量。
+政策:: 每個分層策略應用於磁碟區的次數。
+市場訂閱:: 與每種類型的市場訂閱相關的集群數量以及有關您的訂閱狀態的指示。
+

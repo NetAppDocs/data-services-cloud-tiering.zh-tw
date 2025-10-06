@@ -4,7 +4,7 @@ permalink: task-tiering-onprem-aws.html
 keywords: data tiering, fabricpool, cloud tiering, tiering cold data, tiering inactive data, tiering aff, tiering fas, tiering ontap, tiering volumes, tier data, tier cold data, tier fas, tier aff, tier ontap, aws, amazon, s3 
 summary: 透過將非活動資料分層到 Amazon S3 來釋放本地ONTAP叢集上的空間。 
 ---
-= 將本地ONTAP叢集中的資料分層到NetApp Cloud Tiering 中的 Amazon S3
+= 將本地ONTAP叢集中的資料分層到NetApp Cloud Tiering中的 Amazon S3
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -14,7 +14,7 @@ summary: 透過將非活動資料分層到 Amazon S3 來釋放本地ONTAP叢集�
 
 
 [role="lead"]
-透過將非活動資料分層到NetApp Cloud Tiering 中的 Amazon S3，釋放本地ONTAP叢集上的空間。
+透過將非活動資料分層到NetApp Cloud Tiering中的 Amazon S3，釋放本地ONTAP叢集上的空間。
 
 
 
@@ -38,7 +38,7 @@ summary: 透過將非活動資料分層到 Amazon S3 來釋放本地ONTAP叢集�
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["三"]準備本地ONTAP集群
 [role="quick-margin-para"]
-在NetApp控制台中發現您的ONTAP集群，驗證集群是否滿足最低要求，並自訂網路設置，以便集群可以連接到 AWS S3。
+在NetApp Console中發現您的ONTAP集群，驗證集群是否滿足最低要求，並自訂網路設置，以便集群可以連接到 AWS S3。
 
 [role="quick-margin-para"]
 <<準備ONTAP集群,了解如何準備好您的本地ONTAP叢集。>>
@@ -63,7 +63,7 @@ summary: 透過將非活動資料分層到 Amazon S3 來釋放本地ONTAP叢集�
 
 [role="quick-margin-list"]
 * 要從 AWS Marketplace 訂閱， https://aws.amazon.com/marketplace/pp/prodview-oorxakq6lq7m4?sr=0-8&ref_=beagle&applicationId=AWSMPContessa["前往市場"^] ，選擇*訂閱*，然後按照提示操作。
-* 若要使用 Cloud Tiering BYOL 授權付款，請發送電子郵件至：ng-cloud-tiering@netapp.com?subject=Licensing[如果您需要購買，請聯絡我們]，然後link:https://docs.netapp.com/us-en/bluexp-digital-wallet/task-manage-data-services-licenses.html["將其新增至NetApp控制台"]。
+* 若要使用 Cloud Tiering BYOL 授權付款，請發送電子郵件至：ng-cloud-tiering@netapp.com?subject=Licensing[如果您需要購買，請聯絡我們]，然後link:https://docs.netapp.com/us-en/bluexp-digital-wallet/task-manage-data-services-licenses.html["將其新增至NetApp Console"]。
 
 
 
@@ -91,7 +91,7 @@ NOTE: 代理程式和 S3 之間的通訊僅用於物件儲存設定。
 
 == 準備控制台代理
 
-此代理程式可透過NetApp控制台啟用分層功能。需要代理程式來對非活動ONTAP資料進行分層。
+此代理程式可透過NetApp Console啟用分層功能。需要代理程式來對非活動ONTAP資料進行分層。
 
 
 
@@ -126,7 +126,7 @@ NOTE: 代理程式和 S3 之間的通訊僅用於物件儲存設定。
 
 
 
-=== ONTAP要求
+=== ONTAP 需求
 
 支援的ONTAP平台::
 +
@@ -136,7 +136,7 @@ NOTE: 代理程式和 S3 之間的通訊僅用於物件儲存設定。
 
 
 --
-支援的ONTAP版本::
+支援的 ONTAP 版本::
 +
 --
 * ONTAP 9.2 或更高版本
@@ -178,19 +178,19 @@ IP 空間內的所有叢集間 LIF 都必須具有物件儲存的存取權限。
 
 
 
-=== 在NetApp控制台中發現您的ONTAP集群
+=== 在NetApp Console中發現您的ONTAP集群
 
-您需要先在NetApp控制台中發現您的本機ONTAP集群，然後才能開始將冷資料分層到物件儲存。您需要知道叢集管理 IP 位址和管理員使用者帳戶的密碼才能新增叢集。
+您需要先在NetApp Console中發現您的本機ONTAP集群，然後才能開始將冷資料分層到物件儲存。您需要知道叢集管理 IP 位址和管理員使用者帳戶的密碼才能新增叢集。
 
-https://docs.netapp.com/us-en/bluexp-ontap-onprem/task-discovering-ontap.html["了解如何發現集群"^] 。
+https://docs.netapp.com/us-en/bluexp-ontap-onprem/task-discovering-ontap.html["了解如何發現集群"^]。
 
 
 
 == 準備您的 AWS 環境
 
-當您為新叢集設定資料分層時，系統會提示您是否希望服務建立 S3 儲存桶，或是否要在設定代理程式的 AWS 帳戶中選擇現有的 S3 儲存桶。  AWS 帳戶必須具有您可以在 Cloud Tiering 中輸入的權限和存取金鑰。  ONTAP叢集使用存取金鑰將資料分層進出 S3。
+當您為新叢集設定資料分層時，系統會提示您是否希望服務建立 S3 儲存桶，或是否要在設定代理程式的 AWS 帳戶中選擇現有的 S3 儲存桶。  AWS 帳戶必須具有您可以在 Cloud Tiering 中輸入的權限和存取金鑰。  ONTAP叢集使用存取金鑰將資料分層到 S3 中和從 S3 中分層。
 
-預設情況下，雲端分層會為您建立儲存桶。如果您想使用自己的儲存桶，您可以在啟動分層啟動精靈之前建立儲存桶，然後在精靈中選擇該儲存桶。 https://docs.netapp.com/us-en/bluexp-s3-storage/task-add-s3-bucket.html["了解如何從NetApp控制台建立 S3 儲存桶"^] 。此儲存桶必須專門用於儲存磁碟區中的非活動資料 - 不能用於任何其他目的。  S3 bucket 必須位於link:reference-aws-support.html#supported-aws-regions["支持 Cloud Tiering 的區域"]。
+預設情況下，雲端分層會為您建立儲存桶。如果您想使用自己的儲存桶，您可以在啟動分層啟動精靈之前建立儲存桶，然後在精靈中選擇該儲存桶。 https://docs.netapp.com/us-en/bluexp-s3-storage/task-add-s3-bucket.html["了解如何從NetApp Console建立 S3 儲存桶"^] 。此儲存桶必須專門用於儲存磁碟區中的非活動資料 - 不能用於任何其他目的。  S3 bucket 必須位於link:reference-aws-support.html#supported-aws-regions["支持 Cloud Tiering 的區域"]。
 
 
 NOTE: 如果您打算將 Cloud Tiering 配置為使用成本較低的儲存類，您的分層資料將在一定天數後轉換到該儲存類，則在 AWS 帳戶中設定儲存桶時不得選擇任何生命週期規則。  Cloud Tiering 管理生命週期轉換。
@@ -211,7 +211,7 @@ NOTE: 如果您打算將 Cloud Tiering 配置為使用成本較低的儲存類�
 ** 確認 https://docs.netapp.com/us-en/bluexp-setup-admin/reference-permissions-aws.html#iam-policies["這些 S3 權限"^]是向代理提供權限的 IAM 角色的一部分。當您首次部署代理程式時，它們應該預設包含在內。如果沒有，您將需要添加任何缺少的權限。查看 https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-edit.html["AWS 文件：編輯 IAM 原則"^]以取得說明。
 ** Cloud Tiering 建立的預設儲存桶具有「fabric-pool」前綴。如果您想為您的儲存桶使用不同的前綴，您需要使用您想要使用的名稱來自訂權限。在 S3 權限中，你會看到一行 `"Resource": ["arn:aws:s3:::fabric-pool*"]`。您需要將“fabric-pool”更改為您想要使用的前綴。例如，如果您想使用“tiering-1”作為儲存桶的前綴，則將此行變更為 `"Resource": ["arn:aws:s3:::tiering-1*"]`。
 +
-如果您想要對同一NetApp控制台組織中其他叢集使用的儲存桶使用不同的前綴，則可以新增另一行帶有其他儲存桶前綴的前綴。例如：
+如果您想要對同一NetApp Console組織中其他叢集使用的儲存桶使用不同的前綴，則可以新增另一行帶有其他儲存桶前綴的前綴。例如：
 
 +
 `"Resource": ["arn:aws:s3:::tiering-1*"]`
@@ -308,7 +308,7 @@ Please enter Certificate: Press <Enter> when done
 準備好 AWS 環境後，開始從第一個叢集分層非活動資料。
 
 .你需要什麼
-* https://docs.netapp.com/us-en/bluexp-ontap-onprem/task-discovering-ontap.html["控制台中的託管本機系統"^] 。
+* https://docs.netapp.com/us-en/bluexp-ontap-onprem/task-discovering-ontap.html["控制台中的託管本機系統"^]。
 * 具有所需 S3 權限的 IAM 使用者的 AWS 存取金鑰。
 
 
@@ -378,7 +378,7 @@ image:screenshot_tiering_initial_volumes.png["螢幕截圖顯示如何選擇單�
 
 . 在「分層策略」對話方塊中，選擇分層策略，選擇性地調整所選卷的冷卻天數，然後選擇「應用」。
 +
-link:concept-cloud-tiering.html#volume-tiering-policies["了解有關容量分層策略和冷卻天數的更多信息"] 。
+link:concept-cloud-tiering.html#volume-tiering-policies["了解有關容量分層策略和冷卻天數的更多信息"]。
 
 +
 image:screenshot_tiering_initial_policy_settings.png["顯示可設定分層策略設定的螢幕截圖。"]
@@ -389,7 +389,7 @@ image:screenshot_tiering_initial_policy_settings.png["顯示可設定分層策�
 您已成功設定從叢集上的磁碟區到 S3 物件儲存的資料分層。
 
 .下一步是什麼？
-link:task-licensing-cloud-tiering.html["請務必訂閱 Cloud Tiering 服務"] 。
+link:task-licensing-cloud-tiering.html["請務必訂閱 Cloud Tiering 服務"]。
 
 您可以查看有關集群上活動和非活動資料的資訊。link:task-managing-tiering.html["了解有關管理分層設定的更多信息"] 。
 

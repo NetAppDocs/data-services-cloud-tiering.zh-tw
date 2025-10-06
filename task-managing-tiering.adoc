@@ -4,7 +4,7 @@ permalink: task-managing-tiering.html
 keywords: discover, volumes, report, hot, cold, inactive, active, capacity, used capacity, savings, health, failed, console 
 summary: 現在您已經從本機ONTAP叢集設定了資料分層，您可以從其他磁碟區分層資料、變更磁碟區的分層策略、發現其他叢集等等。 
 ---
-= 在NetApp Cloud Tiering 中管理叢集的資料分層
+= 在NetApp Cloud Tiering中管理叢集的資料分層
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -14,7 +14,7 @@ summary: 現在您已經從本機ONTAP叢集設定了資料分層，您可以從
 
 
 [role="lead"]
-現在您已經從本機ONTAP叢集設定了資料分層，您可以使用NetApp Cloud Tiering 對其他磁碟區中的資料進行分層、變更磁碟區的分層策略、發現其他叢集等。
+現在您已經從本機ONTAP叢集設定了資料分層，您可以使用NetApp Cloud Tiering對其他磁碟區中的資料進行分層、變更磁碟區的分層策略、發現其他叢集等。
 
 
 
@@ -71,7 +71,7 @@ image:screenshot_tiering_tier_volumes.png["螢幕截圖顯示如何選擇單一�
 . 在「分層策略」對話方塊中，選擇分層策略，選擇性地調整所選卷的冷卻天數，然後選擇「應用」。
 . 在「分層策略」對話方塊中，選擇分層策略，選擇性地調整所選卷的冷卻天數，然後選擇「應用」。
 +
-link:concept-cloud-tiering.html#volume-tiering-policies["了解有關容量分層策略和冷卻天數的更多信息"] 。
+link:concept-cloud-tiering.html#volume-tiering-policies["了解有關容量分層策略和冷卻天數的更多信息"]。
 
 +
 image:screenshot_tiering_policy_settings.png["顯示可設定分層策略設定的螢幕截圖。"]
@@ -94,7 +94,7 @@ ONTAP開始將選定磁碟區的資料分層到雲端。
 . 按一下磁碟區的行，選擇分層策略，選擇性地調整冷卻天數，然後選擇*應用*。
 . 按一下磁碟區的行，選擇分層策略，選擇性地調整冷卻天數，然後選擇*應用*。
 +
-link:concept-cloud-tiering.html#volume-tiering-policies["了解有關容量分層策略和冷卻天數的更多信息"] 。
+link:concept-cloud-tiering.html#volume-tiering-policies["了解有關容量分層策略和冷卻天數的更多信息"]。
 
 +
 image:screenshot_tiering_policy_settings.png["顯示可設定分層策略設定的螢幕截圖。"]
@@ -209,7 +209,7 @@ image:screenshot_tiering_modify_aggr.png["顯示聚合的「修改聚合」選�
 
 . 在顯示的對話方塊中，修改滿度閾值並選擇是否啟用或停用非活動資料報告。
 +
-image:screenshot_tiering_modify_aggregate.png["螢幕截圖顯示了用於修改分層完整度閾值的滑桿以及用於啟用或停用非活動資料報告的按鈕。"]
+image:screenshot_tiering_modify_aggregate.png["螢幕截圖顯示了用於修改分層完整度閾值的滑桿和用於啟用或停用非活動資料報告的按鈕。"]
 
 . 按一下“*應用*”。
 
@@ -218,7 +218,7 @@ image:screenshot_tiering_modify_aggregate.png["螢幕截圖顯示了用於修改
 
 == 修復運行健康問題
 
-如果發生故障，Cloud Tiering 會在叢集儀表板上顯示「失敗」的運作健康狀況。健康狀況反映了ONTAP系統和NetApp控制台的狀態。
+如果發生故障，Cloud Tiering 會在叢集儀表板上顯示「失敗」的運作健康狀況。健康狀況反映了ONTAP系統和NetApp Console的狀態。
 
 .步驟
 . 識別所有運行狀況為「失敗」的叢集。
@@ -284,5 +284,5 @@ image:screenshot_tiering_search for_cluster.png["螢幕截圖顯示如何搜尋�
 +
 如果 Cloud Tiering 能夠找到集群，則會顯示代理程式的名稱。
 
-. https://docs.netapp.com/us-en/bluexp-setup-admin/task-manage-multiple-connectors.html#switch-between-connectors["切換到代理程式並為叢集配置分層"^] 。
+. https://docs.netapp.com/us-en/bluexp-setup-admin/task-manage-multiple-connectors.html#switch-between-connectors["切換到代理程式並為叢集配置分層"^]。
 

@@ -4,7 +4,7 @@ permalink: task-tiering-test.html
 keywords: throughput, latency, tiering performance, cloud performance test, tiering test, object storage performance 
 summary: 執行雲端效能測試來測量在設定資料分層之前和之後從ONTAP叢集到物件儲存的網路延遲和吞吐量效能。 
 ---
-= 測量NetApp Cloud Tiering 中的網路延遲和吞吐量效能
+= 測量NetApp Cloud Tiering中的網路延遲和吞吐量效能
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -14,7 +14,7 @@ summary: 執行雲端效能測試來測量在設定資料分層之前和之後�
 
 
 [role="lead"]
-執行雲端效能測試來測量在NetApp Cloud Tiering 中設定資料分層之前和之後從ONTAP叢集到物件儲存的網路延遲和吞吐量效能。該測試還可以識別發生的任何故障。
+執行雲端效能測試來測量在NetApp Cloud Tiering中設定資料分層之前和之後從ONTAP叢集到物件儲存的網路延遲和吞吐量效能。該測試還可以識別發生的任何故障。
 
 以下是範例效能結果：
 

@@ -1,13 +1,13 @@
 ---
 indexpage:
-  title: NetApp Cloud Tiering 文檔
-  summary: NetApp Cloud Tiering 透過自動將非活動資料從本機ONTAP叢集分層到物件存儲，將您的資料中心擴展到雲端。
+  title: NetApp Cloud Tiering文檔
+  summary: NetApp Cloud Tiering透過自動將非活動資料從本機ONTAP叢集分層到物件存儲，將您的資料中心擴展到雲端。
   keywords: bluexp, ontap, cloud tiering, documentation, netapp console, console
-  lead: NetApp Cloud Tiering 透過自動將非活動資料從本機ONTAP叢集分層到物件存儲，將您的資料中心擴展到雲端。
+  lead: NetApp Cloud Tiering透過自動將非活動資料從本機ONTAP叢集分層到物件存儲，將您的資料中心擴展到雲端。
   tiles:
   - title: 開始
     links:
-    - title: 了解NetApp雲端分層
+    - title: 了解NetApp Cloud Tiering
       url: concept-cloud-tiering.html
     - title: 什麼是新的
       url: whats-new.html
@@ -15,7 +15,7 @@ indexpage:
       url: task-licensing-cloud-tiering.html
   - title: 將本地ONTAP資料分層到雲
     links:
-    - title: 層級至 Amazon S3
+    - title: 升級至 Amazon S3
       url: task-tiering-onprem-aws.html
     - title: 層級至 Azure Blob
       url: task-tiering-onprem-azure.html
@@ -51,9 +51,9 @@ indexpage:
       url: task-managing-object-storage.html#removing-a-mirror-object-store-from-an-aggregate
   - title: 部落格和社區
     links:
-    - title: NetApp控制台
+    - title: NetApp Console
       url: https://www.netapp.com/console
-    - title: NetApp資料服務
+    - title: NetApp Data Services
       url: https://www.netapp.com/data-services/
     - title: NetApp社群
       url: https://community.netapp.com/

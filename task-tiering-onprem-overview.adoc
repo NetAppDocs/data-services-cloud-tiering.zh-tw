@@ -4,7 +4,7 @@ permalink: task-tiering-onprem-overview.html
 keywords: overview, tiering overview, tiered clusters, clusters enabled for tiering, data tiering overview, cold data, hot data, tiered data, savings, savings opportunities, saving opportunity, policies, cold snapshots, all dp user data, cold user data & snapshots, cold user data and snapshots, all user data, no policy, marketplace subscriptions, clusters associated 
 summary: Cloud Tiering 提供來自每個本地叢集的資料分層的聚合視圖。此概述清楚地描述了您的環境並使您能夠採取適當的措施。 
 ---
-= 了解NetApp Cloud Tiering 中叢集的資料分層概述
+= 了解NetApp Cloud Tiering中叢集的資料分層概述
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -14,7 +14,7 @@ summary: Cloud Tiering 提供來自每個本地叢集的資料分層的聚合視
 
 
 [role="lead"]
-NetApp Cloud Tiering 提供每個內部部署叢集的資料分層的聚合視圖。此概述清楚地描述了您的環境並使您能夠採取適當的措施。
+NetApp Cloud Tiering提供來自每個內部部署叢集的資料分層的聚合視圖。此概述清楚地描述了您的環境並使您能夠採取適當的措施。
 
 選擇“Cloud Tiering”>“On-Premises Dashboard”以查看有關您的環境的以下詳細資訊。
 

@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: reference-google-support.html 
 keywords: google, gcp, regions, google regions, gcp regions, storage class, standard, nearline, coldline, archive, cloud tiering, cloud tier, bluexp 
-summary: NetApp Cloud Tiering 支援多種 Google Cloud 儲存類別和大多數區域。 
+summary: NetApp Cloud Tiering支援多種 Google Cloud 儲存類別和大多數區域。 
 ---
-= NetApp Cloud Tiering 支援的 Google Cloud 儲存類別與區域
+= NetApp Cloud Tiering支援的 Google Cloud 儲存類別與區域
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -14,7 +14,7 @@ summary: NetApp Cloud Tiering 支援多種 Google Cloud 儲存類別和大多數
 
 
 [role="lead"]
-NetApp Cloud Tiering 支援多種 Google Cloud 儲存類別和大多數區域。
+NetApp Cloud Tiering支援多種 Google Cloud 儲存類別和大多數區域。
 
 
 
@@ -31,7 +31,7 @@ NetApp Cloud Tiering 支援多種 Google Cloud 儲存類別和大多數區域。
 
 設定 Cloud Tiering 生命週期規則時，您在 Google 帳戶中設定儲存桶時不得設定任何生命週期規則。
 
-https://cloud.google.com/storage/docs/storage-classes["了解 Google Cloud Storage 課程"^] 。
+https://cloud.google.com/storage/docs/storage-classes["了解 Google Cloud Storage 課程"^]。
 
 
 

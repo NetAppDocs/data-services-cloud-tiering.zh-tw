@@ -4,7 +4,7 @@ permalink: task-tiering-onprem-s3-compat.html
 keywords: data tiering, fabricpool, cloud tiering, tiering cold data, tiering inactive data, tiering aff, tiering fas, tiering ontap, tiering volumes, tier data, tier cold data, tier fas, tier aff, tier ontap, s3, tier to s3, minio 
 summary: '透過將非活動資料分層到使用簡單儲存服務 (S3) 協定的任何物件儲存服務，釋放本機ONTAP叢集上的空間。' 
 ---
-= 將本地ONTAP叢集中的資料分層到NetApp Cloud Tiering 中的 S3 物件存儲
+= 將本地ONTAP叢集中的資料分層到NetApp Cloud Tiering中的 S3 物件存儲
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -14,7 +14,7 @@ summary: '透過將非活動資料分層到使用簡單儲存服務 (S3) 協定�
 
 
 [role="lead"]
-透過將NetApp Cloud Tiering 中的非活動資料分層到使用簡單儲存服務 (S3) 協定的任何物件儲存服務，釋放本地ONTAP叢集上的空間。
+透過將NetApp Cloud Tiering中的非活動資料分層到使用簡單儲存服務 (S3) 協定的任何物件儲存服務，釋放本地ONTAP叢集上的空間。
 
 至此，MinIO物件儲存已經合格。
 
@@ -36,7 +36,7 @@ NetApp不支援也不對任何第三方物件儲存服務所引起的任何問�
 您需要以下內容：
 
 [role="quick-margin-list"]
-* 已新增至NetApp控制台的運行ONTAP 9.8 或更高版本的來源本機ONTAP集群，以及透過使用者指定連接埠到目標 S3 相容物件儲存的連線。 https://docs.netapp.com/us-en/bluexp-ontap-onprem/task-discovering-ontap.html["了解如何發現集群"^] 。
+* 已新增至NetApp Console的執行ONTAP 9.8 或更高版本的來源本機ONTAP集群，以及透過使用者指定連接埠到目標 S3 相容物件儲存的連線。 https://docs.netapp.com/us-en/bluexp-ontap-onprem/task-discovering-ontap.html["了解如何發現集群"^] 。
 * 物件儲存伺服器的 FQDN、存取金鑰和金鑰，以便ONTAP叢集可以存取儲存桶。
 * 在您的場所安裝控制台代理。
 * 代理程式的網路可實現與來源ONTAP叢集、S3 相容物件儲存以及 Cloud Tiering 服務的出站 HTTPS 連線。
@@ -44,15 +44,15 @@ NetApp不支援也不對任何第三方物件儲存服務所引起的任何問�
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["二"]設定分層
 [role="quick-margin-para"]
-在控制台中，選擇一個本機系統，為分層服務選擇*啟用*，然後依照指示將資料分層到與 S3 相容的物件儲存。
+在控制台中，選擇一個本機系統，為分層服務選擇“啟用”，然後按照提示將資料分層到與 S3 相容的物件儲存。
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["三"]設定許可
 [role="quick-margin-para"]
 透過雲端供應商的即用即付訂閱、雲端分層自帶授權或兩者結合的方式支付雲端分層費用：
 
 [role="quick-margin-list"]
-* 訂閱 PAYGO 優惠 https://aws.amazon.com/marketplace/pp/prodview-oorxakq6lq7m4?sr=0-8&ref_=beagle&applicationId=AWSMPContessa["AWS Marketplace"^]， https://azuremarketplace.microsoft.com/en-us/marketplace/apps/netapp.cloud-manager?tab=Overview["Azure 市場"^] ， 或者 https://console.cloud.google.com/marketplace/details/netapp-cloudmanager/cloud-manager?supportedpurview=project&rif_reserved["GCP 市場"^]，選擇*訂閱*並依照指示操作。
-* 若要使用 Cloud Tiering BYOL 授權付款，請發送電子郵件至：ng-cloud-tiering@netapp.com?subject=Licensing[如果您需要購買，請聯絡我們]，然後link:https://docs.netapp.com/us-en/bluexp-digital-wallet/task-manage-data-services-licenses.html["將其新增至NetApp控制台"^]。。
+* 訂閱 PAYGO 優惠 https://aws.amazon.com/marketplace/pp/prodview-oorxakq6lq7m4?sr=0-8&ref_=beagle&applicationId=AWSMPContessa["AWS Marketplace"^]， https://azuremarketplace.microsoft.com/en-us/marketplace/apps/netapp.cloud-manager?tab=Overview["Azure 市場"^] ， 或者 https://console.cloud.google.com/marketplace/details/netapp-cloudmanager/cloud-manager?supportedpurview=project&rif_reserved["GCP Marketplace"^]，選擇*訂閱*並依照指示操作。
+* 若要使用 Cloud Tiering BYOL 授權付款，請發送電子郵件至：ng-cloud-tiering@netapp.com?subject=Licensing[如果您需要購買，請聯絡我們]，然後link:https://docs.netapp.com/us-en/bluexp-digital-wallet/task-manage-data-services-licenses.html["將其新增至NetApp Console"^]。。
 
 
 
@@ -106,7 +106,7 @@ TIP: Cloud Tiering 支援FlexVol和FlexGroup卷。
 
 您需要先將本機ONTAP系統新增至控制台，然後才能開始分層冷資料。
 
-https://docs.netapp.com/us-en/bluexp-ontap-onprem/task-discovering-ontap.html["了解如何發現集群"^] 。
+https://docs.netapp.com/us-en/bluexp-ontap-onprem/task-discovering-ontap.html["了解如何發現集群"^]。
 
 
 
@@ -165,7 +165,7 @@ S3 憑證:: 當您設定分層到與 S3 相容的物件儲存空間時，系統�
 準備好環境後，開始從第一個叢集中分層非活動資料。
 
 .你需要什麼
-* https://docs.netapp.com/us-en/bluexp-ontap-onprem/task-discovering-ontap.html["已將本機系統新增至NetApp控制台"^] 。
+* https://docs.netapp.com/us-en/bluexp-ontap-onprem/task-discovering-ontap.html["已將本機系統新增至NetApp Console"^]。
 * S3 相容物件儲存伺服器的 FQDN 和將用於 HTTPS 通訊的連接埠。
 * 具有所需 S3 權限的存取金鑰和金鑰。
 
@@ -174,7 +174,7 @@ S3 憑證:: 當您設定分層到與 S3 相容的物件儲存空間時，系統�
 . 選擇本地ONTAP系統。
 . 點擊右側面板中的“啟用”以啟用雲端分層服務。
 +
-image:screenshot_setup_tiering_onprem.png["螢幕截圖顯示了選擇本機ONTAP系統後螢幕右側出現的分層選項。"]
+image:screenshot_setup_tiering_onprem.png["此螢幕截圖顯示了選擇本機ONTAP系統後螢幕右側出現的分層選項。"]
 
 . *定義物件儲存名稱*：輸入此物件儲存的名稱。它必須與您可能在此叢集上與聚合一起使用的任何其他物件儲存不同。
 . *選擇提供者*：選擇*S3 相容*並選擇*繼續*。
@@ -207,7 +207,7 @@ image:screenshot_tiering_initial_volumes.png["螢幕截圖顯示如何選擇單�
 
 . 在「分層策略」對話方塊中，選擇分層策略，選擇性地調整所選卷的冷卻天數，然後選擇「應用」。
 +
-link:concept-cloud-tiering.html#volume-tiering-policies["了解有關容量分層策略和冷卻天數的更多信息"] 。
+link:concept-cloud-tiering.html#volume-tiering-policies["了解有關容量分層策略和冷卻天數的更多信息"]。
 
 +
 image:screenshot_tiering_initial_policy_settings.png["顯示可設定分層策略設定的螢幕截圖。"]
@@ -215,7 +215,7 @@ image:screenshot_tiering_initial_policy_settings.png["顯示可設定分層策�
 
 
 .下一步是什麼？
-link:task-licensing-cloud-tiering.html["請務必訂閱 Cloud Tiering 服務"] 。
+link:task-licensing-cloud-tiering.html["請務必訂閱 Cloud Tiering 服務"]。
 
 您可以查看有關集群上活動和非活動資料的資訊。link:task-managing-tiering.html["了解有關管理分層設定的更多信息"] 。
 

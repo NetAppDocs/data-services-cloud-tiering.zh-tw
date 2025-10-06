@@ -4,7 +4,7 @@ permalink: faq-cloud-tiering.html
 keywords: faq, questions, requirements, service connector, agent, object store, object storage, aws, azure, bucket, cluster, aggregate, s3, storage class, standard, inactive data reporting, auto, volume tiering policy, policy, tiering policy, snapshot, cold, inactive, infrequent, agent, netapp console, console,cloud tier 
 summary: 如果您只是想快速找到問題的答案，此常見問題解答可以為您提供協助。 
 ---
-= NetApp Cloud Tiering 技術常見問題解答
+= NetApp Cloud Tiering技術常見問題解答
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -14,7 +14,7 @@ summary: 如果您只是想快速找到問題的答案，此常見問題解答�
 
 
 [role="lead"]
-如果您只是想快速找到有關NetApp Cloud Tiering 的問題的答案，那麼這個常見問題解答可以為您提供協助。
+如果您只是想快速找到有關NetApp Cloud Tiering的問題的答案，那麼此常見問題解答可以為您提供協助。
 
 
 
@@ -118,7 +118,7 @@ FabricPool是ONTAP分層技術，可以透過ONTAP CLI 和系統管理器進行�
 * 對於年度（BYOL）、基於期限的訂閱：起價為每 GB/月 0.033 美元。
 
 
-https://bluexp.netapp.com/pricing["查看定價詳情"] 。
+https://bluexp.netapp.com/pricing["查看定價詳情"]。
 
 將冷資料分層到NetApp StorageGRID系統（私有雲）時無需任何成本。
 
@@ -168,7 +168,7 @@ https://bluexp.netapp.com/pricing["查看定價詳情"] 。
 
 === 在啟用雲端分層之前，如何估算磁碟區的節省並取得冷資料報告？
 
-要獲得估算，請將您的ONTAP叢集新增至NetApp控制台並透過 Cloud Tiering Clusters 頁面進行檢查。選擇叢集的「計算潛在的分層節省」以啟動 https://bluexp.netapp.com/cloud-tiering-service-tco["雲端分層 TCO 計算器"^]看看您能省多少錢。
+要獲得估算，請將您的ONTAP叢集新增至NetApp Console並透過 Cloud Tiering Clusters 頁面進行檢查。選擇叢集的「計算潛在的分層節省」以啟動 https://bluexp.netapp.com/cloud-tiering-service-tco["雲端分層 TCO 計算器"^]看看您能省多少錢。
 
 
 
@@ -210,7 +210,7 @@ Cloud Tiering 支援ONTAP 9.2 及更高版本。
 
 === 那麼Cloud Volumes ONTAP怎麼樣呢？
 
-如果您有Cloud Volumes ONTAP系統，您會在 Cloud Tiering Clusters 頁面中找到它們，這樣您就可以全面了解混合雲端基礎架構中的資料分層。但是， Cloud Volumes ONTAP系統從 Cloud Tiering 來看是唯讀的。您無法從 Cloud Tiering 在Cloud Volumes ONTAP上設定資料分層。 https://docs.netapp.com/us-en/bluexp-cloud-volumes-ontap/task-tiering.html["您可以從NetApp控制台中的ONTAP系統設定Cloud Volumes ONTAP系統的分層"^] 。
+如果您有Cloud Volumes ONTAP系統，您會在 Cloud Tiering Clusters 頁面中找到它們，這樣您就可以全面了解混合雲端基礎架構中的資料分層。但是， Cloud Volumes ONTAP系統從 Cloud Tiering 來看是唯讀的。您無法從 Cloud Tiering 在Cloud Volumes ONTAP上設定資料分層。 https://docs.netapp.com/us-en/bluexp-cloud-volumes-ontap/task-tiering.html["您可以從NetApp Console中的ONTAP系統設定Cloud Volumes ONTAP系統的分層"^] 。
 
 
 
@@ -356,7 +356,7 @@ Cloud Tiering 支援將資料分層為 _Standard_、_Nearline_、_Coldline_ 和 
 
 === 什麼是控制台代理？
 
-控制台代理程式是在您的雲端帳戶或本機的運算實例上執行的軟體，它使NetApp控制台能夠安全地管理雲端資源。若要使用 Cloud Tiering 服務，您必須部署代理程式。
+控制台代理程式是在您的雲端帳戶或本機的運算實例上執行的軟體，它使NetApp Console能夠安全地管理雲端資源。若要使用 Cloud Tiering 服務，您必須部署代理程式。
 
 
 
@@ -402,7 +402,7 @@ Cloud Tiering 支援將資料分層為 _Standard_、_Nearline_、_Coldline_ 和 
 * 所有使用者資料（全部）：將所有資料歸類為冷資料；立即將整個磁碟區移至物件儲存。
 
 
-link:concept-cloud-tiering.html#volume-tiering-policies["了解有關分層策略的更多信息"] 。
+link:concept-cloud-tiering.html#volume-tiering-policies["了解有關分層策略的更多信息"]。
 
 
 
@@ -527,9 +527,9 @@ ONTAP從物件儲存讀取和寫入資料。物件儲存從不啟動，它只是
 
 === 需要什麼權限？
 
-* link:task-tiering-onprem-aws.html#set-up-s3-permissions["對於亞馬遜，需要權限來管理 S3 bucket"] 。
-* 對於 Azure，除了需要向NetApp控制台提供的權限之外，不需要其他額外權限。
-* link:task-tiering-onprem-gcp.html#preparing-google-cloud-storage["對於 Google Cloud，需要具有儲存存取金鑰的服務帳號的儲存管理員權限"] 。
-* link:task-tiering-onprem-storagegrid.html#preparing-storagegrid["對於StorageGRID，需要 S3 權限"] 。
-* link:task-tiering-onprem-s3-compat.html#preparing-s3-compatible-object-storage["對於與 S3 相容的物件存儲，需要 S3 權限"] 。
+* link:task-tiering-onprem-aws.html#set-up-s3-permissions["對於亞馬遜，需要權限來管理 S3 bucket"]。
+* 對於 Azure，除了需要向NetApp Console提供的權限之外，不需要其他額外權限。
+* link:task-tiering-onprem-gcp.html#preparing-google-cloud-storage["對於 Google Cloud，需要具有儲存存取金鑰的服務帳號的儲存管理員權限"]。
+* link:task-tiering-onprem-storagegrid.html#preparing-storagegrid["對於StorageGRID，需要 S3 權限"]。
+* link:task-tiering-onprem-s3-compat.html#preparing-s3-compatible-object-storage["對於與 S3 相容的物件存儲，需要 S3 權限"]。
 

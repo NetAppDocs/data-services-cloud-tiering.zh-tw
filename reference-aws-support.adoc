@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: reference-aws-support.html 
 keywords: aws, amazon, s3, support, regions, storage classes, cloud tiering, tiering, bluexp, netapp 
-summary: NetApp Cloud Tiering 支援多種 S3 儲存類別和大多數區域。 
+summary: NetApp Cloud Tiering支援多種 S3 儲存類別和大多數區域。 
 ---
-= NetApp Cloud Tiering 支援的 S3 儲存類別和區域
+= NetApp Cloud Tiering支援的 S3 儲存類別和區域
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -14,7 +14,7 @@ summary: NetApp Cloud Tiering 支援多種 S3 儲存類別和大多數區域。
 
 
 [role="lead"]
-NetApp Cloud Tiering 支援多種 S3 儲存類別和大多數區域。
+NetApp Cloud Tiering支援多種 S3 儲存類別和大多數區域。
 
 
 
@@ -32,7 +32,7 @@ NetApp Cloud Tiering 支援多種 S3 儲存類別和大多數區域。
 
 配置 Cloud Tiering 生命週期規則時，在 AWS 帳戶中設定儲存桶時不得配置任何生命週期規則。
 
-https://aws.amazon.com/s3/storage-classes/["了解 S3 儲存類別"^] 。
+https://aws.amazon.com/s3/storage-classes/["了解 S3 儲存類別"^]。
 
 
 

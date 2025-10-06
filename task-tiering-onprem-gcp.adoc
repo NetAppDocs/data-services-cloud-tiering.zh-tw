@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: task-tiering-onprem-gcp.html 
 keywords: data tiering, fabricpool, cloud tiering, tiering cold data, tiering inactive data, tiering aff, tiering fas, tiering ontap, tiering volumes, tier data, tier cold data, tier fas, tier aff, tier ontap, google, gcp, google cloud storage 
-summary: 透過將非活動資料分層到NetApp Cloud Tiering 中的 Google Cloud Storage，釋放本地ONTAP叢集上的空間 
+summary: 透過將非活動資料分層到NetApp Cloud Tiering中的 Google Cloud Storage，釋放本地ONTAP叢集上的空間 
 ---
-= 將本地ONTAP叢集中的資料分層到NetApp Cloud Tiering 中的 Google Cloud Storage
+= 將本地ONTAP叢集中的資料分層到NetApp Cloud Tiering中的 Google Cloud Storage
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -14,7 +14,7 @@ summary: 透過將非活動資料分層到NetApp Cloud Tiering 中的 Google Clo
 
 
 [role="lead"]
-透過將非活動資料分層到NetApp Cloud Tiering 中的 Google Cloud Storage，釋放本地ONTAP叢集上的空間。
+透過將非活動資料分層到NetApp Cloud Tiering中的 Google Cloud Storage，釋放本地ONTAP叢集上的空間。
 
 
 
@@ -27,7 +27,7 @@ summary: 透過將非活動資料分層到NetApp Cloud Tiering 中的 Google Clo
 您需要以下內容：
 
 [role="quick-margin-list"]
-* 您已新增至NetApp控制台的執行ONTAP 9.6 或更高版本的來源本機ONTAP集群，以及透過使用者指定連接埠至 Google Cloud Storage 的連線。 https://docs.netapp.com/us-en/bluexp-ontap-onprem/task-discovering-ontap.html["了解如何發現集群"^] 。
+* 您已新增至NetApp Console的執行ONTAP 9.6 或更高版本的來源本機ONTAP集群，以及透過使用者指定連接埠至 Google Cloud Storage 的連線。 https://docs.netapp.com/us-en/bluexp-ontap-onprem/task-discovering-ontap.html["了解如何發現集群"^] 。
 * 具有預先定義儲存管理員角色和儲存存取金鑰的服務帳戶。
 * 安裝在 Google Cloud Platform VPC 中的控制台代理程式。
 * 代理程式的網路可實現與資料中心中的ONTAP叢集、Google Cloud Storage 和 Cloud Tiering 服務的出站 HTTPS 連線。
@@ -35,7 +35,7 @@ summary: 透過將非活動資料分層到NetApp Cloud Tiering 中的 Google Clo
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["二"]設定分層
 [role="quick-margin-para"]
-在NetApp控制台中，選擇一個本機系統，選擇分層服務的 *啟用*，然後依照指示將資料分層到 Google Cloud Storage。
+在NetApp Console中，選擇一個本機系統，選擇分層服務的“*啟用*”，然後依照指示將資料分層到 Google Cloud Storage。
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["三"]設定許可
 [role="quick-margin-para"]
@@ -43,7 +43,7 @@ summary: 透過將非活動資料分層到NetApp Cloud Tiering 中的 Google Clo
 
 [role="quick-margin-list"]
 * 若要從 Google Cloud 市集訂閱， https://console.cloud.google.com/marketplace/details/netapp-cloudmanager/cloud-manager?supportedpurview=project&rif_reserved["前往市場"^] ，選擇*訂閱*，然後按照提示操作。
-* 若要使用 Cloud Tiering BYOL 授權付款，請發送電子郵件至：ng-cloud-tiering@netapp.com?subject=Licensing[如果您需要購買，請聯絡我們]，然後link:https://docs.netapp.com/us-en/bluexp-digital-wallet/task-manage-data-services-licenses.html["將其新增至NetApp控制台"^]。
+* 若要使用 Cloud Tiering BYOL 授權付款，請發送電子郵件至：ng-cloud-tiering@netapp.com?subject=Licensing[如果您需要購買，請聯絡我們]，然後link:https://docs.netapp.com/us-en/bluexp-digital-wallet/task-manage-data-services-licenses.html["將其新增至NetApp Console"^]。
 
 
 
@@ -73,7 +73,7 @@ NOTE: 代理程式和 Google Cloud Storage 之間的通訊僅用於物件儲存�
 
 
 --
-支援的ONTAP版本:: ONTAP 9.6 或更高版本
+支援的 ONTAP 版本:: ONTAP 9.6 或更高版本
 叢集網路需求::
 +
 --
@@ -105,9 +105,9 @@ NOTE: Cloud Tiering 支援FlexGroup卷。設定方式與任何其他磁碟區相
 
 === 發現ONTAP集群
 
-您需要先將本機ONTAP系統新增至NetApp控制台，然後才能開始分層冷資料。
+您需要先將本機ONTAP系統新增至NetApp Console，然後才能開始分層冷資料。
 
-https://docs.netapp.com/us-en/bluexp-ontap-onprem/task-discovering-ontap.html["了解如何發現集群"^] 。
+https://docs.netapp.com/us-en/bluexp-ontap-onprem/task-discovering-ontap.html["了解如何發現集群"^]。
 
 
 
@@ -150,7 +150,7 @@ Cloud Storage 儲存桶必須位於link:reference-google-support.html#supported-
 NOTE: 如果您打算將 Cloud Tiering 配置為使用成本較低的儲存類，您的分層資料將在一定天數後轉換到該儲存類，則在 GCP 帳戶中設定儲存桶時不得選擇任何生命週期規則。  Cloud Tiering 管理生命週期轉換。
 
 .步驟
-. https://cloud.google.com/iam/docs/creating-managing-service-accounts#creating_a_service_account["建立具有預先定義儲存管理員角色的服務帳戶"^] 。
+. https://cloud.google.com/iam/docs/creating-managing-service-accounts#creating_a_service_account["建立具有預先定義儲存管理員角色的服務帳戶"^]。
 . 前往 https://console.cloud.google.com/storage/settings["GCP 儲存設定"^]並為服務帳戶建立存取金鑰：
 +
 .. 選擇一個項目，然後選擇*互通性*。如果您還沒有這樣做，請選擇*啟用互通性存取*。
@@ -171,7 +171,7 @@ NOTE: 如果您打算將 Cloud Tiering 配置為使用成本較低的儲存類�
 準備好 Google Cloud 環境後，開始從第一個叢集分層非活動資料。
 
 .你需要什麼
-* https://docs.netapp.com/us-en/bluexp-ontap-onprem/task-discovering-ontap.html["新增到NetApp控制台的本機系統"^] 。
+* https://docs.netapp.com/us-en/bluexp-ontap-onprem/task-discovering-ontap.html["新增到NetApp Console的本機系統"^]。
 * 具有儲存管理員角色的服務帳戶的儲存存取金鑰。
 
 
@@ -225,7 +225,7 @@ image:screenshot_tiering_initial_volumes.png["螢幕截圖顯示如何選擇單�
 
 . 在「分層策略」對話方塊中，選擇分層策略，選擇性地調整所選卷的冷卻天數，然後選擇「應用」。
 +
-link:concept-cloud-tiering.html#volume-tiering-policies["了解有關容量分層策略和冷卻天數的更多信息"] 。
+link:concept-cloud-tiering.html#volume-tiering-policies["了解有關容量分層策略和冷卻天數的更多信息"]。
 
 +
 image:screenshot_tiering_initial_policy_settings.png["顯示可設定分層策略設定的螢幕截圖。"]
@@ -236,7 +236,7 @@ image:screenshot_tiering_initial_policy_settings.png["顯示可設定分層策�
 您已成功設定從叢集上的磁碟區到 Google Cloud 物件儲存的資料分層。
 
 .下一步是什麼？
-link:task-licensing-cloud-tiering.html["請務必訂閱 Cloud Tiering 服務"] 。
+link:task-licensing-cloud-tiering.html["請務必訂閱 Cloud Tiering 服務"]。
 
 您可以查看有關集群上活動和非活動資料的資訊。link:task-managing-tiering.html["了解有關管理分層設定的更多信息"] 。
 

@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: task-managing-object-storage.html 
 keywords: object storage, mirror object storage, create object storage, remove object storage, swap object storage, display object storage, license 
-summary: 將本機ONTAP叢集配置為將資料分層到特定物件儲存後，您可以在NetApp Cloud Tiering 中執行其他物件儲存任務。您可以新增新的物件儲存、將分層資料鏡像到輔助物件儲存、交換主物件儲存和鏡像物件儲存、從聚合中刪除鏡像物件儲存等等。 
+summary: 在設定本機ONTAP叢集以將資料分層到特定物件儲存後，您可以在NetApp Cloud Tiering中執行其他物件儲存任務。您可以新增新的物件儲存、將分層資料鏡像到輔助物件儲存、交換主物件儲存和鏡像物件儲存、從聚合中刪除鏡像物件儲存等等。 
 ---
-= 管理NetApp Cloud Tiering 中用於資料分層的物件存儲
+= 管理NetApp Cloud Tiering中用於資料分層的物件存儲
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -14,7 +14,7 @@ summary: 將本機ONTAP叢集配置為將資料分層到特定物件儲存後，
 
 
 [role="lead"]
-在設定本機ONTAP叢集以將資料分層到特定物件儲存後，您可以使用NetApp Cloud Tiering 執行其他物件儲存任務。您可以新增新的物件儲存、將分層資料鏡像到輔助物件儲存、交換主物件儲存和鏡像物件儲存、從聚合中刪除鏡像物件儲存等等。
+在配置本機ONTAP叢集以將資料分層到特定物件儲存後，您可以使用NetApp Cloud Tiering執行其他物件儲存任務。您可以新增新的物件儲存、將分層資料鏡像到輔助物件儲存、交換主物件儲存和鏡像物件儲存、從聚合中刪除鏡像物件儲存等等。
 
 
 

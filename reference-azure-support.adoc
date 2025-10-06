@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: reference-azure-support.html 
 keywords: microsoft azure, azure, hot, access tier, cold, regions, cloud tiering, tier, bluexp 
-summary: NetApp Cloud Tiering 支援兩個存取層和大多數區域。 
+summary: NetApp Cloud Tiering支援兩個存取層和大多數區域。 
 ---
-= NetApp Cloud Tiering 支援的 Azure Blob 存取層和區域
+= NetApp Cloud Tiering支援的 Azure Blob 存取層和區域
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -14,7 +14,7 @@ summary: NetApp Cloud Tiering 支援兩個存取層和大多數區域。
 
 
 [role="lead"]
-NetApp Cloud Tiering 支援兩個存取層和大多數區域。
+NetApp Cloud Tiering支援兩個存取層和大多數區域。
 
 
 
@@ -22,11 +22,11 @@ NetApp Cloud Tiering 支援兩個存取層和大多數區域。
 
 當您從本機ONTAP系統設定到 Azure 的資料分層時，Cloud Tiering 會自動使用_Hot_存取層來儲存您的非活動資料。  Cloud Tiering 可以應用生命週期規則，以便資料在一定天數後從_Hot_存取層轉換到_Cool_存取層。
 
-如果您不選擇_Cool_存取層，則資料將保留在_Hot_存取層中，並且不套用任何規則。
+如果您不選擇_Cool_存取層，則資料將保留在_Hot_存取層，並且不套用任何規則。
 
 設定 Cloud Tiering 生命週期規則時，在 Azure 帳戶中設定容器時不得設定任何生命週期規則。
 
-https://docs.microsoft.com/en-us/azure/storage/blobs/access-tiers-overview["了解 Azure Blob 存取層"^] 。
+https://docs.microsoft.com/en-us/azure/storage/blobs/access-tiers-overview["了解 Azure Blob 存取層"^]。
 
 
 

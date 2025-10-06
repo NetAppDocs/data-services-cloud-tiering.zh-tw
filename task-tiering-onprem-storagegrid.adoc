@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: task-tiering-onprem-storagegrid.html 
 keywords: data tiering, fabricpool, cloud tiering, tiering cold data, tiering inactive data, tiering aff, tiering fas, tiering ontap, tiering volumes, tier data, tier cold data, tier fas, tier aff, tier ontap, storagegrid, tier to storagegrid, fabricpool storagegrid 
-summary: 透過將非活動資料分層到NetApp Cloud Tiering 中的StorageGRID ，釋放本地ONTAP叢集上的空間。 
+summary: 透過將非活動資料分層到NetApp Cloud Tiering中的StorageGRID ，釋放本地ONTAP叢集上的空間。 
 ---
-= 將資料從本地ONTAP叢集分層到NetApp Cloud Tiering 中的StorageGRID
+= 將資料從本地ONTAP叢集分層到NetApp Cloud Tiering中的StorageGRID
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -14,7 +14,7 @@ summary: 透過將非活動資料分層到NetApp Cloud Tiering 中的StorageGRID
 
 
 [role="lead"]
-透過將非活動資料分層到NetApp Cloud Tiering 中的StorageGRID ，釋放本地ONTAP叢集上的空間。
+透過將非活動資料分層到NetApp Cloud Tiering中的StorageGRID ，釋放本地ONTAP叢集上的空間。
 
 
 
@@ -27,7 +27,7 @@ summary: 透過將非活動資料分層到NetApp Cloud Tiering 中的StorageGRID
 您需要以下內容：
 
 [role="quick-margin-list"]
-* 已新增至NetApp控制台的運行ONTAP 9.4 或更高版本的來源本機ONTAP集群，以及透過使用者指定連接埠到StorageGRID 的連線。 https://docs.netapp.com/us-en/bluexp-ontap-onprem/task-discovering-ontap.html["了解如何發現集群"^] 。
+* 已新增至NetApp Console的執行ONTAP 9.4 或更高版本的來源本機ONTAP集群，以及透過使用者指定連接埠到StorageGRID 的連線。 https://docs.netapp.com/us-en/bluexp-ontap-onprem/task-discovering-ontap.html["了解如何發現集群"^] 。
 * 具有 S3 權限的 AWS 存取金鑰的StorageGRID 10.3 或更高版本。
 * 在您的場所安裝控制台代理。
 * 代理程式的網路可實現與ONTAP叢集、 StorageGRID和 Cloud Tiering 服務的出站 HTTPS 連線。
@@ -35,7 +35,7 @@ summary: 透過將非活動資料分層到NetApp Cloud Tiering 中的StorageGRID
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["二"]設定分層
 [role="quick-margin-para"]
-在NetApp控制台中，選擇一個本機系統，選擇「啟用」雲端分層，然後依照指示將資料分層到StorageGRID。
+在NetApp Console中，選擇一個本機系統，選擇「啟用」雲端分層，然後依照指示將資料分層到StorageGRID。
 
 
 
@@ -65,7 +65,7 @@ NOTE: 代理程式和StorageGRID之間的通訊僅用於物件儲存設定。
 
 --
 支援的ONTAP版本:: ONTAP 9.4 或更高版本
-授權:: 將資料分層到StorageGRID時，您的NetApp Console 組織不需要 Cloud Tiering 許可證， ONTAP叢集上也不需要FabricPool許可證。
+授權:: 將資料分層到StorageGRID時，您的NetApp Console組織不需要 Cloud Tiering 許可證， ONTAP叢集上也不需要FabricPool許可證。
 叢集網路需求::
 +
 --
@@ -94,9 +94,9 @@ NOTE: 從ONTAP 9.5 開始，Cloud Tiering 支援FlexGroup卷。設定方式與�
 
 === 發現ONTAP集群
 
-您需要先將本機ONTAP系統新增至NetApp控制台，然後才能開始分層冷資料。
+您需要先將本機ONTAP系統新增至NetApp Console，然後才能開始分層冷資料。
 
-https://docs.netapp.com/us-en/bluexp-ontap-onprem/task-discovering-ontap.html["了解如何發現集群"^] 。
+https://docs.netapp.com/us-en/bluexp-ontap-onprem/task-discovering-ontap.html["了解如何發現集群"^]。
 
 
 
@@ -159,7 +159,7 @@ S3 憑證:: 當您設定分層到StorageGRID時，您需要向 Cloud Tiering 提
 準備好環境後，開始從第一個叢集中分層非活動資料。
 
 .你需要什麼
-* https://docs.netapp.com/us-en/bluexp-ontap-onprem/task-discovering-ontap.html["新增到NetApp控制台的本機系統"^] 。
+* https://docs.netapp.com/us-en/bluexp-ontap-onprem/task-discovering-ontap.html["新增到NetApp Console的本機系統"^]。
 * StorageGRID網關節點的 FQDN 以及將用於 HTTPS 通訊的連接埠。
 * 具有所需 S3 權限的 AWS 存取金鑰。
 
@@ -168,7 +168,7 @@ S3 憑證:: 當您設定分層到StorageGRID時，您需要向 Cloud Tiering 提
 . 選擇本地ONTAP系統。
 . 點擊右側面板中的“啟用雲端分層”****。
 +
-如果StorageGRID分層目標是作為NetApp控制台中的系統存在，則可以將叢集拖曳到StorageGRID系統上以啟動設定精靈。
+如果StorageGRID分層目標是作為NetApp Console中的系統存在，則可以將叢集拖曳到StorageGRID系統上以啟動設定精靈。
 
 +
 image:screenshot_setup_tiering_onprem.png["螢幕截圖顯示了選擇本地ONTAP系統後螢幕右側出現的「設定分層」選項。"]
@@ -210,7 +210,7 @@ image:screenshot_tiering_initial_volumes.png["螢幕截圖顯示如何選擇單�
 . 在「分層策略」對話方塊中，選擇分層策略，選擇性地調整所選卷的冷卻天數，然後選擇「應用」。
 . 在「分層策略」對話方塊中，選擇分層策略，選擇性地調整所選卷的冷卻天數，然後選擇「應用」。
 +
-link:concept-cloud-tiering.html#volume-tiering-policies["了解有關容量分層策略和冷卻天數的更多信息"] 。
+link:concept-cloud-tiering.html#volume-tiering-policies["了解有關容量分層策略和冷卻天數的更多信息"]。
 
 +
 image:screenshot_tiering_initial_policy_settings.png["顯示可設定分層策略設定的螢幕截圖。"]

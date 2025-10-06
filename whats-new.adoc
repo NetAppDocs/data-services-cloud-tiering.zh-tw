@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: whats-new.html 
 keywords: 'what"s new, features, new, release notes, bugs, limitations, known issues, enhancements, fixes, tiering' 
-summary: 了解NetApp Cloud Tiering 的新功能。 
+summary: 了解NetApp Cloud Tiering的新功能。 
 ---
-= NetApp Cloud Tiering 的新功能
+= NetApp Cloud Tiering的新功能
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -14,7 +14,7 @@ summary: 了解NetApp Cloud Tiering 的新功能。
 
 
 [role="lead"]
-了解NetApp Cloud Tiering 的新功能。
+了解NetApp Cloud Tiering的新功能。
 
 
 
@@ -22,17 +22,17 @@ summary: 了解NetApp Cloud Tiering 的新功能。
 
 
 
-=== BlueXP tiering現已更名為NetApp Cloud Tiering
+=== BlueXP tiering現已更名NetApp Cloud Tiering
 
 BlueXP tiering已重新命名為NetApp Cloud Tiering。
 
 
 
-=== BlueXP現在是NetApp控制台
+=== BlueXP現在是NetApp Console
 
-NetApp控制台建立在增強和重組的BlueXP基礎之上，可在企業級內部和雲端環境中集中管理NetApp儲存和NetApp資料服務，提供即時洞察、更快的工作流程和簡化的管理，並且高度安全且合規。
+NetApp Console建立在增強和重組的BlueXP基礎之上，可在企業級內部和雲端環境中集中管理NetApp儲存和NetApp Data Services，提供即時洞察、更快的工作流程和簡化的管理，並且高度安全且合規。
 
-有關更改的詳細信息，請參閱link:https://docs.netapp.com/us-en/bluexp-relnotes/index.html["NetApp控制台發行說明"]。
+有關更改的詳細信息，請參閱link:https://docs.netapp.com/us-en/bluexp-relnotes/index.html["NetApp Console發行說明"]。
 
 
 
@@ -90,7 +90,7 @@ NetApp控制台建立在增強和重組的BlueXP基礎之上，可在企業級�
 
 
 
-=== 產生卷宗分層報告
+=== 產生磁碟區的分層報告
 
 您可以從「層卷」頁面下載報告，以便查看您正在管理的叢集上所有磁碟區的分層狀態。  BlueXP Tiering 產生一個 .CSV 文件，您可以根據需要查看並發送給公司中的其他人。 https://docs.netapp.com/us-en/bluexp-tiering/task-managing-tiering.html#download-a-tiering-report-for-your-volumes["了解如何下載分層報告"] 。
 
@@ -136,7 +136,7 @@ NetApp控制台建立在增強和重組的BlueXP基礎之上，可在企業級�
 
 在先前的版本中，提供這種透過 VPC 端點將叢集連接到 S3 儲存桶的安全方式非常耗時。現在您可以按照先決條件步驟 https://docs.netapp.com/us-en/bluexp-tiering/task-tiering-onprem-aws.html#configure-your-system-for-a-private-connection-using-a-vpc-endpoint-interface["使用 VPC 終端節點介面配置系統以進行私有連接"]，然後您可以在網頁頁面的分層設定精靈期間選擇 PrivateLink。
 
-https://docs.netapp.com/us-en/bluexp-tiering/task-tiering-onprem-aws.html["查看將非活動資料分層到 Amazon S3 的要求和步驟"] 。
+https://docs.netapp.com/us-en/bluexp-tiering/task-tiering-onprem-aws.html["查看將非活動資料分層到 Amazon S3 的要求和步驟"]。
 
 
 

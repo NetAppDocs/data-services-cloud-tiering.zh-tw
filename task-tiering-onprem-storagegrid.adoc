@@ -175,16 +175,13 @@ image:screenshot_setup_tiering_onprem.png["螢幕截圖顯示了選擇本地ONTA
 
 . *定義物件儲存名稱*：輸入此物件儲存的名稱。它必須與您可能在此叢集上與聚合一起使用的任何其他物件儲存不同。
 . *選擇提供者*：選擇* StorageGRID*並選擇*繼續*。
-. *選擇提供者*：選擇* StorageGRID*並選擇*繼續*。
 . 完成*建立物件儲存*頁面上的步驟：
 +
 .. *伺服器*：輸入StorageGRID網關節點的 FQDN、 ONTAP應使用 HTTPS 與StorageGRID進行通訊的端口，以及具有所需 S3 權限的帳戶的存取金鑰和金鑰。
 .. *Bucket*：新增一個新的 bucket 或選擇一個以前綴 _fabric-pool_ 開頭的現有 bucket，然後選擇 *Continue*。
-.. *Bucket*：新增一個新的 bucket 或選擇一個以前綴 _fabric-pool_ 開頭的現有 bucket，然後選擇 *Continue*。
 +
 需要 _fabric-pool_ 前綴，因為代理程式的 IAM 策略允許實例對以該精確前綴命名的儲存桶執行 S3 操作。例如，您可以將 S3 儲存桶命名為 _fabric-pool-AFF1_，其中 AFF1 是叢集的名稱。
 
-.. *叢集網路*：選擇ONTAP套用於連接物件儲存的 IP 空間，然後選擇*繼續*。
 .. *叢集網路*：選擇ONTAP套用於連接物件儲存的 IP 空間，然後選擇*繼續*。
 +
 選擇正確的 IP 空間可確保 Cloud Tiering 可以建立從ONTAP到StorageGRID物件儲存的連線。
@@ -199,15 +196,11 @@ image:screenshot_setup_tiering_onprem.png["螢幕截圖顯示了選擇本地ONTA
 ** 若要選取所有捲，請選取標題行中的複選框（image:button_backup_all_volumes.png[""] ) 並選擇 *配置磁碟區*。
 ** 若要選擇多個卷，請選取每個卷對應的複選框（image:button_backup_1_volume.png[""] ) 並選擇 *配置磁碟區*。
 ** 若要選擇單一卷，請選擇行（或image:screenshot_edit_icon.gif["編輯鉛筆圖標"]圖示）來表示音量。
-** 若要選取所有捲，請選取標題行中的複選框（image:button_backup_all_volumes.png[""] ) 並選擇 *配置磁碟區*。
-** 若要選擇多個卷，請選取每個卷對應的複選框（image:button_backup_1_volume.png[""] ) 並選擇 *配置磁碟區*。
-** 若要選擇單一卷，請選擇行（或image:screenshot_edit_icon.gif["編輯鉛筆圖標"]圖示）來表示音量。
 +
 image:screenshot_tiering_initial_volumes.png["螢幕截圖顯示如何選擇單一磁碟區、多個磁碟區或所有磁碟區以及修改選定磁碟區按鈕。"]
 
 
 
-. 在「分層策略」對話方塊中，選擇分層策略，選擇性地調整所選卷的冷卻天數，然後選擇「應用」。
 . 在「分層策略」對話方塊中，選擇分層策略，選擇性地調整所選卷的冷卻天數，然後選擇「應用」。
 +
 link:concept-cloud-tiering.html#volume-tiering-policies["了解有關容量分層策略和冷卻天數的更多信息"]。

@@ -1,7 +1,6 @@
 ---
 settings:
   name: NetApp Cloud Tiering
-  platform: cloud
   internal:
     pdf_enabled: true
   prod:

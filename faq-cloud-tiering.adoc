@@ -158,10 +158,6 @@ https://bluexp.netapp.com/pricing["查看定價詳情"]。
 
 === 雲端提供者對於從物件儲存讀取/檢索資料到本地儲存是否收取額外費用？
 
-
-
-=== 雲端提供者對於從物件儲存讀取/檢索資料到本地儲存是否收取額外費用？
-
 是的。查看 https://aws.amazon.com/s3/pricing/["Amazon S3 定價"]， https://azure.microsoft.com/en-us/pricing/details/storage/blobs/["Block Blob 定價"] ， 和 https://cloud.google.com/storage/pricing["雲端儲存定價"]了解資料讀取/檢索產生的額外定價。
 
 

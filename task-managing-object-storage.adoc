@@ -24,7 +24,6 @@ summary: 在設定本機ONTAP叢集以將資料分層到特定物件儲存後，
 
 .步驟
 . 從*Clusters*頁面中，選擇叢集的選單圖示並選擇*Object Store Info*。
-. 從*Clusters*頁面中，選擇叢集的選單圖示並選擇*Object Store Info*。
 . 查看有關物件儲存的詳細資訊。
 +
 此範例顯示了附加到叢集上不同聚合的 Amazon S3 和 Azure Blob 物件儲存。
@@ -42,8 +41,6 @@ image:screenshot_tiering_object_store_view.png["顯示物件儲存資訊的螢�
 
 .步驟
 . 從*Clusters*頁面中，選擇叢集的選單圖示並選擇*Object Store Info*。
-. 從*Clusters*頁面中，選擇叢集的選單圖示並選擇*Object Store Info*。
-. 從物件儲存資訊頁面中，選擇*建立新物件儲存*。
 . 從物件儲存資訊頁面中，選擇*建立新物件儲存*。
 +
 image:screenshot_tiering_object_store_create_button.png["顯示用於建立新物件儲存的「建立新物件儲存」按鈕的螢幕截圖。"]

@@ -22,7 +22,7 @@ Cloud Tiering 利用了 _FabricPool_ 的功能。 FabricPool是一種NetApp Data
 
 您可以使用FabricPool Mirror 為單節點叢集、HA 配置的叢集、分層鏡像配置中的叢集以及MetroCluster配置配置分層。  Cloud Tiering 授權可在您的所有叢集之間共用。
 
-https://bluexp.netapp.com/cloud-tiering-service-tco["使用雲端分層 TCO 計算器來查看您可以節省多少錢"^]。
+https://www.netapp.com/data-services/tiering/tco-calculator/["使用雲端分層 TCO 計算器來查看您可以節省多少錢"^]。
 
 
 
@@ -70,7 +70,7 @@ TIP: Cloud Volumes ONTAP系統從 Cloud Tiering 來看是唯讀的。 https://do
 * 與 S3 相容的物件儲存（例如 MinIO）
 
 
-Cloud Tiering 授權也可以與將資料分層到 IBM Cloud Object Storage 的叢集共用。必須使用 System Manager 或ONTAP CLI 設定FabricPool配置，但link:task-licensing-cloud-tiering.html#apply-bluexp-tiering-licenses-to-clusters-in-special-configurations["此類配置的授權是使用 Cloud Tiering 完成的。"]
+Cloud Tiering 授權也可以與將資料分層到 IBM Cloud Object Storage 的叢集共用。必須使用 System Manager 或ONTAP CLI 設定FabricPool配置，但link:task-licensing-cloud-tiering.html#apply-cloud-tiering-licenses-to-clusters-in-special-configurations["此類配置的授權是使用 Cloud Tiering 完成的。"]
 
 
 NOTE: 您可以將資料從 NAS 磁碟區分層到公有雲或私有雲，例如StorageGRID。當您對透過 SAN 協定存取的資料進行分層時，出於連接方面的考慮， NetApp建議使用私有雲。
@@ -131,7 +131,7 @@ Cloud Tiering 以即用即付模式提供基於消費的授權。透過雲端供
 
 在免費試用期間或未超出 Cloud Tiering BYOL 授權的情況下，您無需支付即用即付訂閱費用。
 
-link:task-licensing-cloud-tiering.html#use-a-bluexp-tiering-paygo-subscription["了解如何設定即用即付訂閱"]。
+link:task-licensing-cloud-tiering.html#use-a-cloud-tiering-paygo-subscription["了解如何設定即用即付訂閱"]。
 
 
 
@@ -147,12 +147,12 @@ link:task-licensing-cloud-tiering.html#use-a-bluexp-tiering-paygo-subscription["
 
 透過從NetApp購買 *Cloud Tiering* 許可證（以前稱為「Cloud Tiering」許可證）來取得您自己的許可證。您可以購買 1 年、2 年或 3 年期許可證，並指定任意數量的分層容量（最低 10 TiB）。 BYOL Cloud Tiering 許可證是一種浮動許可證，您可以在多個本地ONTAP叢集中使用它。您在 Cloud Tiering 授權中定義的總分層容量可供所有本機叢集使用。
 
-購買 Cloud Tiering 授權後，您需要將該授權新增至NetApp Console。link:task-licensing-cloud-tiering.html#use-a-bluexp-tiering-byol-license["了解如何使用 Cloud Tiering BYOL 許可證"] 。
+購買 Cloud Tiering 授權後，您需要將該授權新增至NetApp Console。link:task-licensing-cloud-tiering.html#use-a-cloud-tiering-byol-license["了解如何使用 Cloud Tiering BYOL 許可證"]。
 
 如上所述，即使您已經購買了 BYOL 許可證，我們也建議您設定即用即付訂閱。
 
 
-NOTE: 從 2021 年 8 月開始，舊的 * FabricPool* 許可證被 * Cloud Tiering * 許可證取代。link:task-licensing-cloud-tiering.html#bluexp-tiering-byol-licensing-starting-in-2021["詳細了解 Cloud Tiering 授權與FabricPool授權的區別"] 。
+NOTE: 從 2021 年 8 月開始，舊的 * FabricPool* 許可證被 * Cloud Tiering * 許可證取代。link:task-licensing-cloud-tiering.html#cloud-tiering-byol-licensing-starting-in-2021["詳細了解 Cloud Tiering 授權與FabricPool授權的區別"]。
 
 
 

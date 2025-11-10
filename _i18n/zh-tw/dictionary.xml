@@ -14,7 +14,6 @@
   <block id="904ea3c3aba6edae61ba696b01808a11" category="section-title">通知中心顯示的分層事件</block>
   <block id="250f0923d20814211c14c5a6cd0e2643" category="paragraph">當叢集分層的冷資料少於 20%（包括未分層任何資料的叢集）時，分層事件「將叢集 &lt;name&gt; 中的其他資料分層到物件儲存以提高儲存效率」現在會作為通知出現。</block>
   <block id="4408342320f5d18ce7a02828ead033c1" category="inline-link">Cloud Tiering 總擁有成本和節省計算器</block>
-  <block id="606ec28d49ad09441827c5c02151d01a" category="paragraph">此通知是一項“建議”，旨在幫助您提高系統效率並節省儲存成本。它提供了一個鏈接<block ref="c97ff6fcab33b77efc054e699ba69f9b" category="inline-link-rx"></block>幫助您計算成本節省。</block>
   <block id="101e8e97885c05702335faecd0fb3f50" category="doc">使用自訂前綴作為儲存桶名稱</block>
   <block id="6eb4429639db75cb3b56cc38a3fb8785" category="paragraph">過去，定義儲存桶名稱時需要使用預設的「fabric-pool」前綴，例如 _fabric-pool-bucket1_。現在您可以在命名儲存桶時使用自訂前綴。僅當將資料分層到 Amazon S3 時此功能才可用。<block ref="3e8270d3bc816ce30c7c11fe6d073535" category="inline-link-rx"></block> 。</block>
   <block id="2d81e61b650e87c484f1701ff4c00053" category="section-title">在所有BlueXP連接器中搜尋集群</block>
@@ -33,7 +32,6 @@
   <block id="fd01295dbf857b2bc6bcef4166b23207" category="paragraph">最初，在具有全 SSD 聚合的AFF、 FAS和ONTAP Select系統上受支持，從ONTAP 9.8 開始，您可以從由 HDD 和高效能 SSD 組成的聚合中分層資料。看<block ref="6b92341e29e5578d52c0690ebbf4bdb7" category="inline-link-rx"></block>了解詳情。</block>
   <block id="6f7fa9a7ea4cc175d0a80106c4540886" category="paragraph">您可以使用FabricPool Mirror 為單節點叢集、HA 配置的叢集、分層鏡像配置中的叢集以及MetroCluster配置配置分層。  Cloud Tiering 授權可在您的所有叢集之間共用。</block>
   <block id="5a9e33885fce7948860e5a957a6fb29f" category="inline-link">使用雲端分層 TCO 計算器來查看您可以節省多少錢</block>
-  <block id="a6f0f70c7a597fb210e8ae036288a1c7" category="paragraph"><block ref="61f3ae130fd6497c4c039b23b58d1478" category="inline-link-rx"></block>。</block>
   <block id="3c031b939f6ec312ee601d021e7a6644" category="section-title">NetApp Console</block>
   <block id="e17741c23d1044bdf39bf22efe88006f" category="paragraph">可透過NetApp Console存取NetApp Cloud Tiering 。</block>
   <block id="d07b485359c52169277c3ff7aaed95d4" category="paragraph">NetApp Console可在企業範圍內跨本機和雲端環境集中管理NetApp儲存和資料服務。需要控制台才能存取和使用NetApp資料服務。作為管理介面，它使您能夠從一個介面管理許多儲存資源。控制台管理員可以控制企業內所有系統的儲存和服務的存取。</block>
@@ -61,7 +59,6 @@
   <block id="55cf1a0f0fce69fd543500e5761dd26d" category="list-text">NetAppStorageGRID</block>
   <block id="ad8e06edf5256a509aa4b626821aded3" category="list-text">與 S3 相容的物件儲存（例如 MinIO）</block>
   <block id="8d2a23c3bb3453bcfb2eb9da839497da" category="inline-link-macro">此類配置的授權是使用 Cloud Tiering 完成的。</block>
-  <block id="e40f2d9abf3fbe1d4e8efc74e430ee66" category="paragraph">Cloud Tiering 授權也可以與將資料分層到 IBM Cloud Object Storage 的叢集共用。必須使用 System Manager 或ONTAP CLI 設定FabricPool配置，但<block ref="bac4e85b78fd1f5d603b5aa5c480176c" category="inline-link-macro-rx"></block></block>
   <block id="fc5db8fc1a0ebe831ca66081487b4b44" category="admonition">您可以將資料從 NAS 磁碟區分層到公有雲或私有雲，例如StorageGRID。當您對透過 SAN 協定存取的資料進行分層時，出於連接方面的考慮， NetApp建議使用私有雲。</block>
   <block id="a20f952fc829b6aeea951e2b9f940dd3" category="section-title">物件儲存層</block>
   <block id="98652169e15d6be3f041f6831e813ed4" category="paragraph">ONTAP叢集可以將非活動資料分層到單一物件儲存或多個物件儲存。設定資料分層時，您可以選擇新增新的儲存桶/容器或選擇現有的儲存桶/容器，以及儲存類別或存取層。</block>
@@ -91,17 +88,14 @@
   <block id="3f08769be064240fa25ba129ac43d9a4" category="paragraph">例如，如果您擁有 10 TB 的許可證，則超過 10 TB 的所有容量都將透過即用即付訂閱收費。</block>
   <block id="ad05b2f231e5f48f63b30a2913fa7fef" category="paragraph">在免費試用期間或未超出 Cloud Tiering BYOL 授權的情況下，您無需支付即用即付訂閱費用。</block>
   <block id="09c7ee4be0db4e9240de27e931212553" category="inline-link-macro">了解如何設定即用即付訂閱</block>
-  <block id="a48331bea4b593b755f99fa927d65638" category="paragraph"><block ref="4a6532d8b81197880664db7ef07b3202" category="inline-link-macro-rx"></block>。</block>
   <block id="421539f25601331f9f5f1e59cdb43e21" category="section-title">年度合約</block>
   <block id="87e8f36409134ebae86e6c9935f8f457" category="paragraph">當將非活動資料分層到 Amazon S3 或 Azure 時，Cloud Tiering 提供年度合約。其期限分為 1 年、2 年或 3 年。</block>
   <block id="8a2304319d2e68c914c95280f8d1b529" category="paragraph">目前，分級到 Google CLoud 時不支援年度合約。</block>
   <block id="fce5aebaf837d23e27b8a9d6a54a6467" category="section-title">自備駕照</block>
   <block id="ce9d3c4a1b1b4d789b90174349030aaf" category="paragraph">透過從NetApp購買 *Cloud Tiering* 許可證（以前稱為「Cloud Tiering」許可證）來取得您自己的許可證。您可以購買 1 年、2 年或 3 年期許可證，並指定任意數量的分層容量（最低 10 TiB）。 BYOL Cloud Tiering 許可證是一種浮動許可證，您可以在多個本地ONTAP叢集中使用它。您在 Cloud Tiering 授權中定義的總分層容量可供所有本機叢集使用。</block>
   <block id="7b31eba1fa6d2aa1d3bf4ddb10d4b302" category="inline-link-macro">了解如何使用 Cloud Tiering BYOL 許可證</block>
-  <block id="44f0f7d7136cfb69b9784218b1bce9e0" category="paragraph">購買 Cloud Tiering 授權後，您需要將該授權新增至NetApp Console。<block ref="44ae81757a5e6146fccd5f2605606b0b" category="inline-link-macro-rx"></block> 。</block>
   <block id="36d4c89fb6384ec2ea8ec2f77986b9e1" category="paragraph">如上所述，即使您已經購買了 BYOL 許可證，我們也建議您設定即用即付訂閱。</block>
   <block id="209dbdc2b896741acf71bcae32e7eaf6" category="inline-link-macro">詳細了解 Cloud Tiering 授權與FabricPool授權的區別</block>
-  <block id="4784a06e87a08819fe850e97da5f5489" category="admonition">從 2021 年 8 月開始，舊的 * FabricPool* 許可證被 * Cloud Tiering * 許可證取代。<block ref="8907675c17e0f70799b8dbbb28da5a27" category="inline-link-macro-rx"></block> 。</block>
   <block id="4ba7f89609c2c48842769aff0953edb9" category="section-title">雲端分層的工作原理</block>
   <block id="87ec4e2c4a2bbe77854843efbef8dea4" category="paragraph">Cloud Tiering 是一項由NetApp管理的服務，它使用FabricPool技術將本地ONTAP叢集中的非活動（冷）資料自動分層到公有雲或私有雲中的物件儲存。透過控制台代理可以連接到ONTAP 。</block>
   <block id="60d1f390b363130bf24d5d9d598fdaf5" category="paragraph">下圖顯示了各個組件之間的關係：</block>
@@ -211,7 +205,6 @@
   <block id="80fb8aa8c4c5c3477d1c619e25dee21c" category="paragraph">是的。查看<block ref="134b76f780a567f977f9c0667960c527" category="inline-link-rx"></block>，<block ref="42cfb61355c94594363648e2439176bf" category="inline-link-rx"></block> ， 和<block ref="fb963a69fe55ff45676c36ad0b99dda1" category="inline-link-rx"></block>了解資料讀取/檢索產生的額外定價。</block>
   <block id="de8fae09cd33447b4a5792798abb8a9b" category="section-title">在啟用雲端分層之前，如何估算磁碟區的節省並取得冷資料報告？</block>
   <block id="dfe334fbbb64c2a1ad464bafa6253a79" category="inline-link">雲端分層 TCO 計算器</block>
-  <block id="f1c3505f5c5247988c3136ec15597c63" category="paragraph">要獲得估算，請將您的ONTAP叢集新增至NetApp Console並透過 Cloud Tiering Clusters 頁面進行檢查。選擇叢集的「計算潛在的分層節省」以啟動<block ref="aacb9a70fb6d33ff9c71983d26ca8a9f" category="inline-link-rx"></block>看看您能省多少錢。</block>
   <block id="fa248eca9d251b0d2d1865958f765b99" category="section-title">當我使用ONTAP MetroCluster時，如何收取分層費用？</block>
   <block id="54856502386c30dbe96e604b0cc831fe" category="paragraph">在MetroCluster環境中使用時，總分層許可證適用於兩個叢集的使用。例如，如果您擁有 100TiB 分層許可證，則每個叢集使用的分層容量將計入 100TiB 的總容量。</block>
   <block id="253b40ae359ba25b56231803430c4873" category="section-title">ONTAP</block>
@@ -230,7 +223,6 @@
   <block id="3b12cd959256e1fe1998855f1f4469c7" category="section-title">我的ONTAP叢集還需要哪些其他要求？</block>
   <block id="8a35952a9fd8375f6367c7e469edb4c8" category="paragraph">這取決於冷資料的分層位置。請參閱以下連結以了解更多詳細資訊：</block>
   <block id="83d030b1e01c7afcd4424fd7357db055" category="inline-link-macro">將資料分層到 Amazon S3</block>
-  <block id="91a68e06c0ddb0dde07439f8f6bd8af6" category="list-text"><block ref="91a68e06c0ddb0dde07439f8f6bd8af6" category="inline-link-macro-rx"></block></block>
   <block id="afdc652a5d53bafec9f489b5ce09cea6" category="inline-link-macro">將資料分層到 Azure Blob 存儲</block>
   <block id="16c9006ef3f4688fbb41ca0acded147c" category="list-text"><block ref="16c9006ef3f4688fbb41ca0acded147c" category="inline-link-macro-rx"></block></block>
   <block id="648737b64ba36a1b484bc9ea503a8938" category="inline-link-macro">將資料分層儲存到 Google Cloud Storage</block>
@@ -587,7 +579,6 @@
   <block id="788e22af5bb5495bee686a619fa97145" category="list-text">安裝在「暗站」的集群</block>
   <block id="c8fe0ffee9071759c56b9a7d98bae676" category="section-title">具有FabricPool許可證的現有叢集的流程</block>
   <block id="1451b23352470f925dac87a3da139fca" category="inline-link-macro">在 Cloud Tiering 中發現任何這些特殊集群類型</block>
-  <block id="9f898377748d3dac1631f92bda670920" category="paragraph">當你<block ref="13095ed007c6e7e2b998c08aa80519da" category="inline-link-macro-rx"></block>，Cloud Tiering 識別FabricPool許可證並將許可證新增至控制台。這些集群將繼續照常分層資料。當FabricPool授權到期時，您需要購買 Cloud Tiering 授權。</block>
   <block id="eb5050df74a7237bec4864cad6113b55" category="section-title">新建立集群的流程</block>
   <block id="9cf61e4fc9ad253b398c1c3be905176d" category="paragraph">當您在 Cloud Tiering 中發現典型叢集時，您將使用 Cloud Tiering 介面配置分層。在這些情況下，會發生以下操作：</block>
   <block id="0c61daf569ae994053d87f8ed15c641d" category="list-text">「父級」雲端分層許可證追蹤所有叢集用於分層的容量，以確保許可證中有足夠的容量。總許可容量和到期日期顯示在控制台中。</block>
@@ -598,11 +589,9 @@
   <block id="f457a5079118a07f91a021318abf923e" category="list-text">使用 System Manager 或ONTAP CLI 安裝和設定ONTAP叢集。</block>
   <block id="a91bdb81c68f1a37a469fa1d5933a14b" category="paragraph">此時不要配置分層。</block>
   <block id="a49fb32c3dc821374473edfc6c43950a" category="inline-link-macro">購買 Cloud Tiering 許可證</block>
-  <block id="179eef7881bae9b4596f8bc3344345e8" category="list-text"><block ref="a9640efddb50c41da6fd6b44369d817f" category="inline-link-macro-rx"></block>滿足新集群或多個集群所需的容量。</block>
   <block id="475dfcedf495d633f40c9b9bfd57b55a" category="inline-xref">將許可證添加到數位錢包</block>
   <block id="fead545b6a0a8d6e90228df1c8e35f19" category="list-text">在控制台中<block ref="8856d761fe4c327e372ed95088b45b9a" category="inline-xref-macro-rx"></block>[新增許可證]。</block>
   <block id="2ef78cf4a1d7bf5f762483337e16bb3b" category="inline-link-macro">發現新的集群</block>
-  <block id="c05b1e6057a1704f540d6ff1027589a4" category="list-text">在雲端分層中，<block ref="210b64e2207c15c9773eb7d42739f7fc" category="inline-link-macro-rx"></block> 。</block>
   <block id="8f0a75d2d5a82f31f2cf069c3b0ee684" category="inline-image-macro">更多圖標</block>
   <block id="8e089abf3b3debe599fb2866aabd4320" category="list-text">在「集群」頁面中，選擇<block ref="50acd719b1954eb4890c002b3b5e71a6" category="inline-image-macro-rx" type="image"></block>對於叢集並選擇*部署許可證*。</block>
   <block id="b84ead730259e42d0aaa3247f1351b36" category="inline-image-macro">顯示如何將分層許可證部署到ONTAP叢集的螢幕截圖。</block>
@@ -819,7 +808,6 @@
   <block id="1269203aa9c877dd85088723281f59a7" category="paragraph">通知中心追蹤分層事件的進度，以便您可以驗證它們是否已解決。您可以透過選擇 (<block ref="df7c8a71ca3da4359e40e121f18f87b9" category="inline-image-macro-rx" type="image"></block> ) 在控制台功能表列中。</block>
   <block id="4d75741b08e898e5dd23f1bc936a1486" category="paragraph">此時，有一個分層事件將作為通知出現：</block>
   <block id="c1a6326bd6c521e19c8c09c0e0e23970" category="paragraph">將叢集 &lt;name&gt; 中的附加資料分層到物件儲存以節省儲存空間</block>
-  <block id="2f3b31bd4de2304cbd12797ba27cfce9" category="paragraph">此通知是提高系統效率、降低儲存成本的「建議」。它表示集群分層的冷數據少於 20% - 包括沒有分層數據的集群。它提供了一個鏈接<block ref="c97ff6fcab33b77efc054e699ba69f9b" category="inline-link-rx"></block>幫助您計算成本節省。</block>
   <block id="0bef75d2b268198b7a45bee7253dc12b" category="paragraph">NetApp Console不會傳送此通知的電子郵件。</block>
   <block id="57b65c16b4e713b68f97572b861b02ad" category="inline-link">了解有關通知中心的更多信息</block>
   <block id="8ce0d8322aa1582bbdc0d3c2966eed6a" category="paragraph"><block ref="604bd89716d502e7808a2adc35f1d34b" category="inline-link-rx"></block>。</block>
@@ -1089,7 +1077,6 @@
   <block id="5a5777bc5788ddb207135e10715f1f84" category="section-title">驗證您是否擁有必要的代理權限</block>
   <block id="5354529f47c862f65799910961248e94" category="inline-link">所需的自訂角色權限</block>
   <block id="83a989bd64e0e5885e1dec6274ea42ed" category="inline-link">Cloud Tiering 所需的特定權限</block>
-  <block id="1295c43404f02c717c0fe1d04ff51707" category="paragraph">如果您使用 3.9.25 或更高版本建立了控制台代理，那麼一切就緒了。預設情況下，將設定自訂角色，該角色提供代理管理 Azure 網路內的資源和流程所需的權限。查看<block ref="ae3b48d48c05b567196be1134d253020" category="inline-link-rx"></block>以及<block ref="61be4d5ffb9c196991ecf31c3c614969" category="inline-link-rx"></block>。</block>
   <block id="d2435fe75a9908b3e430752043c4758d" category="paragraph">如果您使用早期版本建立了代理，則需要編輯 Azure 帳戶的權限清單以新增任何缺少的權限。</block>
   <block id="96fe77e6e2cd8589ca112918c9a04ec6" category="section-title">為控制台代理準備網絡</block>
   <block id="0f09dcb2eaf2b722db0d6062daf994d4" category="paragraph">確保控制台代理程式具有所需的網路連線。該代理程式可以安裝在本機或 Azure 中。</block>
@@ -1436,4 +1423,17 @@
   <block id="5bc1315a63455544e7a917a7cc968939" category="paragraph">這些 NSS 憑證與您的特定控制台帳戶 ID 相關聯。屬於控制台組織的使用者可以從*支援 &gt; NSS 管理*存取這些憑證。</block>
   <block id="7687b0a57d5cb728d9fb892dfc814715" category="paragraph">這些操作使控制台能夠使用您的 NSS 帳戶進行許可證下載、軟體升級驗證和未來支援註冊等操作。</block>
   <block id="833f66976dfb40b1fff1906d00d81e43" category="paragraph">如果您希望透過網際網路從本機資料中心到 VPC 建立更安全的連接，則可以在分層啟動精靈中選擇 AWS PrivateLink 連接。如果您打算使用 VPN 或 AWS Direct Connect 透過使用私人 IP 位址的 VPC 終端節點介面連接您的本機系統，則需要它。這種連接類型顯示在<block ref="2050915bab4f6759cf373f4985750764" category="inline-xref-macro-rx"></block>。</block>
+  <block id="e264fed64c86a30dfb5ff8b811d8fe4e" category="paragraph">此通知是一項“建議”，旨在幫助您提高系統效率並節省儲存成本。它提供了一個鏈接<block ref="42e4a442d762b5369e021e8b363199d3" category="inline-link-rx"></block>幫助您計算成本節省。</block>
+  <block id="6be39c6bfafab590f236e258f50b9b12" category="paragraph"><block ref="1c2f8aa0bfcd23a7f9487ab2cefe0855" category="inline-link-rx"></block>。</block>
+  <block id="4513a79372ed27e3c5ed54e755dd2b0b" category="paragraph">Cloud Tiering 授權也可以與將資料分層到 IBM Cloud Object Storage 的叢集共用。必須使用 System Manager 或ONTAP CLI 設定FabricPool配置，但<block ref="ad5a72c96253a511839f7d21241e389f" category="inline-link-macro-rx"></block></block>
+  <block id="02778b04e5a037c1f79623dbe0edaeaa" category="paragraph"><block ref="ec35df1b46bc45bcde27ce05d4c1911f" category="inline-link-macro-rx"></block>。</block>
+  <block id="bc9c7ebd48973adea5231f10a190728f" category="paragraph">購買 Cloud Tiering 授權後，您需要將該授權新增至NetApp Console。<block ref="14bb9fa35d1b0028e213cd470536d52e" category="inline-link-macro-rx"></block>。</block>
+  <block id="5cc30a9be8f6ac2be14e01b2d4904d11" category="admonition">從 2021 年 8 月開始，舊的 * FabricPool* 許可證被 * Cloud Tiering * 許可證取代。<block ref="22e02f8ddb60d0feddfbbce882c0c8e2" category="inline-link-macro-rx"></block>。</block>
+  <block id="9eef93f992624bd8e7298c05ca77b7fa" category="paragraph">要獲得估算，請將您的ONTAP叢集新增至NetApp Console並透過 Cloud Tiering Clusters 頁面進行檢查。選擇叢集的「計算潛在的分層節省」以啟動<block ref="f9f8011c8d4b0dcc7c11e9eaffe3ab07" category="inline-link-rx"></block>看看您能省多少錢。</block>
+  <block id="15a4c60a0f86c99eaac0eebe021afdfe" category="list-text"><block ref="15a4c60a0f86c99eaac0eebe021afdfe" category="inline-link-macro-rx"></block></block>
+  <block id="6c28a4f0eec0b4b8b7a2fd2b16db0bf0" category="paragraph">當你<block ref="20b85fbda0982633cbcc10be992f4ea5" category="inline-link-macro-rx"></block>，Cloud Tiering 識別FabricPool許可證並將許可證新增至控制台。這些集群將繼續照常分層資料。當FabricPool授權到期時，您需要購買 Cloud Tiering 授權。</block>
+  <block id="1bde59815d02b55060d6e8d13346a689" category="list-text"><block ref="7f252ad1d739a8ecccf6d5db96c80d7b" category="inline-link-macro-rx"></block>滿足新集群或多個集群所需的容量。</block>
+  <block id="8ba93d5fbdf24a09ecf1780c63d1122d" category="list-text">在雲端分層中，<block ref="7e9f01463f0c1bdc0791002bcf190788" category="inline-link-macro-rx"></block> 。</block>
+  <block id="a3f4872361bc7d041bb3195ac8d2c127" category="paragraph">此通知是提高系統效率、降低儲存成本的「建議」。它表示集群分層的冷數據少於 20% - 包括沒有分層數據的集群。它提供了一個鏈接<block ref="42e4a442d762b5369e021e8b363199d3" category="inline-link-rx"></block>幫助您計算成本節省。</block>
+  <block id="992d77728a30a0b6ec30278644a2aba6" category="paragraph">如果您使用 3.9.25 或更高版本建立了控制台代理，那麼一切就緒了。預設情況下，將設定自訂角色，該角色提供代理管理 Azure 網路內的資源和流程所需的權限。查看<block ref="f8b5fc8308ce6fe4ed8cf98ab578e96f" category="inline-link-rx"></block>以及<block ref="e1fd674ce022ebb18ca6d2753458c1ab" category="inline-link-rx"></block>。</block>
 </blocks>

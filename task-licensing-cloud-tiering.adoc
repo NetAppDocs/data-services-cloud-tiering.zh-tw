@@ -183,7 +183,7 @@ TIP: 請注意，分層到StorageGRID不需要FabricPool或 Cloud Tiering 授權
 
 === 具有FabricPool許可證的現有叢集的流程
 
-當你link:task-managing-tiering.html#discovering-additional-clusters-from-bluexp-tiering["在 Cloud Tiering 中發現任何這些特殊集群類型"]，Cloud Tiering 識別FabricPool許可證並將許可證新增至控制台。這些集群將繼續照常分層資料。當FabricPool授權到期時，您需要購買 Cloud Tiering 授權。
+當你link:task-managing-tiering.html#discovering-additional-clusters-from-cloud-tiering["在 Cloud Tiering 中發現任何這些特殊集群類型"]，Cloud Tiering 識別FabricPool許可證並將許可證新增至控制台。這些集群將繼續照常分層資料。當FabricPool授權到期時，您需要購買 Cloud Tiering 授權。
 
 
 
@@ -207,9 +207,9 @@ NOTE: 系統管理員或ONTAP CLI 中顯示的「子」許可證的許可容量�
 +
 此時不要配置分層。
 
-. link:task-licensing-cloud-tiering.html#use-a-bluexp-tiering-byol-license["購買 Cloud Tiering 許可證"]滿足新集群或多個集群所需的容量。
+. link:task-licensing-cloud-tiering.html#use-a-cloud-tiering-byol-license["購買 Cloud Tiering 許可證"]滿足新集群或多個集群所需的容量。
 . 在控制台中<<licenses,將許可證添加到數位錢包>>[新增許可證]。
-. 在雲端分層中，link:task-managing-tiering.html#discovering-additional-clusters-from-bluexp-tiering["發現新的集群"] 。
+. 在雲端分層中，link:task-managing-tiering.html#discovering-additional-clusters-from-cloud-tiering["發現新的集群"] 。
 . 在「集群」頁面中，選擇image:screenshot_horizontal_more_button.gif["更多圖標"]對於叢集並選擇*部署許可證*。
 +
 image:screenshot_tiering_deploy_license.png["顯示如何將分層許可證部署到ONTAP叢集的螢幕截圖。"]

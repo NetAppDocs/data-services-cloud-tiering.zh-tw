@@ -66,7 +66,7 @@ NetApp Console建立在增強和重組的BlueXP基礎之上，可在企業級內
 
 當叢集分層的冷資料少於 20%（包括未分層任何資料的叢集）時，分層事件「將叢集 <name> 中的其他資料分層到物件儲存以提高儲存效率」現在會作為通知出現。
 
-此通知是一項“建議”，旨在幫助您提高系統效率並節省儲存成本。它提供了一個鏈接 https://bluexp.netapp.com/cloud-tiering-service-tco["Cloud Tiering 總擁有成本和節省計算器"^]幫助您計算成本節省。
+此通知是一項“建議”，旨在幫助您提高系統效率並節省儲存成本。它提供了一個鏈接 https://www.netapp.com/data-services/tiering/tco-calculator/["Cloud Tiering 總擁有成本和節省計算器"^]幫助您計算成本節省。
 
 
 

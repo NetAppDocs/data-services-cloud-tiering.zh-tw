@@ -164,7 +164,7 @@ https://bluexp.netapp.com/pricing["查看定價詳情"]。
 
 === 在啟用雲端分層之前，如何估算磁碟區的節省並取得冷資料報告？
 
-要獲得估算，請將您的ONTAP叢集新增至NetApp Console並透過 Cloud Tiering Clusters 頁面進行檢查。選擇叢集的「計算潛在的分層節省」以啟動 https://bluexp.netapp.com/cloud-tiering-service-tco["雲端分層 TCO 計算器"^]看看您能省多少錢。
+要獲得估算，請將您的ONTAP叢集新增至NetApp Console並透過 Cloud Tiering Clusters 頁面進行檢查。選擇叢集的「計算潛在的分層節省」以啟動 https://www.netapp.com/data-services/tiering/tco-calculator["雲端分層 TCO 計算器"^]看看您能省多少錢。
 
 
 
@@ -214,7 +214,7 @@ Cloud Tiering 支援ONTAP 9.2 及更高版本。
 
 這取決於冷資料的分層位置。請參閱以下連結以了解更多詳細資訊：
 
-* link:task-tiering-onprem-aws.html#prepare-your-ontap-cluster["將資料分層到 Amazon S3"]
+* link:task-tiering-onprem-aws.html#preparing-your-ontap-clusters["將資料分層到 Amazon S3"]
 * link:task-tiering-onprem-azure.html#preparing-your-ontap-clusters["將資料分層到 Azure Blob 存儲"]
 * link:task-tiering-onprem-gcp.html#preparing-your-ontap-clusters["將資料分層儲存到 Google Cloud Storage"]
 * link:task-tiering-onprem-storagegrid.html#preparing-your-ontap-clusters["將資料分層到StorageGRID"]

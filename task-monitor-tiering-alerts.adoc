@@ -22,7 +22,7 @@ summary: 您可以在NetApp Console通知中心查看分層警報的狀態。
 
 將叢集 <name> 中的附加資料分層到物件儲存以節省儲存空間
 
-此通知是提高系統效率、降低儲存成本的「建議」。它表示集群分層的冷數據少於 20% - 包括沒有分層數據的集群。它提供了一個鏈接 https://bluexp.netapp.com/cloud-tiering-service-tco["Cloud Tiering 總擁有成本和節省計算器"^]幫助您計算成本節省。
+此通知是提高系統效率、降低儲存成本的「建議」。它表示集群分層的冷數據少於 20% - 包括沒有分層數據的集群。它提供了一個鏈接 https://www.netapp.com/data-services/tiering/tco-calculator/["Cloud Tiering 總擁有成本和節省計算器"^]幫助您計算成本節省。
 
 NetApp Console不會傳送此通知的電子郵件。
 
